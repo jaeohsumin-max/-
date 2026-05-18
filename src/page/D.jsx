@@ -199,7 +199,7 @@ export default function D() {
                 <img
                   alt="Product 2"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAahAZyJHUgpJUl1-njHzs1c51UavUJghL7lU7G9MRDBZYUtJ_0pbkc9OMPC44QwvUyhAAp3yWfrG9oEvfuMvV6OiZBJYQknWrCXgE37HxDQv421WW8CuGdWrcsM0qKGEawGwbKgwy-rsNLxQPUPiPOGaWgSHmLG9bOqnE5j6eqZs-JZ73PoPpr42PE0A55TSZTt5tZQQRR15KMgqYoTXKY3RSP0o15swrUTN-_iAsFY1z4c0A9OwOjQqLhUb-Iqo7XIhyltpKglw"
+                  src="https://atimg.sonyunara.com/files/attrangs/goods/169503/list13_69c8208d0ee18.gif?v=1"
                 />
               </div>
               <div className="space-y-2">
