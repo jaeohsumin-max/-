@@ -1,39 +1,193 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import ProductCard from "../components/ProductCard";
+import { PRODUCTS, CATEGORIES } from "../data/products";
 
-function HomePage() {
+const FEATURED = PRODUCTS.filter((p) => p.badge === "BEST").slice(0, 4);
+const NEW_ARRIVALS = PRODUCTS.filter((p) => p.badge === "NEW" || p.badge === "SALE").slice(0, 4);
+
+export default function HomePage() {
   return (
-    <div className="bg-surface text-on-surface antialiased min-h-screen flex flex-col items-center justify-center px-margin-desktop font-body-base">
-      <div className="max-w-[800px] w-full space-y-xl text-center">
-        {/* Header Section */}
-        <header className="space-y-md mb-xxl">
-          <h1 className="font-display-xl text-display-xl text-primary tracking-tighter leading-none">
-            EduSpark
-          </h1>
-          <p className="font-body-lg text-body-lg text-secondary">
-            원하시는 메뉴를 선택해 주세요.
+  <>
+      {/* Hero */}
+      <section className="relative min-h-[70vh] md:min-h-[85vh] flex items-center overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#181512]/80 via-[#181512]/50 to-transparent" />
+        <div className="relative max-w-7xl mx-auto px-5 md:px-10 py-20 w-full">
+          <p className="text-[#d4a39e] text-xs tracking-[0.3em] uppercase mb-4">
+            Spring Collection 2026
           </p>
-        </header>
+          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-[1.1] max-w-2xl mb-6">
+            당신의 일상을
+            <br />
+            더 아름답게
+          </h1>
+          <p className="text-white/80 text-sm md:text-base max-w-md mb-10 leading-relaxed">
+            패션부터 라이프스타일까지, 엄선된 12가지 아이템으로
+            완성하는 프리미엄 쇼핑 경험.
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <Link
+              to="/shop"
+              className="inline-block bg-white text-[#181512] px-8 py-4 text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#faf9f6] transition-colors"
+            >
+              쇼핑 시작하기
+            </Link>
+            <Link
+              to="/shop/fashion"
+              className="inline-block border border-white/60 text-white px-8 py-4 text-xs tracking-[0.2em] uppercase hover:bg-white/10 transition-colors"
+            >
+              신상품 보기
+            </Link>
+          </div>
+        </div>
+      </section>
 
-        {/* Navigation Buttons */}
-        <div className="flex flex-col sm:flex-row gap-md justify-center">
-          <Link
-            to="/list"
-            className="px-xl py-md bg-primary text-on-primary font-label-sm text-label-sm uppercase tracking-widest hover:bg-surface-tint transition-colors text-center"
-          >
-            코스 리스트 페이지로 이동
-          </Link>
+      {/* Categories */}
+      <section className="max-w-7xl mx-auto px-5 md:px-10 py-16 md:py-24">
+        <div className="text-center mb-12">
+          <h2 className="font-serif text-3xl md:text-4xl mb-3">카테고리</h2>
+          <p className="text-[#6b6560] text-sm">원하는 스타일을 찾아보세요</p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {CATEGORIES.filter((c) => c.id !== "all").map((cat, i) => {
+            const imgs = [
+              "https://images.unsplash.com/photo-1483985988350-763728e368fb?w=400&q=80",
+              "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80",
+              "https://images.unsplash.com/photo-1615874959472-a9a072c566db?w=400&q=80",
+              "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80",
+              "https://images.unsplash.com/photo-1559056199-641a0ac8b55c?w=400&q=80",
+            ];
+            return (
+              <Link
+                key={cat.id}
+                to={`/shop/${cat.id}`}
+                className="group relative aspect-square overflow-hidden rounded-sm"
+              >
+                <img
+                  src={imgs[i]}
+                  alt={cat.label}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-[#181512]/40 group-hover:bg-[#181512]/50 transition-colors flex items-end p-4">
+                  <span className="text-white font-medium tracking-wide">
+                    {cat.label}
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
 
+      {/* Best sellers */}
+      <section className="bg-white py-16 md:py-24">
+        <div className="max-w-7xl mx-auto px-5 md:px-10">
+          <div className="flex justify-between items-end mb-10">
+            <div>
+              <p className="text-xs tracking-[0.2em] uppercase text-[#c45c4a] mb-2">
+                Best Sellers
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl">베스트 상품</h2>
+            </div>
+            <Link
+              to="/shop"
+              className="text-sm text-[#6b6560] hover:text-[#181512] flex items-center gap-1"
+            >
+              전체 보기
+              <span className="material-symbols-outlined text-[18px]">
+                arrow_forward
+              </span>
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {FEATURED.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Banner */}
+      <section className="max-w-7xl mx-auto px-5 md:px-10 py-8">
+        <div className="relative bg-[#e8e4df] rounded-sm overflow-hidden flex flex-col md:flex-row items-center">
+          <div className="flex-1 p-10 md:p-16">
+            <p className="text-xs tracking-[0.2em] uppercase text-[#6b6560] mb-3">
+              Limited Offer
+            </p>
+            <h2 className="font-serif text-3xl md:text-4xl mb-4">
+              5만원 이상
+              <br />
+              무료 배송
+            </h2>
+            <p className="text-sm text-[#6b6560] mb-6">
+              전 상품 3일 이내 발송 · 7일 이내 무료 교환
+            </p>
+            <Link
+              to="/shop"
+              className="inline-block bg-[#181512] text-white px-6 py-3 text-xs tracking-widest uppercase"
+            >
+              지금 쇼핑하기
+            </Link>
+          </div>
+          <div className="w-full md:w-1/2 aspect-[4/3] md:aspect-auto md:h-80">
+            <img
+              src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&q=80"
+              alt=""
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* New arrivals */}
+      <section className="max-w-7xl mx-auto px-5 md:px-10 py-16 md:py-24">
+        <div className="flex justify-between items-end mb-10">
+          <div>
+            <p className="text-xs tracking-[0.2em] uppercase text-[#6b6560] mb-2">
+              New & Sale
+            </p>
+            <h2 className="font-serif text-3xl md:text-4xl">신상 · 할인</h2>
+          </div>
           <Link
-            to="/detail"
-            className="px-xl py-md border-[0.5px] border-outline-variant text-primary font-label-sm text-label-sm uppercase tracking-widest hover:border-primary transition-colors text-center"
+            to="/shop"
+            className="text-sm text-[#6b6560] hover:text-[#181512] flex items-center gap-1"
           >
-            코스 세부 페이지로 이동
+            전체 보기
+            <span className="material-symbols-outlined text-[18px]">
+              arrow_forward
+            </span>
           </Link>
         </div>
-      </div>
-    </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          {NEW_ARRIVALS.map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </div>
+      </section>
+
+      {/* Trust */}
+      <section className="border-t border-[#e8e4df] py-12">
+        <div className="max-w-7xl mx-auto px-5 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {[
+            { icon: "local_shipping", title: "무료배송", desc: "5만원 이상" },
+            { icon: "verified", title: "정품 보증", desc: "100% 정품" },
+            { icon: "sync", title: "7일 교환", desc: "무료 반품" },
+            { icon: "support_agent", title: "고객센터", desc: "1588-0000" },
+          ].map((item) => (
+            <div key={item.title}>
+              <span className="material-symbols-outlined text-[32px] text-[#c45c4a] mb-3">
+                {item.icon}
+              </span>
+              <p className="font-medium text-sm mb-1">{item.title}</p>
+              <p className="text-xs text-[#6b6560]">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
-
-export default HomePage;

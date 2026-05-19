@@ -1,23 +1,24 @@
 import { createBrowserRouter } from "react-router-dom";
-
+import Layout from "../components/Layout";
 import HomePage from "../page/HomePage";
-import CourseDetail from "../page/CourseDetail";
-import CourseList from "../page/CourseList";
-import D from "../page/D";
+import ShopPage from "../page/ShopPage";
+import ProductDetailPage from "../page/ProductDetailPage";
+import CartPage from "../page/CartPage";
+import CheckoutPage from "../page/CheckoutPage";
+import OrderCompletePage from "../page/OrderCompletePage";
 
 const router = createBrowserRouter([
-  { path: "/", element: <HomePage /> },
   {
-    path: "/detail",
-    element: <CourseDetail />,
-  },
-  {
-    path: "/list",
-    element: <CourseList />,
-  },
-  {
-    path: "/d",
-    element: <D />,
+    element: <Layout />,
+    children: [
+      { path: "/", element: <HomePage /> },
+      { path: "/shop", element: <ShopPage /> },
+      { path: "/shop/:category", element: <ShopPage /> },
+      { path: "/product/:id", element: <ProductDetailPage /> },
+      { path: "/cart", element: <CartPage /> },
+      { path: "/checkout", element: <CheckoutPage /> },
+      { path: "/order-complete", element: <OrderCompletePage /> },
+    ],
   },
 ]);
 

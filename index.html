@@ -1,141 +1,31 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mini-project-for-test</title>
+    <title>SUMIN Market — 프리미엄 라이프스타일 쇼핑몰</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="root"></div>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
-        darkMode: "class",
         theme: {
           extend: {
-            colors: {
-              "secondary-container": "#e3e2e2",
-              "on-error-container": "#93000a",
-              "on-secondary": "#ffffff",
-              tertiary: "#000000",
-              "surface-container": "#eeeeee",
-              "on-secondary-fixed": "#1b1c1c",
-              "surface-tint": "#5e5e5e",
-              "surface-container-low": "#f3f3f4",
-              surface: "#f9f9f9",
-              "on-tertiary-fixed": "#1a1c1c",
-              "on-surface": "#1a1c1c",
-              error: "#ba1a1a",
-              "on-tertiary-container": "#838484",
-              "on-secondary-fixed-variant": "#464747",
-              "surface-container-high": "#e8e8e8",
-              "on-primary-fixed": "#1b1b1b",
-              "surface-container-lowest": "#ffffff",
-              "on-tertiary": "#ffffff",
-              "surface-dim": "#dadada",
-              "outline-variant": "#cfc4c5",
-              "on-secondary-container": "#646464",
-              outline: "#7e7576",
-              "inverse-on-surface": "#f0f1f1",
-              "on-tertiary-fixed-variant": "#464747",
-              secondary: "#5e5e5e",
-              "primary-fixed": "#e2e2e2",
-              "surface-container-highest": "#e2e2e2",
-              "on-surface-variant": "#4c4546",
-              background: "#f9f9f9",
-              "tertiary-fixed": "#e3e2e2",
-              "primary-fixed-dim": "#c6c6c6",
-              "on-primary-fixed-variant": "#474747",
-              "primary-container": "#1b1b1b",
-              "secondary-fixed": "#e3e2e2",
-              "on-primary": "#ffffff",
-              "inverse-primary": "#c6c6c6",
-              "error-container": "#ffdad6",
-              "surface-variant": "#e2e2e2",
-              primary: "#000000",
-              "on-error": "#ffffff",
-              "inverse-surface": "#2f3131",
-              "on-background": "#1a1c1c",
-              "on-primary-container": "#848484",
-              "tertiary-container": "#1a1c1c",
-              "tertiary-fixed-dim": "#c7c6c6",
-              "surface-bright": "#f9f9f9",
-              "secondary-fixed-dim": "#c7c6c6",
-            },
-            borderRadius: {
-              DEFAULT: "0.25rem",
-              lg: "0.5rem",
-              xl: "0.75rem",
-              full: "9999px",
-            },
-            spacing: {
-              xxl: "128px",
-              "margin-desktop": "10vw",
-              md: "16px",
-              unit: "4px",
-              sm: "8px",
-              "margin-mobile": "20px",
-              lg: "32px",
-              xs: "4px",
-              gutter: "24px",
-              xl: "64px",
-            },
             fontFamily: {
-              "label-sm": ["Geist"],
-              "headline-lg-mobile": ["Geist"],
-              "headline-lg": ["Geist"],
-              "display-xl": ["Geist"],
-              "body-lg": ["Geist"],
-              metadata: ["Geist"],
-              "headline-md": ["Geist"],
-              "body-base": ["Geist"],
-            },
-            fontSize: {
-              "label-sm": [
-                "11px",
-                {
-                  lineHeight: "1.0",
-                  letterSpacing: "0.08em",
-                  fontWeight: "600",
-                },
-              ],
-              "headline-lg-mobile": [
-                "32px",
-                {
-                  lineHeight: "1.2",
-                  letterSpacing: "-0.02em",
-                  fontWeight: "300",
-                },
-              ],
-              "headline-lg": [
-                "48px",
-                {
-                  lineHeight: "1.1",
-                  letterSpacing: "-0.02em",
-                  fontWeight: "300",
-                },
-              ],
-              "display-xl": [
-                "80px",
-                {
-                  lineHeight: "1.0",
-                  letterSpacing: "-0.04em",
-                  fontWeight: "200",
-                },
-              ],
-              "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
-              metadata: ["12px", { lineHeight: "1.4", fontWeight: "400" }],
-              "headline-md": [
-                "24px",
-                {
-                  lineHeight: "1.4",
-                  letterSpacing: "-0.01em",
-                  fontWeight: "500",
-                },
-              ],
-              "body-base": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+              serif: ['"EB Garamond"', "Georgia", "serif"],
+              sans: ['"Hanken Grotesk"', "system-ui", "sans-serif"],
             },
           },
         },
