@@ -13,38 +13,9 @@ export default function HomePage() {
       <section className="relative min-h-[70vh] md:min-h-[85vh] flex items-center overflow-hidden">
         <img
           src={heroGif}
-          alt="AIRMUSE Spring Collection"
+          alt="AIRMUSE"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#181512]/80 via-[#181512]/50 to-transparent" />
-        <div className="relative max-w-7xl mx-auto px-5 md:px-10 py-20 w-full">
-          <p className="text-[#d4a39e] text-xs tracking-[0.3em] uppercase mb-4">
-            Spring Collection 2026
-          </p>
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white leading-[1.1] max-w-2xl mb-6">
-            당신의 일상을
-            <br />
-            더 아름답게
-          </h1>
-          <p className="text-white/80 text-sm md:text-base max-w-md mb-10 leading-relaxed">
-            TOP부터 SKIRT까지, 엄선된 의류 컬렉션으로
-            완성하는 프리미엄 패션 쇼핑.
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <Link
-              to="/shop"
-              className="inline-block bg-white text-[#181512] px-8 py-4 text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#faf9f6] transition-colors"
-            >
-              쇼핑 시작하기
-            </Link>
-            <Link
-              to="/shop/new"
-              className="inline-block border border-white/60 text-white px-8 py-4 text-xs tracking-[0.2em] uppercase hover:bg-white/10 transition-colors"
-            >
-              신상품 보기
-            </Link>
-          </div>
-        </div>
       </section>
 
       {/* Categories */}
