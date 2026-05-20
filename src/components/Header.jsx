@@ -18,7 +18,7 @@ export default function Header() {
             to="/"
             className="font-serif text-2xl md:text-3xl tracking-tight text-[#181512]"
           >
-            SUMIN
+            AIRMUSE
           </Link>
 
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8">

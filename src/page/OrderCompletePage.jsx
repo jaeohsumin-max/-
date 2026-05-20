@@ -5,7 +5,7 @@ export default function OrderCompletePage() {
   const location = useLocation();
   const orderTotal = location.state?.orderTotal ?? 0;
   const orderName = location.state?.orderName ?? "고객";
-  const orderId = `SM${Date.now().toString().slice(-8)}`;
+  const orderId = `AM${Date.now().toString().slice(-8)}`;
 
   return (
     <div className="max-w-2xl mx-auto px-5 py-20 md:py-32 text-center">
