@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { PRODUCTS, CATEGORIES, getCategoryPath } from "../data/products";
+import heroGif from "../assets/output.gif";
 
 const FEATURED = PRODUCTS.filter((p) => p.badge === "BEST").slice(0, 4);
 const NEW_ARRIVALS = PRODUCTS.filter((p) => p.badge === "NEW" || p.badge === "SALE").slice(0, 4);
@@ -11,7 +12,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative min-h-[70vh] md:min-h-[85vh] flex items-center overflow-hidden">
         <img
-          src="/output.gif"
+          src={heroGif}
           alt="AIRMUSE Spring Collection"
           className="absolute inset-0 w-full h-full object-cover"
         />
