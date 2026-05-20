@@ -11,7 +11,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative min-h-[70vh] md:min-h-[85vh] flex items-center overflow-hidden">
         <img
-          src="/hero.jpg"
+          src="/output.gif"
           alt="AIRMUSE Spring Collection"
           className="absolute inset-0 w-full h-full object-cover"
         />
