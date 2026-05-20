@@ -175,7 +175,7 @@ export default function HomePage() {
           {[
             { icon: "local_shipping", title: "무료배송", desc: "5만원 이상" },
             { icon: "verified", title: "정품 보증", desc: "100% 정품" },
-            { icon: "sync", title: "7일 교환", desc: "무료 반품" },
+            { icon: "sync", title: "1일 교환", desc: "조형우 바보" },
             { icon: "support_agent", title: "고객센터", desc: "1588-0000" },
           ].map((item) => (
             <div key={item.title}>

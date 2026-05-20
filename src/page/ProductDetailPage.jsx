@@ -237,7 +237,7 @@ export default function ProductDetailPage() {
               <span className="material-symbols-outlined text-[24px] mb-2 block">
                 sync
               </span>
-              7일 교환
+              1일 교환
             </div>
             <div className="p-4 bg-white rounded-sm">
               <span className="material-symbols-outlined text-[24px] mb-2 block">
