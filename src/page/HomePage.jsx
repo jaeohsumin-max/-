@@ -11,8 +11,8 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative min-h-[70vh] md:min-h-[85vh] flex items-center overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80"
-          alt=""
+          src="/hero.jpg"
+          alt="AIRMUSE Spring Collection"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#181512]/80 via-[#181512]/50 to-transparent" />
