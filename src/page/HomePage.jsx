@@ -170,25 +170,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Trust */}
-      <section className="border-t border-[#e8e4df] py-12">
-        <div className="max-w-7xl mx-auto px-5 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {[
-            { icon: "local_shipping", title: "무료배송", desc: "5만원 이상" },
-            { icon: "verified", title: "정품 보증", desc: "100% 정품" },
-            { icon: "sync", title: "1일 교환", desc: "조형우 바보" },
-            { icon: "support_agent", title: "고객센터", desc: "1588-0000" },
-          ].map((item) => (
-            <div key={item.title}>
-              <span className="material-symbols-outlined text-[32px] text-[#c45c4a] mb-3">
-                {item.icon}
-              </span>
-              <p className="font-medium text-sm mb-1">{item.title}</p>
-              <p className="text-xs text-[#6b6560]">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
     </>
   );
 }
