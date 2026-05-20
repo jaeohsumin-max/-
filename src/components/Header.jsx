@@ -1,6 +1,6 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
-import { CATEGORIES } from "../data/products";
+import { CATEGORIES, getCategoryPath } from "../data/products";
 
 export default function Header() {
   const { itemCount } = useCart();
@@ -21,13 +21,14 @@ export default function Header() {
             SUMIN
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-8">
-            {CATEGORIES.filter((c) => c.id !== "all").map((cat) => (
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+            {CATEGORIES.map((cat) => (
               <NavLink
                 key={cat.id}
-                to={`/shop/${cat.id}`}
+                to={getCategoryPath(cat.id)}
+                end={cat.id === "all"}
                 className={({ isActive }) =>
-                  `text-sm tracking-wide transition-colors ${
+                  `text-xs xl:text-sm tracking-widest uppercase transition-colors ${
                     isActive
                       ? "text-[#181512] font-medium border-b border-[#181512] pb-0.5"
                       : "text-[#6b6560] hover:text-[#181512]"
@@ -67,18 +68,17 @@ export default function Header() {
       </div>
 
       <div className="lg:hidden border-t border-[#e8e4df] overflow-x-auto">
-        <div className="flex gap-6 px-5 py-3 min-w-max">
-          <NavLink
-            to="/shop"
-            className="text-xs tracking-widest uppercase text-[#6b6560] whitespace-nowrap"
-          >
-            전체
-          </NavLink>
-          {CATEGORIES.filter((c) => c.id !== "all").map((cat) => (
+        <div className="flex gap-5 px-5 py-3 min-w-max">
+          {CATEGORIES.map((cat) => (
             <NavLink
               key={cat.id}
-              to={`/shop/${cat.id}`}
-              className="text-xs tracking-widest uppercase text-[#6b6560] whitespace-nowrap hover:text-[#181512]"
+              to={getCategoryPath(cat.id)}
+              end={cat.id === "all"}
+              className={({ isActive }) =>
+                `text-xs tracking-widest uppercase whitespace-nowrap ${
+                  isActive ? "text-[#181512] font-medium" : "text-[#6b6560]"
+                }`
+              }
             >
               {cat.label}
             </NavLink>

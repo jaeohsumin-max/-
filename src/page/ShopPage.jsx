@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import {
   CATEGORIES,
+  getCategoryPath,
   getProductsByCategory,
 } from "../data/products";
 
@@ -19,7 +20,7 @@ export default function ShopPage() {
   const [search, setSearch] = useState("");
 
   const categoryLabel =
-    CATEGORIES.find((c) => c.id === category)?.label ?? "전체";
+    CATEGORIES.find((c) => c.id === category)?.label ?? "ALL";
 
   const products = useMemo(() => {
     let list = getProductsByCategory(category);
@@ -95,8 +96,8 @@ export default function ShopPage() {
             {CATEGORIES.map((cat) => (
               <li key={cat.id}>
                 <Link
-                  to={cat.id === "all" ? "/shop" : `/shop/${cat.id}`}
-                  className={`block px-3 py-2 text-sm transition-colors ${
+                  to={getCategoryPath(cat.id)}
+                  className={`block px-3 py-2 text-sm tracking-widest uppercase transition-colors ${
                     category === cat.id
                       ? "bg-[#181512] text-white"
                       : "text-[#6b6560] hover:bg-[#e8e4df]"

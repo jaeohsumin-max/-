@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { CATEGORIES, getCategoryPath } from "../data/products";
 
 export default function Footer() {
   return (
@@ -8,45 +9,26 @@ export default function Footer() {
           <div className="md:col-span-1">
             <p className="font-serif text-3xl mb-4">SUMIN</p>
             <p className="text-sm text-[#a39e98] leading-relaxed">
-              일상에 스며드는
+              감각적인 데일리룩부터
               <br />
-              감각적인 라이프스타일 쇼핑
+              특별한 날의 드레스까지
             </p>
           </div>
           <div>
             <h3 className="text-xs tracking-[0.2em] uppercase mb-4 text-[#a39e98]">
-              쇼핑
+              Shop
             </h3>
             <ul className="space-y-2 text-sm">
-              <li>
-                <Link to="/shop" className="hover:text-white transition-colors">
-                  전체 상품
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/shop/fashion"
-                  className="hover:text-white transition-colors"
-                >
-                  패션
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/shop/beauty"
-                  className="hover:text-white transition-colors"
-                >
-                  뷰티
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/shop/life"
-                  className="hover:text-white transition-colors"
-                >
-                  라이프
-                </Link>
-              </li>
+              {CATEGORIES.map((cat) => (
+                <li key={cat.id}>
+                  <Link
+                    to={getCategoryPath(cat.id)}
+                    className="hover:text-white transition-colors tracking-wide uppercase"
+                  >
+                    {cat.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div>

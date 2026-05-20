@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
-import { PRODUCTS, CATEGORIES } from "../data/products";
+import { PRODUCTS, CATEGORIES, getCategoryPath } from "../data/products";
 
 const FEATURED = PRODUCTS.filter((p) => p.badge === "BEST").slice(0, 4);
 const NEW_ARRIVALS = PRODUCTS.filter((p) => p.badge === "NEW" || p.badge === "SALE").slice(0, 4);
@@ -26,8 +26,8 @@ export default function HomePage() {
             더 아름답게
           </h1>
           <p className="text-white/80 text-sm md:text-base max-w-md mb-10 leading-relaxed">
-            패션부터 라이프스타일까지, 엄선된 12가지 아이템으로
-            완성하는 프리미엄 쇼핑 경험.
+            TOP부터 SKIRT까지, 엄선된 의류 컬렉션으로
+            완성하는 프리미엄 패션 쇼핑.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
@@ -37,7 +37,7 @@ export default function HomePage() {
               쇼핑 시작하기
             </Link>
             <Link
-              to="/shop/fashion"
+              to="/shop/new"
               className="inline-block border border-white/60 text-white px-8 py-4 text-xs tracking-[0.2em] uppercase hover:bg-white/10 transition-colors"
             >
               신상품 보기
@@ -52,19 +52,20 @@ export default function HomePage() {
           <h2 className="font-serif text-3xl md:text-4xl mb-3">카테고리</h2>
           <p className="text-[#6b6560] text-sm">원하는 스타일을 찾아보세요</p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {CATEGORIES.filter((c) => c.id !== "all").map((cat, i) => {
             const imgs = [
-              "https://images.unsplash.com/photo-1483985988350-763728e368fb?w=400&q=80",
-              "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80",
-              "https://images.unsplash.com/photo-1615874959472-a9a072c566db?w=400&q=80",
-              "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80",
-              "https://images.unsplash.com/photo-1559056199-641a0ac8b55c?w=400&q=80",
+              "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=400&q=80",
+              "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&q=80",
+              "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=400&q=80",
+              "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&q=80",
+              "https://images.unsplash.com/photo-1595777457583-95e059d581b5?w=400&q=80",
+              "https://images.unsplash.com/photo-1583498276836-2a896f8bf6b5?w=400&q=80",
             ];
             return (
               <Link
                 key={cat.id}
-                to={`/shop/${cat.id}`}
+                to={getCategoryPath(cat.id)}
                 className="group relative aspect-square overflow-hidden rounded-sm"
               >
                 <img
