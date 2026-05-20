@@ -10,11 +10,11 @@ export default function HomePage() {
   return (
   <>
       {/* Hero */}
-      <section className="relative min-h-[70vh] md:min-h-[85vh] flex items-center overflow-hidden">
+      <section className="w-full bg-[#f0ede8] flex items-center justify-center py-6 md:py-10">
         <img
           src={heroGif}
           alt="AIRMUSE"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="w-full max-w-3xl md:max-w-4xl max-h-[45vh] md:max-h-[50vh] object-contain mx-auto px-5"
         />
       </section>
 
