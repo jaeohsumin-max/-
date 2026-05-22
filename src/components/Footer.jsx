@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-5 md:px-10 py-16 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="md:col-span-1">
-            <p className="font-serif text-3xl mb-4">AIRMUSE</p>
+            <p className="font-serif text-3xl mb-4">CODEMUSE</p>
             <p className="text-sm text-[#a39e98] leading-relaxed">
               감각적인 데일리룩부터
               <br />
@@ -38,7 +38,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-[#d4cfc8]">
               <li>1588-0000</li>
               <li>평일 09:00 - 18:00</li>
-              <li>help@airmuse.kr</li>
+              <li>help@codemuse.kr</li>
             </ul>
           </div>
           <div>
@@ -53,7 +53,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-[#3d3834] mt-12 pt-8 flex flex-col md:flex-row justify-between gap-4 text-xs text-[#6b6560]">
-          <p>© 2026 AIRMUSE. All rights reserved.</p>
+          <p>© 2026 CODEMUSE. All rights reserved.</p>
           <p>사업자등록번호 000-00-00000</p>
         </div>
       </div>
