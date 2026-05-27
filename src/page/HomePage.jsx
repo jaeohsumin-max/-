@@ -84,38 +84,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Banner */}
-      <section className="max-w-7xl mx-auto px-5 md:px-10 py-8">
-        <div className="relative bg-[#e8e4df] rounded-sm overflow-hidden flex flex-col md:flex-row items-center">
-          <div className="flex-1 p-10 md:p-16">
-            <p className="text-xs tracking-[0.2em] uppercase text-[#6b6560] mb-3">
-              Limited Offer
-            </p>
-            <h2 className="font-serif text-3xl md:text-4xl mb-4">
-              5만원 이상
-              <br />
-              무료 배송
-            </h2>
-            <p className="text-sm text-[#6b6560] mb-6">
-              전 상품 3일 이내 발송 · 7일 이내 무료 교환
-            </p>
-            <Link
-              to="/shop"
-              className="inline-block bg-[#181512] text-white px-6 py-3 text-xs tracking-widest uppercase"
-            >
-              지금 쇼핑하기
-            </Link>
-          </div>
-          <div className="w-full md:w-1/2 aspect-[4/3] md:aspect-auto md:h-80">
-            <img
-              src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&q=80"
-              alt=""
-              className="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* New arrivals */}
       <section className="max-w-7xl mx-auto px-5 md:px-10 py-16 md:py-24">
         <div className="flex justify-between items-end mb-10">
