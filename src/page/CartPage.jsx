@@ -28,15 +28,17 @@ export default function CartPage() {
         <span className="material-symbols-outlined text-[64px] text-[#e8e4df] mb-6">
           shopping_bag
         </span>
-        <h1 className="font-serif text-3xl mb-4">장바구니가 비어 있습니다</h1>
-        <p className="text-[#6b6560] text-sm mb-8">
-          마음에 드는 상품을 담아보세요.
+        <h1 className="font-serif text-3xl md:text-4xl mb-4 tracking-tight">
+          Your bag is empty
+        </h1>
+        <p className="text-[#6b6560] text-sm mb-8 leading-relaxed">
+          Discover pieces you&apos;ll love.
         </p>
         <Link
           to="/shop"
-          className="inline-block bg-[#181512] text-white px-8 py-4 text-xs tracking-widest uppercase"
+          className="inline-block bg-[#181512] text-white px-8 py-4 text-xs tracking-[0.2em] uppercase"
         >
-          쇼핑하러 가기
+          Continue Shopping
         </Link>
       </div>
     );
@@ -44,9 +46,10 @@ export default function CartPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-5 md:px-10 py-10 md:py-16">
-      <h1 className="font-serif text-3xl md:text-4xl mb-2">장바구니</h1>
-      <p className="text-sm text-[#6b6560] mb-10">
-        {cartLines.length}종 · 총 {items.reduce((s, i) => s + i.quantity, 0)}개
+      <h1 className="font-serif text-3xl md:text-4xl mb-2 tracking-tight">Cart</h1>
+      <p className="text-sm text-[#6b6560] mb-10 tracking-wide">
+        {cartLines.length} {cartLines.length === 1 ? "item" : "items"} ·{" "}
+        {items.reduce((s, i) => s + i.quantity, 0)} total
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
@@ -109,7 +112,7 @@ export default function CartPage() {
                     onClick={() => removeItem(line.key)}
                     className="text-xs text-[#6b6560] hover:text-[#c45c4a] underline"
                   >
-                    삭제
+                    Remove
                   </button>
                 </div>
               </div>
@@ -123,23 +126,23 @@ export default function CartPage() {
             onClick={clearCart}
             className="text-xs text-[#6b6560] underline"
           >
-            장바구니 비우기
+            Clear bag
           </button>
         </div>
 
         <div className="lg:col-span-1">
           <div className="bg-white p-6 md:p-8 rounded-sm editorial-shadow sticky top-28">
-            <h2 className="font-serif text-xl mb-6">주문 요약</h2>
+            <h2 className="font-serif text-xl mb-6">Order Summary</h2>
             <dl className="space-y-3 text-sm mb-6">
               <div className="flex justify-between">
-                <dt className="text-[#6b6560]">상품 금액</dt>
+                <dt className="text-[#6b6560]">Subtotal</dt>
                 <dd>{formatPrice(subtotal)}</dd>
               </div>
               <div className="flex justify-between">
-                <dt className="text-[#6b6560]">배송비</dt>
+                <dt className="text-[#6b6560]">Shipping</dt>
                 <dd>
                   {shipping === 0 ? (
-                    <span className="text-[#c45c4a]">무료</span>
+                    <span className="text-[#c45c4a]">Free</span>
                   ) : (
                     formatPrice(shipping)
                   )}
@@ -147,27 +150,27 @@ export default function CartPage() {
               </div>
               {subtotal > 0 && subtotal < SHIPPING_FREE_THRESHOLD && (
                 <p className="text-xs text-[#6b6560] bg-[#faf9f6] p-3">
-                  {formatPrice(SHIPPING_FREE_THRESHOLD - subtotal)} 더 담으면
-                  무료배송!
+                  Add {formatPrice(SHIPPING_FREE_THRESHOLD - subtotal)} more for
+                  free shipping
                 </p>
               )}
             </dl>
             <div className="flex justify-between font-semibold text-lg border-t border-[#e8e4df] pt-4 mb-6">
-              <span>총 결제금액</span>
+              <span>Total</span>
               <span>{formatPrice(total)}</span>
             </div>
             <button
               type="button"
               onClick={() => navigate("/checkout")}
-              className="w-full bg-[#181512] text-white py-4 text-xs tracking-widest uppercase hover:bg-[#3d3834] transition-colors"
+              className="w-full bg-[#181512] text-white py-4 text-xs tracking-[0.2em] uppercase hover:bg-[#3d3834] transition-colors"
             >
-              주문하기
+              Checkout
             </button>
             <Link
               to="/shop"
-              className="block text-center mt-4 text-xs text-[#6b6560] underline"
+              className="block text-center mt-4 text-xs text-[#6b6560] underline tracking-wide"
             >
-              쇼핑 계속하기
+              Continue Shopping
             </Link>
           </div>
         </div>
