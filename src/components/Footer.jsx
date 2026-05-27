@@ -78,10 +78,10 @@ export default function Footer() {
               <p>C/S</p>
               <p>T. 010-7546-3869</p>
               <p>Mon-Fri AM 10:30 - PM 17:30</p>
-              <p>Weekend &amp; Holiday Is Closed</p>
+              <p>Weekend &amp; Holiday OFF</p>
               <p className="mt-6">Bank Account</p>
-              <p>Shinhan 110-633-003213</p>
-              <p>Account Holder: Lee Sumin (CODEMUSE)</p>
+              <p className="normal-case">신한 110-633-003213</p>
+              <p className="normal-case">예금주: 이수민(코드뮤즈)</p>
               <div className="flex items-center justify-center md:justify-start gap-4 mt-6 normal-case tracking-normal">
                 <button
                   type="button"
