@@ -4,33 +4,33 @@ import { Link } from "react-router-dom";
 const NOTICES = [
   {
     date: "2026.03.15",
-    title: "Spring Collection 업데이트",
-    body: "신상 TOP · DRESS · SKIRT 라인이 순차적으로 업데이트됩니다.",
+    title: "Spring Collection Update",
+    body: "New TOP, DRESS, and SKIRT lines will be updated sequentially.",
   },
   {
     date: "2026.03.01",
-    title: "배송 안내",
-    body: "주문 후 1~3영업일 이내 출고됩니다. 주말·공휴일 제외.",
+    title: "Shipping Notice",
+    body: "Orders ship within 1–3 business days. Excludes weekends and public holidays.",
   },
   {
     date: "2026.02.20",
-    title: "교환 · 반품 안내",
-    body: "상품 수령 후 7일 이내 미착용 상품에 한해 교환·반품 가능합니다.",
+    title: "Exchange & Return Policy",
+    body: "Unused items may be exchanged or returned within 7 days of delivery.",
   },
 ];
 
 const FAQ_ITEMS = [
   {
-    q: "주문은 어떻게 하나요?",
-    a: "원하시는 상품을 장바구니에 담은 뒤 Order 메뉴에서 결제를 진행해 주세요.",
+    q: "How do I place an order?",
+    a: "Add items to your bag and proceed to checkout from the Order menu.",
   },
   {
-    q: "입금 확인은 언제 되나요?",
-    a: "입금 후 1~2시간 이내 확인되며, 확인 즉시 배송 준비가 시작됩니다.",
+    q: "When is payment confirmed?",
+    a: "Bank transfers are confirmed within 1–2 hours. Shipping begins once confirmed.",
   },
   {
-    q: "교환 · 반품은 어떻게 하나요?",
-    a: "고객센터(010-7546-3869) 또는 아래 문의로 연락 주시면 안내드립니다.",
+    q: "How do I exchange or return an item?",
+    a: "Contact us at 010-7546-3869 and we will guide you through the process.",
   },
 ];
 
@@ -53,7 +53,7 @@ function Modal({ title, onClose, children }) {
             type="button"
             onClick={onClose}
             className="p-1 text-[#6b6560] hover:text-[#181512] transition-colors"
-            aria-label="닫기"
+            aria-label="Close"
           >
             <span className="material-symbols-outlined text-[22px]">close</span>
           </button>
@@ -71,96 +71,46 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="mt-auto bg-white border-t border-[#e8e4df] text-[#6b6560]">
-        <div className="max-w-7xl mx-auto px-5 md:px-10 py-14 md:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10">
-            <div>
-              <h3 className="text-[11px] tracking-[0.2em] uppercase text-[#a39e98] mb-5">
-                Customer Center
-              </h3>
-              <p className="text-2xl md:text-[28px] text-[#c4a882] tracking-wide mb-4">
-                010-7546-3869
-              </p>
-              <ul className="space-y-1 text-xs leading-relaxed mb-6">
-                <li>월-금 AM 10:30 - PM 17:30</li>
-                <li>주말 &amp; 공휴일 OFF</li>
-              </ul>
-              <div className="flex items-center gap-5 pt-1">
+      <footer className="mt-auto bg-white border-t border-[#e8e4df] text-[#181512]">
+        <div className="max-w-4xl mx-auto px-5 md:px-10 py-14 md:py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 text-[11px] leading-[1.9] tracking-[0.04em] uppercase">
+            <div className="text-center md:text-left">
+              <p>C/S</p>
+              <p>T. 010-7546-3869</p>
+              <p>Mon-Fri AM 10:30 - PM 17:30</p>
+              <p>Weekend &amp; Holiday Is Closed</p>
+              <p className="mt-6">Bank Account</p>
+              <p>Shinhan 110-633-003213</p>
+              <p>Account Holder: Lee Sumin (CODEMUSE)</p>
+              <div className="flex items-center justify-center md:justify-start gap-4 mt-6 normal-case tracking-normal">
                 <button
                   type="button"
                   onClick={() => setOpenPanel("notice")}
-                  className={`text-[11px] tracking-[0.16em] uppercase pb-1 transition-opacity hover:opacity-70 ${
-                    openPanel === "notice"
-                      ? "text-[#181512] border-b-2 border-[#181512]"
-                      : "text-[#181512] border-b-2 border-[#181512]"
-                  }`}
+                  className="text-[10px] tracking-[0.16em] uppercase text-[#6b6560] hover:text-[#181512] transition-colors border-b border-transparent hover:border-[#181512] pb-0.5"
                 >
                   Notice
                 </button>
-                <span className="text-[#e8e4df] text-sm">/</span>
+                <span className="text-[#d4cfc8]">/</span>
                 <button
                   type="button"
                   onClick={() => setOpenPanel("qa")}
-                  className={`text-[11px] tracking-[0.16em] uppercase transition-colors hover:text-[#181512] ${
-                    openPanel === "qa"
-                      ? "text-[#181512] border-b border-[#181512] pb-0.5"
-                      : "text-[#6b6560]"
-                  }`}
+                  className="text-[10px] tracking-[0.16em] uppercase text-[#6b6560] hover:text-[#181512] transition-colors border-b border-transparent hover:border-[#181512] pb-0.5"
                 >
                   Q&amp;A
                 </button>
               </div>
             </div>
 
-            <div>
-              <h3 className="text-[11px] tracking-[0.2em] uppercase text-[#a39e98] mb-5">
-                Bank Info
-              </h3>
-              <p className="text-xs leading-relaxed mb-1">
-                신한은행 110-633-003213
-              </p>
-              <p className="text-xs leading-relaxed mb-4">이수민(코드뮤즈)</p>
-              <a
-                href="https://bank.shinhan.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-[11px] tracking-wide text-[#6b6560] hover:text-[#181512] transition-colors group"
-              >
-                <span className="material-symbols-outlined text-[16px] text-[#181512]">
-                  account_balance
-                </span>
-                <span className="border-b border-transparent group-hover:border-[#181512] pb-0.5">
-                  Shinhan Online Banking
-                </span>
-                <span className="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 transition-opacity">
-                  arrow_outward
-                </span>
-              </a>
-            </div>
-
-            <div>
-              <h3 className="text-[11px] tracking-[0.2em] uppercase text-[#a39e98] mb-5">
-                Company
-              </h3>
-              <ul className="space-y-1.5 text-[11px] leading-relaxed">
-                <li>
-                  <span className="text-[#a39e98]">상호</span> 코드뮤즈 (CODEMUSE)
-                </li>
-                <li>
-                  <span className="text-[#a39e98]">대표</span> 이수민
-                </li>
-                <li>
-                  <span className="text-[#a39e98]">사업자등록번호</span>{" "}
-                  187-28-02099
-                </li>
-              </ul>
-              <p className="text-[10px] text-[#a39e98] mt-6 tracking-wide">
-                © CODEMUSE. All rights reserved.
-              </p>
+            <div className="text-center md:text-left">
+              <p>CODEMUSE</p>
+              <p>CEO : Lee Sumin</p>
+              <p>Business License : 187-28-02099</p>
+              <p>Tel : 010-7546-3869</p>
+              <p className="mt-6">Copyright © CODEMUSE All Rights Reserved</p>
             </div>
           </div>
 
-          <div className="border-t border-[#e8e4df] mt-12 pt-6 flex flex-wrap justify-center gap-x-3 gap-y-2 text-[10px] tracking-[0.15em] uppercase">
+          <div className="mt-10 pt-6 border-t border-[#e8e4df] flex flex-wrap justify-center gap-x-3 gap-y-2 text-[10px] tracking-[0.15em] uppercase text-[#6b6560]">
             <Link to="/login" className="hover:text-[#181512] transition-colors">
               Agreement
             </Link>
@@ -190,7 +140,7 @@ export default function Footer() {
                 <p className="text-sm font-medium text-[#181512] mb-1">
                   {item.title}
                 </p>
-                <p className="text-xs leading-relaxed text-[#6b6560]">
+                <p className="text-xs leading-relaxed text-[#6b6560] normal-case tracking-normal">
                   {item.body}
                 </p>
               </li>
@@ -207,15 +157,15 @@ export default function Footer() {
                 <p className="text-sm font-medium text-[#181512] mb-1">
                   Q. {item.q}
                 </p>
-                <p className="text-xs leading-relaxed text-[#6b6560]">
+                <p className="text-xs leading-relaxed text-[#6b6560] normal-case tracking-normal">
                   A. {item.a}
                 </p>
               </li>
             ))}
           </ul>
           <div className="pt-4 border-t border-[#e8e4df]">
-            <p className="text-xs text-[#6b6560] mb-3">
-              더 궁금한 점이 있으시면 문의해 주세요.
+            <p className="text-xs text-[#6b6560] mb-3 normal-case tracking-normal">
+              Have more questions? Contact us anytime.
             </p>
             <a
               href="tel:01075463869"
