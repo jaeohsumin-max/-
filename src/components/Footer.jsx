@@ -17,16 +17,17 @@ export default function Footer() {
               <li>Weekdays AM 10:30 - PM 17:30</li>
               <li>Weekends &amp; Holidays OFF</li>
             </ul>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-5 pt-1">
               <button
                 type="button"
-                className="px-5 py-2.5 bg-[#c4a882] text-white text-[10px] tracking-widest uppercase"
+                className="text-[11px] tracking-[0.16em] uppercase text-[#181512] border-b-2 border-[#181512] pb-1 hover:opacity-70 transition-opacity"
               >
                 Notice
               </button>
+              <span className="text-[#e8e4df] text-sm">/</span>
               <button
                 type="button"
-                className="px-5 py-2.5 border border-[#d4cfc8] text-[#6b6560] text-[10px] tracking-widest uppercase hover:border-[#181512] hover:text-[#181512] transition-colors"
+                className="text-[11px] tracking-[0.16em] uppercase text-[#6b6560] hover:text-[#181512] transition-colors"
               >
                 Q&amp;A
               </button>
@@ -41,14 +42,23 @@ export default function Footer() {
             <p className="text-xs leading-relaxed mb-1">
               신한은행 110-633-003213
             </p>
-            <p className="text-xs leading-relaxed mb-6">이수민(코드뮤즈)</p>
-            <label className="block">
-              <span className="sr-only">인터넷뱅킹 바로가기</span>
-              <select className="w-full max-w-xs border border-[#e8e4df] bg-white px-3 py-2.5 text-xs text-[#6b6560] focus:outline-none focus:border-[#181512] appearance-none cursor-pointer">
-                <option>인터넷뱅킹 바로가기</option>
-                <option value="shinhan">신한은행</option>
-              </select>
-            </label>
+            <p className="text-xs leading-relaxed mb-4">이수민(코드뮤즈)</p>
+            <a
+              href="https://bank.shinhan.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-[11px] tracking-wide text-[#6b6560] hover:text-[#181512] transition-colors group"
+            >
+              <span className="material-symbols-outlined text-[16px] text-[#181512]">
+                account_balance
+              </span>
+              <span className="border-b border-transparent group-hover:border-[#181512] pb-0.5">
+                Shinhan Online Banking
+              </span>
+              <span className="material-symbols-outlined text-[14px] opacity-0 group-hover:opacity-100 transition-opacity">
+                arrow_outward
+              </span>
+            </a>
           </div>
 
           {/* Company */}
