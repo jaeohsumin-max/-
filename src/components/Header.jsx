@@ -14,10 +14,6 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-[#faf9f6]/90 backdrop-blur-md border-b border-[#e8e4df]">
-      <div className="hidden md:block bg-[#181512] text-[#faf9f6] text-center py-2 text-xs tracking-[0.2em]">
-        신규 회원 10% 할인 · 5만원 이상 무료배송
-      </div>
-
       <div className="hidden md:block border-b border-[#e8e4df]/80">
         <div className="max-w-7xl mx-auto px-5 md:px-10 flex justify-end items-center h-9 gap-5">
           {UTILITY_LINKS.map((item) => (
