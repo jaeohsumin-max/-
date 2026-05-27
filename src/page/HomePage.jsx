@@ -37,7 +37,7 @@ const SALE_ITEMS = [
 
 function ProductGrid({ items, showSale = false, linkTo = "/shop" }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-5">
       {items.map((item, index) => (
         <Link
           key={`${item.name}-${index}`}
@@ -96,18 +96,18 @@ export default function HomePage() {
       </section>
 
       <section className="bg-white py-10 md:py-14">
-        <div className="max-w-6xl mx-auto px-5 md:px-10">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
           <SectionHeader title="BEST" linkTo="/shop/best" />
           <ProductGrid items={BEST_ITEMS} linkTo="/shop/best" />
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-5 md:px-10 py-10 md:py-14">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-10 md:py-14">
         <SectionHeader title="NEW" linkTo="/shop/new" />
         <ProductGrid items={NEW_ITEMS} linkTo="/shop/new" />
       </section>
 
-      <section className="max-w-6xl mx-auto px-5 md:px-10 py-10 md:py-14 border-t border-[#e8e4df]">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-10 md:py-14 border-t border-[#e8e4df]">
         <SectionHeader title="SALE" linkTo="/shop" />
         <ProductGrid items={SALE_ITEMS} showSale linkTo="/shop" />
       </section>
