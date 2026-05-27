@@ -1,10 +1,16 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { CATEGORIES, getCategoryPath } from "../data/products";
 
+const UTILITY_LINKS = [
+  { to: "/login", label: "Login" },
+  { to: "/join", label: "Join" },
+  { to: "/checkout", label: "Order" },
+  { to: "/mypage", label: "My Page" },
+];
+
 export default function Header() {
   const { itemCount } = useCart();
-  const navigate = useNavigate();
 
   return (
     <header className="sticky top-0 z-50 bg-[#faf9f6]/90 backdrop-blur-md border-b border-[#e8e4df]">
@@ -12,8 +18,31 @@ export default function Header() {
         신규 회원 10% 할인 · 5만원 이상 무료배송
       </div>
 
+      <div className="hidden md:block border-b border-[#e8e4df]/80">
+        <div className="max-w-7xl mx-auto px-5 md:px-10 flex justify-end items-center h-9 gap-5">
+          {UTILITY_LINKS.map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              className="text-[10px] tracking-[0.18em] uppercase text-[#8a8580] hover:text-[#181512] transition-colors"
+            >
+              {item.label}
+            </Link>
+          ))}
+          <Link
+            to="/cart"
+            className="flex items-center gap-1.5 text-[10px] tracking-[0.18em] uppercase text-[#8a8580] hover:text-[#181512] transition-colors"
+          >
+            Cart
+            <span className="min-w-[18px] h-[18px] flex items-center justify-center rounded-full bg-[#c4a882] text-white text-[10px] font-medium leading-none">
+              {itemCount > 99 ? "99+" : itemCount}
+            </span>
+          </Link>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-5 md:px-10">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-14 md:h-16">
           <Link
             to="/"
             className="font-serif text-2xl md:text-3xl tracking-tight text-[#181512]"
@@ -40,28 +69,21 @@ export default function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-3 md:gap-5">
-            <button
-              type="button"
-              onClick={() => navigate("/shop")}
-              className="p-2 text-[#6b6560] hover:text-[#181512] transition-colors"
-              aria-label="검색"
+          <div className="flex md:hidden items-center gap-3">
+            <Link
+              to="/login"
+              className="text-[10px] tracking-widest uppercase text-[#6b6560]"
             >
-              <span className="material-symbols-outlined text-[22px]">search</span>
-            </button>
+              Login
+            </Link>
             <Link
               to="/cart"
-              className="relative p-2 text-[#6b6560] hover:text-[#181512] transition-colors"
-              aria-label="장바구니"
+              className="flex items-center gap-1 text-[10px] tracking-widest uppercase text-[#6b6560]"
             >
-              <span className="material-symbols-outlined text-[22px]">
-                shopping_bag
+              Cart
+              <span className="min-w-[16px] h-[16px] flex items-center justify-center rounded-full bg-[#c4a882] text-white text-[9px] font-medium">
+                {itemCount > 99 ? "99+" : itemCount}
               </span>
-              {itemCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] flex items-center justify-center rounded-full bg-[#c45c4a] text-white text-[10px] font-bold px-1">
-                  {itemCount > 99 ? "99+" : itemCount}
-                </span>
-              )}
             </Link>
           </div>
         </div>
