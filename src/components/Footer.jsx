@@ -14,8 +14,8 @@ export default function Footer() {
               010-7546-3869
             </p>
             <ul className="space-y-1 text-xs leading-relaxed mb-6">
-              <li>Weekdays AM 10:30 - PM 17:30</li>
-              <li>Weekends &amp; Holidays OFF</li>
+              <li>월-금 AM 10:30 - PM 17:30</li>
+              <li>주말 &amp; 공휴일 OFF</li>
             </ul>
             <div className="flex items-center gap-5 pt-1">
               <button
