@@ -84,10 +84,10 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-12 md:py-16">
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 lg:gap-x-10">
             <FooterColumn title="Customer Center" className="col-span-2 md:col-span-1">
-              <p>Mon–Fri AM 10:30 – PM 17:30</p>
-              <p>Sat, Sun &amp; Holidays OFF</p>
-              <p className="text-[10px] text-[#a39e98] leading-relaxed pt-2">
-                모든 상담은 Q&amp;A 게시판으로 진행됩니다
+              <p>모든 문의는 게시판 문의 부탁드립니다</p>
+              <p>
+                교환 반품은 7일이내만 가능하며, 교환반품 신청 후 게시판으로
+                문의주셔야 수거가 진행됩니다
               </p>
             </FooterColumn>
 
