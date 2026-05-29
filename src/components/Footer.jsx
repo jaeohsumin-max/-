@@ -19,21 +19,6 @@ const NOTICES = [
   },
 ];
 
-const FAQ_ITEMS = [
-  {
-    q: "How do I place an order?",
-    a: "Add items to your bag and proceed to checkout from the Order menu.",
-  },
-  {
-    q: "When is payment confirmed?",
-    a: "Bank transfers are confirmed within 1–2 hours. Shipping begins once confirmed.",
-  },
-  {
-    q: "How do I exchange or return an item?",
-    a: "Please leave an inquiry through Q&A and we will guide you through the process.",
-  },
-];
-
 function Modal({ title, onClose, children }) {
   return (
     <div
@@ -88,18 +73,6 @@ function FooterLink({ to, children }) {
   );
 }
 
-function FooterButton({ onClick, children }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="block text-left hover:text-[#181512] transition-colors"
-    >
-      {children}
-    </button>
-  );
-}
-
 export default function Footer() {
   const [openPanel, setOpenPanel] = useState(null);
 
@@ -114,7 +87,7 @@ export default function Footer() {
               <p>Mon–Fri AM 10:30 – PM 17:30</p>
               <p>Sat, Sun &amp; Holidays OFF</p>
               <p className="text-[10px] text-[#a39e98] leading-relaxed pt-2">
-                모든 상담은 게시판 상담으로 진행됩니다
+                모든 상담은 Q&amp;A 게시판으로 진행됩니다
               </p>
             </FooterColumn>
 
@@ -124,12 +97,14 @@ export default function Footer() {
             </FooterColumn>
 
             <FooterColumn title="Community">
-              <FooterButton onClick={() => setOpenPanel("notice")}>
+              <button
+                type="button"
+                onClick={() => setOpenPanel("notice")}
+                className="block text-left hover:text-[#181512] transition-colors"
+              >
                 Notice
-              </FooterButton>
-              <FooterButton onClick={() => setOpenPanel("qa")}>
-                Q&amp;A
-              </FooterButton>
+              </button>
+              <FooterLink to="/qa">Q&amp;A</FooterLink>
               <FooterLink to="/shop/best">Reviews</FooterLink>
             </FooterColumn>
 
@@ -178,27 +153,6 @@ export default function Footer() {
         </Modal>
       )}
 
-      {openPanel === "qa" && (
-        <Modal title="Q&A" onClose={closePanel}>
-          <ul className="space-y-5 mb-6">
-            {FAQ_ITEMS.map((item) => (
-              <li key={item.q}>
-                <p className="text-sm font-medium text-[#181512] mb-1">
-                  Q. {item.q}
-                </p>
-                <p className="text-xs leading-relaxed text-[#6b6560] normal-case tracking-normal">
-                  A. {item.a}
-                </p>
-              </li>
-            ))}
-          </ul>
-          <div className="pt-4 border-t border-[#e8e4df]">
-            <p className="text-xs text-[#6b6560] normal-case tracking-normal">
-              더 궁금한 점이 있으시면 Q&amp;A 게시판으로 문의해 주세요.
-            </p>
-          </div>
-        </Modal>
-      )}
     </>
   );
 }
