@@ -30,15 +30,8 @@ const FAQ_ITEMS = [
   },
   {
     q: "How do I exchange or return an item?",
-    a: "Contact us at 010-7546-3869 and we will guide you through the process.",
+    a: "Please leave an inquiry through Q&A and we will guide you through the process.",
   },
-];
-
-const SHOP_GUIDE_LINKS = [
-  { to: "/shop", label: "Shop" },
-  { to: "/login", label: "Agreement" },
-  { to: "/mypage", label: "Privacy Policy" },
-  { to: "/checkout", label: "Order Guide" },
 ];
 
 function Modal({ title, onClose, children }) {
@@ -116,31 +109,18 @@ export default function Footer() {
     <>
       <footer className="mt-auto bg-[#faf9f6] border-t border-[#e8e4df] text-[#181512]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-12 md:py-16">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-10 lg:gap-x-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 lg:gap-x-10">
             <FooterColumn title="Customer Center" className="col-span-2 md:col-span-1">
-              <p className="text-sm text-[#181512] tracking-wide">010-7546-3869</p>
               <p>Mon–Fri AM 10:30 – PM 17:30</p>
               <p>Sat, Sun &amp; Holidays OFF</p>
               <p className="text-[10px] text-[#a39e98] leading-relaxed pt-2">
-                Order inquiries are handled via Q&amp;A or phone during business hours.
+                모든 상담은 게시판 상담으로 진행됩니다
               </p>
             </FooterColumn>
 
             <FooterColumn title="Bank Account" className="col-span-2 md:col-span-1">
               <p className="text-[#181512]">신한 110-633-003213</p>
               <p>예금주: 이수민(코드뮤즈)</p>
-              <p className="text-[10px] text-[#a39e98] leading-relaxed pt-2 underline underline-offset-2 decoration-[#d4cfc8]">
-                If the depositor name differs from the order name, payment confirmation
-                may be delayed.
-              </p>
-            </FooterColumn>
-
-            <FooterColumn title="Shop Guide">
-              {SHOP_GUIDE_LINKS.map((item) => (
-                <FooterLink key={item.label} to={item.to}>
-                  {item.label}
-                </FooterLink>
-              ))}
             </FooterColumn>
 
             <FooterColumn title="Community">
@@ -213,15 +193,9 @@ export default function Footer() {
             ))}
           </ul>
           <div className="pt-4 border-t border-[#e8e4df]">
-            <p className="text-xs text-[#6b6560] mb-3 normal-case tracking-normal">
-              Have more questions? Contact us anytime.
+            <p className="text-xs text-[#6b6560] normal-case tracking-normal">
+              더 궁금한 점이 있으시면 Q&amp;A 게시판으로 문의해 주세요.
             </p>
-            <a
-              href="tel:01075463869"
-              className="inline-block text-[11px] tracking-widest uppercase text-[#181512] border-b border-[#181512] pb-0.5"
-            >
-              010-7546-3869
-            </a>
           </div>
         </Modal>
       )}
