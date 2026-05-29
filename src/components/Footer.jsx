@@ -34,6 +34,13 @@ const FAQ_ITEMS = [
   },
 ];
 
+const SHOP_GUIDE_LINKS = [
+  { to: "/shop", label: "Shop" },
+  { to: "/login", label: "Agreement" },
+  { to: "/mypage", label: "Privacy Policy" },
+  { to: "/checkout", label: "Order Guide" },
+];
+
 function Modal({ title, onClose, children }) {
   return (
     <div
@@ -64,6 +71,42 @@ function Modal({ title, onClose, children }) {
   );
 }
 
+function FooterColumn({ title, children, className = "" }) {
+  return (
+    <div className={className}>
+      <h3 className="font-serif text-[15px] text-[#181512] mb-4 tracking-wide">
+        {title}
+      </h3>
+      <div className="space-y-2 text-xs text-[#6b6560] leading-relaxed normal-case tracking-normal">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+function FooterLink({ to, children }) {
+  return (
+    <Link
+      to={to}
+      className="block hover:text-[#181512] transition-colors"
+    >
+      {children}
+    </Link>
+  );
+}
+
+function FooterButton({ onClick, children }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="block text-left hover:text-[#181512] transition-colors"
+    >
+      {children}
+    </button>
+  );
+}
+
 export default function Footer() {
   const [openPanel, setOpenPanel] = useState(null);
 
@@ -71,57 +114,63 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="mt-auto bg-white border-t border-[#e8e4df] text-[#181512]">
-        <div className="max-w-4xl mx-auto px-5 md:px-10 py-14 md:py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 text-[11px] leading-[1.9] tracking-[0.04em] uppercase">
-            <div className="text-center md:text-left">
-              <p>C/S</p>
-              <p>T. 010-7546-3869</p>
-              <p>Mon-Fri AM 10:30 - PM 17:30</p>
-              <p>Weekend &amp; Holiday OFF</p>
-              <p className="mt-6">Bank Account</p>
-              <p className="normal-case">신한 110-633-003213</p>
-              <p className="normal-case">예금주: 이수민(코드뮤즈)</p>
-              <div className="flex items-center justify-center md:justify-start gap-4 mt-6 normal-case tracking-normal">
-                <button
-                  type="button"
-                  onClick={() => setOpenPanel("notice")}
-                  className="text-[10px] tracking-[0.16em] uppercase text-[#6b6560] hover:text-[#181512] transition-colors border-b border-transparent hover:border-[#181512] pb-0.5"
-                >
-                  Notice
-                </button>
-                <span className="text-[#d4cfc8]">/</span>
-                <button
-                  type="button"
-                  onClick={() => setOpenPanel("qa")}
-                  className="text-[10px] tracking-[0.16em] uppercase text-[#6b6560] hover:text-[#181512] transition-colors border-b border-transparent hover:border-[#181512] pb-0.5"
-                >
-                  Q&amp;A
-                </button>
-              </div>
-            </div>
+      <footer className="mt-auto bg-[#faf9f6] border-t border-[#e8e4df] text-[#181512]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-12 md:py-16">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-10 lg:gap-x-8">
+            <FooterColumn title="Customer Center" className="col-span-2 md:col-span-1">
+              <p className="text-sm text-[#181512] tracking-wide">010-7546-3869</p>
+              <p>Mon–Fri AM 10:30 – PM 17:30</p>
+              <p>Sat, Sun &amp; Holidays OFF</p>
+              <p className="text-[10px] text-[#a39e98] leading-relaxed pt-2">
+                Order inquiries are handled via Q&amp;A or phone during business hours.
+              </p>
+            </FooterColumn>
 
-            <div className="text-center md:text-left">
-              <p>CODEMUSE</p>
-              <p>CEO : Lee Sumin</p>
-              <p>Business License : 187-28-02099</p>
-              <p>Tel : 010-7546-3869</p>
-              <p className="mt-6">Copyright © CODEMUSE All Rights Reserved</p>
-            </div>
+            <FooterColumn title="Bank Account" className="col-span-2 md:col-span-1">
+              <p className="text-[#181512]">신한 110-633-003213</p>
+              <p>예금주: 이수민(코드뮤즈)</p>
+              <p className="text-[10px] text-[#a39e98] leading-relaxed pt-2 underline underline-offset-2 decoration-[#d4cfc8]">
+                If the depositor name differs from the order name, payment confirmation
+                may be delayed.
+              </p>
+            </FooterColumn>
+
+            <FooterColumn title="Shop Guide">
+              {SHOP_GUIDE_LINKS.map((item) => (
+                <FooterLink key={item.label} to={item.to}>
+                  {item.label}
+                </FooterLink>
+              ))}
+            </FooterColumn>
+
+            <FooterColumn title="Community">
+              <FooterButton onClick={() => setOpenPanel("notice")}>
+                Notice
+              </FooterButton>
+              <FooterButton onClick={() => setOpenPanel("qa")}>
+                Q&amp;A
+              </FooterButton>
+              <FooterLink to="/shop/best">Reviews</FooterLink>
+            </FooterColumn>
+
+            <FooterColumn title="Social" className="col-span-2 md:col-span-1 lg:col-span-1">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 hover:text-[#181512] transition-colors"
+              >
+                Instagram
+                <span className="material-symbols-outlined text-[14px]">arrow_outward</span>
+              </a>
+            </FooterColumn>
           </div>
 
-          <div className="mt-10 pt-6 border-t border-[#e8e4df] flex flex-wrap justify-center gap-x-3 gap-y-2 text-[10px] tracking-[0.15em] uppercase text-[#6b6560]">
-            <Link to="/login" className="hover:text-[#181512] transition-colors">
-              Agreement
-            </Link>
-            <span className="text-[#d4cfc8]">|</span>
-            <Link to="/mypage" className="hover:text-[#181512] transition-colors">
-              Privacy Policy
-            </Link>
-            <span className="text-[#d4cfc8]">|</span>
-            <Link to="/shop" className="hover:text-[#181512] transition-colors">
-              Shop Guide
-            </Link>
+          <div className="mt-12 pt-6 border-t border-[#e8e4df] text-center text-[10px] text-[#a39e98] leading-relaxed tracking-[0.06em] uppercase">
+            <p className="mb-1">
+              CODEMUSE · CEO Lee Sumin · Business License 187-28-02099
+            </p>
+            <p>Copyright © CODEMUSE All Rights Reserved</p>
           </div>
         </div>
       </footer>
