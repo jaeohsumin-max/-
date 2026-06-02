@@ -105,7 +105,7 @@ export default function Footer() {
                 Notice
               </button>
               <FooterLink to="/qa">Q&amp;A</FooterLink>
-              <FooterLink to="/shop/best">Reviews</FooterLink>
+              <FooterLink to="/reviews">Reviews</FooterLink>
             </FooterColumn>
 
             <FooterColumn title="Social" className="col-span-2 md:col-span-1 lg:col-span-1">

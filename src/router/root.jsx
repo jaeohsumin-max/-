@@ -10,6 +10,7 @@ import LoginPage from "../page/LoginPage";
 import JoinPage from "../page/JoinPage";
 import MyPage from "../page/MyPage";
 import QnaPage from "../page/QnaPage";
+import ReviewPage from "../page/ReviewPage";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       { path: "/join", element: <JoinPage /> },
       { path: "/mypage", element: <MyPage /> },
       { path: "/qa", element: <QnaPage /> },
+      { path: "/reviews", element: <ReviewPage /> },
     ],
   },
 ]);
