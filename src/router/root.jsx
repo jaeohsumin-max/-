@@ -12,6 +12,8 @@ import MyPage from "../page/MyPage";
 import NoticePage from "../page/NoticePage";
 import NoticeDetailPage from "../page/NoticeDetailPage";
 import QnaPage from "../page/QnaPage";
+import QnaWritePage from "../page/QnaWritePage";
+import QnaDetailPage from "../page/QnaDetailPage";
 import ReviewPage from "../page/ReviewPage";
 
 const basename =
@@ -35,6 +37,8 @@ const router = createBrowserRouter(
         { path: "/notice", element: <NoticePage /> },
         { path: "/notice/:id", element: <NoticeDetailPage /> },
         { path: "/qa", element: <QnaPage /> },
+        { path: "/qa/write", element: <QnaWritePage /> },
+        { path: "/qa/:id", element: <QnaDetailPage /> },
         { path: "/reviews", element: <ReviewPage /> },
       ],
     },
