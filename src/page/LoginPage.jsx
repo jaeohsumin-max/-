@@ -6,8 +6,8 @@ export default function LoginPage() {
   const [secureAccess, setSecureAccess] = useState(false);
 
   return (
-    <div className="max-w-[420px] mx-auto px-5 py-16 md:py-24">
-      <div className="bg-white border border-[#e8e4df] px-6 py-10 md:px-10 md:py-12">
+    <div className="flex-1 w-full bg-white">
+      <div className="max-w-[420px] mx-auto px-5 py-16 md:py-24">
         <h1 className="text-2xl md:text-[26px] font-bold tracking-[0.12em] text-[#181512] text-center uppercase">
           Login
         </h1>
