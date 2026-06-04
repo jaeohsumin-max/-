@@ -51,8 +51,18 @@ function HeaderAccountLinks() {
       <Link to="/mypage" className={`${linkClass} hidden sm:inline`}>
         MYPAGE
       </Link>
-      <Link to="/cart" className={`${linkClass} text-[#333]`}>
-        {itemCount}
+      <Link
+        to="/cart"
+        className={`${linkClass} flex items-center gap-1.5 text-[#333] hover:text-black`}
+        aria-label="장바구니"
+      >
+        <span className="material-symbols-outlined text-[22px] font-light">
+          shopping_bag
+        </span>
+        <span>CART</span>
+        <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] rounded-full border border-[#ccc] text-[10px] font-medium text-[#555]">
+          {itemCount}
+        </span>
       </Link>
     </div>
   );
