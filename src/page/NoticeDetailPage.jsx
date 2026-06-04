@@ -1,30 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { getNoticeById } from "../data/notices";
-
-function getViewCount(id, base) {
-  const key = `codemuse_notice_views_${id}`;
-  const stored = localStorage.getItem(key);
-  if (stored) return Number(stored);
-  localStorage.setItem(key, String(base));
-  return base;
-}
-
-function incrementViews(id, base) {
-  const key = `codemuse_notice_views_${id}`;
-  const next = getViewCount(id, base) + 1;
-  localStorage.setItem(key, String(next));
-  return next;
-}
+import { getNoticeViewCount, recordNoticeView } from "../lib/noticeViews";
 
 export default function NoticeDetailPage() {
   const { id } = useParams();
   const notice = getNoticeById(id);
-  const [views, setViews] = useState(notice?.views ?? 0);
+  const [views, setViews] = useState(() =>
+    notice ? getNoticeViewCount(notice.id) : 0,
+  );
 
   useEffect(() => {
     if (!notice) return;
-    setViews(incrementViews(notice.id, notice.views));
+    setViews(recordNoticeView(notice.id));
   }, [notice]);
 
   if (!notice) {

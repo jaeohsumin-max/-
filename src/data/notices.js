@@ -4,8 +4,7 @@ export const NOTICES = [
     pinned: true,
     title: "♥전 상품 무료배송♥",
     author: "코드뮤즈",
-    date: "2026.03.01",
-    views: 84,
+    date: "2026.06.04",
     body: `안녕하세요, 코드뮤즈입니다.
 
 코드뮤즈를 이용해 주시는 고객님께 감사드리며,

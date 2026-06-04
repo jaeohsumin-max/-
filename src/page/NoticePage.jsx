@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { NOTICES } from "../data/notices";
+import { getNoticeViewCount } from "../lib/noticeViews";
 
 const SEARCH_PERIODS = [
   { id: "week", label: "일주일" },
@@ -123,7 +124,7 @@ export default function NoticePage() {
                     {notice.date}
                   </td>
                   <td className="py-3 px-2 text-center text-[#888]">
-                    {notice.views}
+                    {getNoticeViewCount(notice.id)}
                   </td>
                 </tr>
               ))
