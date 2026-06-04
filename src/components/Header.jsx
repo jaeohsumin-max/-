@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import { CATEGORIES, getCategoryPath } from "../data/products";
@@ -22,35 +22,6 @@ const COMMUNITY_LINKS = [
 
 const navLinkClass =
   "text-[12px] md:text-[13px] text-[#333] hover:text-black whitespace-nowrap";
-
-function HeaderSearchBar({ className = "" }) {
-  const [query, setQuery] = useState("");
-  const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const q = query.trim();
-    navigate(q ? `/shop?search=${encodeURIComponent(q)}` : "/shop");
-  };
-
-  return (
-    <form
-      onSubmit={handleSubmit}
-      className={`flex items-center w-full max-w-[160px] sm:max-w-[200px] bg-[#f5f5f5] border border-[#eee] px-3 py-1.5 ${className}`}
-    >
-      <span className="material-symbols-outlined text-[17px] text-[#bbb] shrink-0">
-        search
-      </span>
-      <input
-        type="search"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="검색"
-        className="flex-1 min-w-0 bg-transparent text-[11px] text-[#333] placeholder:text-[#bbb] ml-1.5 outline-none"
-      />
-    </form>
-  );
-}
 
 function HeaderAccountLinks() {
   const { isLoggedIn, user } = useAuth();
