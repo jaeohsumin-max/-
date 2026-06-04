@@ -8,8 +8,6 @@ export const PROMO_ITEMS = [
 export const CS_INQUIRY_MESSAGE = "모든 문의는 게시판 문의 부탁드립니다.";
 
 export const CS_CENTER = {
-  hours: "Mon~Fri am11:00~pm17:00",
-  off: "Sat,Sun,Holiday off",
   inquiry: CS_INQUIRY_MESSAGE,
 };
 
