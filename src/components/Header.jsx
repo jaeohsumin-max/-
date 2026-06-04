@@ -94,12 +94,15 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-[#e5e5e5]">
       <PromoBar />
 
-      <div className="max-w-[1280px] mx-auto px-2 sm:px-3">
-        <div className="flex items-center min-h-[56px] md:min-h-[72px] py-3 gap-2 sm:gap-3">
-          <div className="flex flex-1 items-center gap-2.5 sm:gap-3 md:gap-4 min-w-0 overflow-x-auto scrollbar-hide justify-start">
+      <div className="w-full">
+        <div className="relative flex items-center justify-center min-h-[56px] md:min-h-[72px] py-3">
+          <nav
+            className="absolute left-0 top-0 bottom-0 z-10 flex items-center gap-2 sm:gap-3 md:gap-4 pl-1 sm:pl-2 md:pl-3 max-w-[calc(100%-7rem)] sm:max-w-[calc(100%-9rem)] md:max-w-[52%] overflow-x-auto scrollbar-hide"
+            aria-label="주 메뉴"
+          >
             <button
               type="button"
-              className="shrink-0 p-0 text-[#333] hover:text-black"
+              className="shrink-0 -ml-0.5 p-0 text-[#333] hover:text-black"
               aria-label="메뉴 열기"
               onClick={() => setMenuOpen(true)}
             >
@@ -115,13 +118,11 @@ export default function Header() {
             </Link>
             <NavDropdown label="SHOP" items={SHOP_LINKS} />
             <NavDropdown label="COMMUNITY" items={COMMUNITY_LINKS} />
-          </div>
+          </nav>
 
-          <div className="shrink-0 px-1 sm:px-3">
-            <LogoLink />
-          </div>
+          <LogoLink />
 
-          <div className="flex flex-1 items-center justify-end shrink-0">
+          <div className="absolute right-0 top-0 bottom-0 z-10 flex items-center pr-2 sm:pr-3 md:pr-4">
             <HeaderAccountLinks />
           </div>
         </div>
