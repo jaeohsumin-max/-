@@ -1,14 +1,13 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { getProductById, formatPrice } from "../data/products";
 
-const SHIPPING_FREE_THRESHOLD = 50000;
-const SHIPPING_FEE = 3000;
-
 export default function CheckoutPage() {
-  const { items, clearCart } = useCart();
+  const { items, removeItem, clearCart } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
+  const selectedKeys = location.state?.selectedKeys;
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -26,11 +25,14 @@ export default function CheckoutPage() {
       if (!product) return null;
       return { ...item, product, lineTotal: product.price * item.quantity };
     })
-    .filter(Boolean);
+    .filter(Boolean)
+    .filter(
+      (line) =>
+        !selectedKeys?.length || selectedKeys.includes(line.key),
+    );
 
   const subtotal = cartLines.reduce((sum, line) => sum + line.lineTotal, 0);
-  const shipping =
-    subtotal === 0 ? 0 : subtotal >= SHIPPING_FREE_THRESHOLD ? 0 : SHIPPING_FEE;
+  const shipping = 0;
   const total = subtotal + shipping;
 
   if (cartLines.length === 0) {
@@ -54,7 +56,11 @@ export default function CheckoutPage() {
       alert("필수 정보를 입력해 주세요.");
       return;
     }
-    clearCart();
+    const keysToRemove = cartLines.map((l) => l.key);
+    keysToRemove.forEach((key) => removeItem(key));
+    if (items.length === keysToRemove.length) {
+      clearCart();
+    }
     navigate("/order-complete", {
       state: { orderTotal: total, orderName: form.name },
     });
