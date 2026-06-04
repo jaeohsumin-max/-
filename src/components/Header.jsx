@@ -61,10 +61,10 @@ function HeaderSearch() {
         aria-expanded={open}
         aria-label="검색"
       >
-        <span className="material-symbols-outlined text-[20px] font-light leading-none">
+        <span className="material-symbols-outlined text-[22px] font-light leading-none">
           search
         </span>
-        <span className="text-[11px] tracking-[0.14em] uppercase">SEARCH</span>
+        <span className="sr-only">SEARCH</span>
       </button>
       {open && (
         <form
@@ -91,18 +91,37 @@ function HeaderSearch() {
   );
 }
 
-function HeaderUtilities() {
+function HeaderUtilities({ showPerson = true }) {
   const { itemCount } = useCart();
+  const { isLoggedIn } = useAuth();
 
   return (
-    <div className="flex items-center gap-4 md:gap-5 shrink-0">
+    <div className="flex items-center gap-3 md:gap-4 shrink-0">
       <HeaderSearch />
+      {showPerson && (
+        <Link
+          to={isLoggedIn ? "/mypage" : "/login"}
+          className="text-[#333] hover:text-black p-0.5"
+          aria-label={isLoggedIn ? "마이페이지" : "로그인"}
+        >
+          <span className="material-symbols-outlined text-[22px] font-light">
+            person
+          </span>
+        </Link>
+      )}
       <Link
         to="/cart"
-        className="flex items-center gap-1 text-[12px] text-[#333] hover:text-black"
+        className="relative flex items-center text-[#333] hover:text-black p-0.5"
+        aria-label="장바구니"
       >
-        <span className="material-symbols-outlined text-[22px]">shopping_bag</span>
-        <span className="font-medium">{itemCount}</span>
+        <span className="material-symbols-outlined text-[22px] font-light">
+          shopping_bag
+        </span>
+        {itemCount > 0 && (
+          <span className="absolute -top-0.5 -right-1 min-w-[14px] h-[14px] px-0.5 rounded-full bg-[#333] text-white text-[9px] leading-[14px] text-center font-medium">
+            {itemCount > 99 ? "99+" : itemCount}
+          </span>
+        )}
       </Link>
     </div>
   );
