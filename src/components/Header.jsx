@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
@@ -10,7 +10,7 @@ import PromoBar from "./PromoBar";
 function MainNav({ className = "" }) {
   return (
     <nav
-      className={`flex items-center justify-center flex-nowrap gap-x-5 lg:gap-x-6 xl:gap-x-7 ${className}`}
+      className={`flex items-center justify-center flex-nowrap gap-x-5 lg:gap-x-6 xl:gap-x-8 ${className}`}
     >
       {CATEGORIES.map((cat) => (
         <NavLink
@@ -18,8 +18,8 @@ function MainNav({ className = "" }) {
           to={getCategoryPath(cat.id)}
           end={cat.id === "all"}
           className={({ isActive }) =>
-            `text-[13px] lg:text-[14px] whitespace-nowrap transition-colors ${
-              isActive ? "text-black font-semibold" : "text-[#444] hover:text-black"
+            `text-[12px] lg:text-[13px] whitespace-nowrap transition-colors ${
+              isActive ? "text-black font-semibold" : "text-[#555] hover:text-black"
             }`
           }
         >
@@ -30,79 +30,76 @@ function MainNav({ className = "" }) {
   );
 }
 
-function HeaderSearch() {
-  const [open, setOpen] = useState(false);
+function HeaderSearchBar({ className = "" }) {
   const [query, setQuery] = useState("");
   const navigate = useNavigate();
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const onDoc = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
-    };
-    document.addEventListener("mousedown", onDoc);
-    return () => document.removeEventListener("mousedown", onDoc);
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const q = query.trim();
     navigate(q ? `/shop?search=${encodeURIComponent(q)}` : "/shop");
-    setOpen(false);
-    setQuery("");
   };
 
   return (
-    <div className="relative" ref={ref}>
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1.5 text-[#333] hover:text-black py-1"
-        aria-expanded={open}
-        aria-label="검색"
-      >
-        <span className="material-symbols-outlined text-[20px] font-light leading-none">
-          search
-        </span>
-        <span className="text-[11px] tracking-[0.14em] uppercase">SEARCH</span>
-      </button>
-      {open && (
-        <form
-          onSubmit={handleSubmit}
-          className="absolute right-0 top-full mt-2 z-[60] flex items-center bg-white border border-[#ddd] shadow-md"
-        >
-          <input
-            type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="검색어 입력"
-            autoFocus
-            className="w-44 sm:w-52 px-3 py-2 text-[12px] focus:outline-none"
-          />
-          <button
-            type="submit"
-            className="px-3 py-2 text-[11px] border-l border-[#ddd] hover:bg-[#f5f5f5]"
-          >
-            찾기
-          </button>
-        </form>
-      )}
-    </div>
+    <form
+      onSubmit={handleSubmit}
+      className={`flex items-center w-full max-w-[180px] sm:max-w-[220px] bg-[#f0f0f0] rounded-full px-3 py-2 ${className}`}
+    >
+      <span className="material-symbols-outlined text-[18px] text-[#aaa] shrink-0">
+        search
+      </span>
+      <input
+        type="search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="검색"
+        className="flex-1 min-w-0 bg-transparent text-[12px] text-[#333] placeholder:text-[#aaa] ml-2 outline-none"
+      />
+    </form>
   );
 }
 
-function HeaderUtilities() {
+function HeaderAccountLinks() {
+  const { isLoggedIn, user } = useAuth();
   const { itemCount } = useCart();
 
+  const linkClass =
+    "text-[11px] text-[#888] hover:text-black whitespace-nowrap tracking-wide";
+
   return (
-    <div className="flex items-center gap-4 md:gap-5 shrink-0">
-      <HeaderSearch />
+    <div className="flex items-center gap-3 sm:gap-4 shrink-0">
+      {isLoggedIn ? (
+        <Link to="/mypage" className={linkClass}>
+          {user?.name}님
+        </Link>
+      ) : (
+        <>
+          <Link to="/login" className={linkClass}>
+            LOGIN
+          </Link>
+          <Link to="/join" className={linkClass}>
+            <span className="hidden sm:inline">JOIN US </span>
+            <span className="sm:hidden">JOIN</span>
+            <span className="text-[#c45c4a] font-medium hidden md:inline">
+              +{SIGNUP_BONUS_POINTS.toLocaleString()}
+            </span>
+          </Link>
+        </>
+      )}
+      <Link to="/checkout" className={linkClass}>
+        ORDER
+      </Link>
+      <Link to="/mypage" className={linkClass}>
+        MY PAGE
+      </Link>
       <Link
         to="/cart"
-        className="flex items-center gap-1 text-[12px] text-[#333] hover:text-black"
+        className={`${linkClass} flex items-center gap-1.5 text-[#333]`}
       >
-        <span className="material-symbols-outlined text-[22px]">shopping_bag</span>
-        <span className="font-medium">{itemCount}</span>
+        <span>CART</span>
+        <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] rounded-full border border-[#ccc] text-[10px] font-medium text-[#555]">
+          {itemCount}
+        </span>
       </Link>
     </div>
   );
@@ -110,80 +107,39 @@ function HeaderUtilities() {
 
 function LogoLink() {
   return (
-    <Link
-      to="/"
-      className="shrink-0 flex items-center translate-x-2 md:translate-x-3"
-    >
+    <Link to="/" className="inline-flex items-center justify-center">
       <img
         src={codemuseLogo}
         alt="CODEMUSE"
         width={182}
         height={112}
         decoding="async"
-        className="h-11 md:h-12 xl:h-14 w-auto max-w-[8.5rem] md:max-w-[9.5rem] xl:max-w-[11rem] object-contain translate-y-1"
+        className="h-12 sm:h-14 md:h-16 w-auto max-w-[9rem] sm:max-w-[10rem] md:max-w-[11.5rem] object-contain"
       />
     </Link>
   );
 }
 
 export default function Header() {
-  const { isLoggedIn, user } = useAuth();
-
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#e5e5e5]">
       <PromoBar />
 
-      <div className="border-b border-[#eee]">
-        <div className="max-w-[1280px] mx-auto px-4 h-9 flex items-center justify-end gap-4 text-[11px] text-[#666]">
-          {isLoggedIn ? (
-            <Link to="/mypage" className="hover:text-black">
-              {user?.name}님
-            </Link>
-          ) : (
-            <>
-              <Link to="/login" className="hover:text-black font-medium">
-                LOGIN
-              </Link>
-              <Link to="/join" className="hover:text-black font-medium">
-                JOIN US{" "}
-                <span className="text-[#c45c4a] font-semibold">
-                  +{SIGNUP_BONUS_POINTS.toLocaleString()}
-                </span>
-              </Link>
-            </>
-          )}
-          <Link to="/checkout" className="hover:text-black">
-            ORDER
-          </Link>
-          <Link to="/mypage" className="hover:text-black">
-            MY PAGE
-          </Link>
+      <div className="max-w-[1280px] mx-auto px-4">
+        {/* 1행: 검색(좌) · 계정/장바구니(우) */}
+        <div className="flex items-center justify-between gap-4 py-2.5 border-b border-[#f0f0f0]">
+          <HeaderSearchBar />
+          <HeaderAccountLinks />
         </div>
-      </div>
 
-      {/* 데스크톱: 로고·검색·장바구니는 화면 양끝, 메뉴는 가운데 (모양은 이전과 동일) */}
-      <div className="hidden lg:block relative w-full px-4 md:px-8 xl:px-10 py-3 xl:py-4 min-h-[56px] xl:min-h-[60px]">
-        <div className="flex items-center justify-between w-full">
+        {/* 2행: 로고 가운데 */}
+        <div className="flex justify-center py-5 md:py-6 border-b border-[#f0f0f0]">
           <LogoLink />
-          <HeaderUtilities />
         </div>
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-32 xl:px-40">
-          <div className="pointer-events-auto max-w-full overflow-x-auto scrollbar-hide">
-            <MainNav className="flex-nowrap" />
-          </div>
-        </div>
-      </div>
 
-      {/* 모바일·태블릿 */}
-      <div className="lg:hidden max-w-[1280px] mx-auto px-4">
-        <div className="flex items-center justify-between w-full py-3 gap-3">
-          <LogoLink />
-          <HeaderUtilities />
-        </div>
-        <div className="border-t border-[#eee] py-2 overflow-x-auto">
-          <div className="flex justify-start min-w-max px-1 pb-0.5">
-            <MainNav className="flex-nowrap" />
-          </div>
+        {/* 3행: 카테고리 메뉴 */}
+        <div className="py-3 md:py-3.5 overflow-x-auto scrollbar-hide">
+          <MainNav className="min-w-max mx-auto px-2" />
         </div>
       </div>
     </header>
