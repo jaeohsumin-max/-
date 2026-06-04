@@ -2,23 +2,10 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
-import { CATEGORIES, getCategoryPath } from "../data/products";
 import { SIGNUP_BONUS_POINTS } from "../data/site";
 import codemuseLogo from "../assets/codemuse-logo.png";
 import MobileMenu from "./MobileMenu";
-import NavDropdown from "./NavDropdown";
 import PromoBar from "./PromoBar";
-
-const SHOP_LINKS = CATEGORIES.filter((c) => c.id !== "all").map((c) => ({
-  to: getCategoryPath(c.id),
-  label: c.label,
-}));
-
-const COMMUNITY_LINKS = [
-  { to: "/notice", label: "NOTICE" },
-  { to: "/qa", label: "Q&A" },
-  { to: "/reviews", label: "REVIEW" },
-];
 
 function HeaderSearchBar({ className = "" }) {
   const [query, setQuery] = useState("");
@@ -100,9 +87,6 @@ function LogoLink() {
   );
 }
 
-const navLinkClass =
-  "text-[12px] md:text-[13px] text-[#333] hover:text-black whitespace-nowrap";
-
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -111,28 +95,17 @@ export default function Header() {
       <PromoBar />
 
       <div className="max-w-[1280px] mx-auto px-4">
-        <div className="relative flex items-center justify-center min-h-[56px] lg:min-h-[72px] py-3">
-          {/* 모바일: 햄버거 */}
+        <div className="relative flex items-center justify-center min-h-[56px] md:min-h-[72px] py-3">
           <button
             type="button"
-            className="absolute left-0 lg:hidden p-1 text-[#333]"
+            className="absolute left-0 p-1 text-[#333] hover:text-black"
             aria-label="메뉴 열기"
             onClick={() => setMenuOpen(true)}
           >
-            <span className="material-symbols-outlined text-[26px]">menu</span>
+            <span className="material-symbols-outlined text-[26px] md:text-[28px]">
+              menu
+            </span>
           </button>
-
-          {/* PC: 좌측 메뉴 */}
-          <div className="absolute left-0 hidden lg:flex items-center gap-4 md:gap-6">
-            <Link to="/shop/best" className={navLinkClass}>
-              BEST
-            </Link>
-            <Link to="/shop/new" className={navLinkClass}>
-              NEW
-            </Link>
-            <NavDropdown label="SHOP" items={SHOP_LINKS} />
-            <NavDropdown label="COMMUNITY" items={COMMUNITY_LINKS} />
-          </div>
 
           <LogoLink />
 

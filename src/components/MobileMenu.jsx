@@ -55,7 +55,7 @@ export default function MobileMenu({ open, onClose }) {
     "block py-3.5 text-[13px] text-[#111] tracking-wide border-b border-[#f5f5f5] hover:bg-[#fafafa]";
 
   return (
-    <div className="fixed inset-0 z-[100] lg:hidden" role="dialog" aria-modal="true">
+    <div className="fixed inset-0 z-[100]" role="dialog" aria-modal="true">
       <button
         type="button"
         className="absolute inset-0 bg-black/40"
@@ -63,7 +63,7 @@ export default function MobileMenu({ open, onClose }) {
         onClick={onClose}
       />
 
-      <div className="absolute inset-y-0 right-0 w-full max-w-[400px] bg-white shadow-xl flex flex-col overflow-hidden">
+      <div className="absolute inset-y-0 right-0 w-full max-w-[400px] md:max-w-[440px] bg-white shadow-xl flex flex-col overflow-hidden">
         {/* 상단: 연한 핑크 + 유틸 */}
         <div className="bg-[#f5ebe8] px-4 pt-3 pb-4 shrink-0">
           <div className="flex items-center justify-between mb-3">
