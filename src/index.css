@@ -9,26 +9,6 @@ body {
   margin: 0;
 }
 
-@keyframes promo-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.promo-track {
-  display: inline-flex;
-  align-items: center;
-  animation: promo-scroll 52s linear infinite;
-  will-change: transform;
-}
-
-.promo-track:hover {
-  animation-play-state: paused;
-}
-
 .font-serif {
   font-family: "EB Garamond", Georgia, serif;
 }
