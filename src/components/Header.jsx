@@ -1,4 +1,5 @@
-import { Link, NavLink } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import { CATEGORIES, getCategoryPath } from "../data/products";
@@ -29,26 +30,73 @@ function MainNav({ className = "" }) {
   );
 }
 
+function HeaderSearch() {
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const onDoc = (e) => {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", onDoc);
+    return () => document.removeEventListener("mousedown", onDoc);
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const q = query.trim();
+    navigate(q ? `/shop?search=${encodeURIComponent(q)}` : "/shop");
+    setOpen(false);
+    setQuery("");
+  };
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="flex items-center gap-1.5 text-[#333] hover:text-black py-1"
+        aria-expanded={open}
+        aria-label="검색"
+      >
+        <span className="material-symbols-outlined text-[20px] font-light leading-none">
+          search
+        </span>
+        <span className="text-[11px] tracking-[0.14em] uppercase">SEARCH</span>
+      </button>
+      {open && (
+        <form
+          onSubmit={handleSubmit}
+          className="absolute right-0 top-full mt-2 z-[60] flex items-center bg-white border border-[#ddd] shadow-md"
+        >
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="검색어 입력"
+            autoFocus
+            className="w-44 sm:w-52 px-3 py-2 text-[12px] focus:outline-none"
+          />
+          <button
+            type="submit"
+            className="px-3 py-2 text-[11px] border-l border-[#ddd] hover:bg-[#f5f5f5]"
+          >
+            찾기
+          </button>
+        </form>
+      )}
+    </div>
+  );
+}
+
 function HeaderUtilities() {
   const { itemCount } = useCart();
 
   return (
-    <div className="flex items-center gap-2 md:gap-3 shrink-0">
-      <div className="hidden md:block w-32 lg:w-36">
-        <input
-          type="search"
-          placeholder="검색"
-          className="w-full border border-[#ddd] px-3 py-1.5 text-[12px] focus:outline-none focus:border-[#333]"
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              const q = e.currentTarget.value.trim();
-              window.location.href = q
-                ? `/shop?search=${encodeURIComponent(q)}`
-                : "/shop";
-            }
-          }}
-        />
-      </div>
+    <div className="flex items-center gap-4 md:gap-5 shrink-0">
+      <HeaderSearch />
       <Link
         to="/cart"
         className="flex items-center gap-1 text-[12px] text-[#333] hover:text-black"
