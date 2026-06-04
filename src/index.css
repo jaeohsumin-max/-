@@ -36,16 +36,16 @@ body {
   overflow: hidden;
 }
 
-/* 헤더 높이에 맞춘 로고 (모바일 36px / 데스크톱 44px) */
+/* 헤더 높이에 맞춘 로고 (모바일 28px / 데스크톱 36px) */
 .site-logo {
-  height: 36px;
+  height: 28px;
   width: auto;
-  max-width: 120px;
+  max-width: 96px;
 }
 
 @media (min-width: 768px) {
   .site-logo {
-    height: 44px;
-    max-width: 140px;
+    height: 36px;
+    max-width: 112px;
   }
 }
