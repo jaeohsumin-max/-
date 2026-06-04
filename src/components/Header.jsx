@@ -74,7 +74,10 @@ function HeaderAccountLinks() {
 
 function LogoLink() {
   return (
-    <Link to="/" className="inline-flex items-center justify-center">
+    <Link
+      to="/"
+      className="inline-flex items-center justify-center translate-y-1 sm:translate-y-1.5 md:translate-y-2"
+    >
       <img
         src={codemuseLogo}
         alt="CODEMUSE"
