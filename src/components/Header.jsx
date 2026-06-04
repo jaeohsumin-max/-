@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import { CATEGORIES, getCategoryPath } from "../data/products";
 import { SIGNUP_BONUS_POINTS } from "../data/site";
-import CodemuseLogo from "./CodemuseLogo";
+import codemuseLogo from "../assets/codemuse-logo.png";
 import PromoBar from "./PromoBar";
 
 function MainNav({ className = "" }) {
@@ -110,12 +110,15 @@ function HeaderUtilities() {
 
 function LogoLink() {
   return (
-    <Link
-      to="/"
-      className="shrink-0 flex items-center translate-x-2 md:translate-x-3 translate-y-0.5"
-      aria-label="CODEMUSE 홈"
-    >
-      <CodemuseLogo />
+    <Link to="/" className="shrink-0 flex items-center">
+      <img
+        src={codemuseLogo}
+        alt="CODEMUSE"
+        width={182}
+        height={112}
+        decoding="async"
+        className="h-11 md:h-12 xl:h-14 w-auto max-w-[8.5rem] md:max-w-[9.5rem] xl:max-w-[11rem] object-contain translate-y-1"
+      />
     </Link>
   );
 }
