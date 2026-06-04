@@ -4,14 +4,7 @@ import { useCart } from "../context/CartContext";
 import { CATEGORIES, getCategoryPath } from "../data/products";
 import { SIGNUP_BONUS_POINTS } from "../data/site";
 import codemuseLogo from "../assets/codemuse-logo.png";
-import NavDropdown from "./NavDropdown";
 import PromoBar from "./PromoBar";
-
-const MYPAGE_LINKS = [
-  { to: "/mypage", label: "MY PAGE" },
-  { to: "/checkout", label: "ORDER" },
-  { to: "/cart", label: "CART" },
-];
 
 function MainNav({ className = "" }) {
   return (
@@ -32,7 +25,6 @@ function MainNav({ className = "" }) {
           {cat.label}
         </NavLink>
       ))}
-      <NavDropdown label="MY PAGE" items={MYPAGE_LINKS} />
     </nav>
   );
 }
