@@ -57,11 +57,6 @@ export default function Footer() {
               <Link to="/qa" className="text-[11px] text-[#666] hover:text-black underline underline-offset-2">
                 Q&A 게시판 바로가기
               </Link>
-              <p className="text-[11px] text-[#888] leading-relaxed mt-3">
-                {CS_CENTER.hours}
-                <br />
-                {CS_CENTER.off}
-              </p>
             </div>
 
             <div>

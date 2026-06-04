@@ -10,8 +10,6 @@ export const CS_INQUIRY_MESSAGE = "모든 문의는 게시판 문의 부탁드�
 
 export const CS_CENTER = {
   inquiry: CS_INQUIRY_MESSAGE,
-  hours: "MON-FRI AM 11:00 ~ PM 17:00",
-  off: "SAT. SUN. HOLIDAY OFF",
 };
 
 export const BANK_INFO = {
