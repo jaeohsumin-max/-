@@ -47,7 +47,7 @@ import logoUrl from "./assets/codemuse-logo.png";
   display: block;
   object-fit: contain;
   object-position: center center;
-  transform: translateY(-4px);
+  transform: translateY(-8px);
 }
 
 @media (min-width: 768px) {
