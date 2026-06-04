@@ -5,6 +5,7 @@ import { useCart } from "../context/CartContext";
 import { CATEGORIES, getCategoryPath } from "../data/products";
 import { SIGNUP_BONUS_POINTS } from "../data/site";
 import codemuseLogo from "../assets/codemuse-logo.png";
+import MobileMenu from "./MobileMenu";
 import NavDropdown from "./NavDropdown";
 import PromoBar from "./PromoBar";
 
@@ -74,7 +75,7 @@ function HeaderAccountLinks() {
           </Link>
         </>
       )}
-      <Link to="/mypage" className={linkClass}>
+      <Link to="/mypage" className={`${linkClass} hidden sm:inline`}>
         MYPAGE
       </Link>
       <Link to="/cart" className={`${linkClass} text-[#333]`}>
@@ -103,13 +104,26 @@ const navLinkClass =
   "text-[12px] md:text-[13px] text-[#333] hover:text-black whitespace-nowrap";
 
 export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-[#e5e5e5]">
       <PromoBar />
 
       <div className="max-w-[1280px] mx-auto px-4">
-        <div className="relative flex items-center justify-center min-h-[64px] md:min-h-[72px] py-3">
-          <div className="absolute left-0 flex items-center gap-4 md:gap-6">
+        <div className="relative flex items-center justify-center min-h-[56px] lg:min-h-[72px] py-3">
+          {/* 모바일: 햄버거 */}
+          <button
+            type="button"
+            className="absolute left-0 lg:hidden p-1 text-[#333]"
+            aria-label="메뉴 열기"
+            onClick={() => setMenuOpen(true)}
+          >
+            <span className="material-symbols-outlined text-[26px]">menu</span>
+          </button>
+
+          {/* PC: 좌측 메뉴 */}
+          <div className="absolute left-0 hidden lg:flex items-center gap-4 md:gap-6">
             <Link to="/shop/best" className={navLinkClass}>
               BEST
             </Link>
@@ -126,11 +140,9 @@ export default function Header() {
             <HeaderAccountLinks />
           </div>
         </div>
-
-        <div className="sm:hidden pb-3">
-          <HeaderSearchBar className="max-w-none w-full" />
-        </div>
       </div>
+
+      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
     </header>
   );
 }
