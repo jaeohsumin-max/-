@@ -40,11 +40,14 @@ export default function Header() {
 
       <div className="max-w-7xl mx-auto px-5 md:px-10">
         <div className="flex items-center justify-between min-h-16 md:min-h-[4.5rem]">
-          <Link to="/" className="flex items-center shrink-0 py-1">
+          <Link
+            to="/"
+            className="flex items-center justify-center shrink-0 self-center h-full"
+          >
             <img
               src={codemuseLogo}
               alt="CODEMUSE"
-              className="h-12 md:h-14 w-auto max-w-[9.5rem] md:max-w-[11rem] object-contain block"
+              className="h-12 md:h-14 w-auto max-w-[9.5rem] md:max-w-[11rem] object-contain block -translate-y-1"
             />
           </Link>
 

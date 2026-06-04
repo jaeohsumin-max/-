@@ -1,12 +1,10 @@
 <template>
   <q-layout view="hHh lpR fFf">
     <q-header elevated class="text-grey-9 border-bottom oms-header">
-      <q-toolbar class="q-px-md oms-toolbar">
+      <q-toolbar class="q-px-md oms-toolbar items-center">
         <img
           :src="logoUrl"
           alt="CODEMUSE"
-          width="80"
-          height="42"
           class="header-logo"
         />
         <q-space />
@@ -48,7 +46,8 @@ import logoUrl from "./assets/codemuse-logo.png";
   max-width: 152px;
   display: block;
   object-fit: contain;
-  object-position: left center;
+  object-position: center center;
+  transform: translateY(-4px);
 }
 
 @media (min-width: 768px) {
