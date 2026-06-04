@@ -6,8 +6,10 @@ export const PROMO_ITEMS = [
   "카카오톡 플친 시 1,000원 할인 쿠폰",
 ];
 
+export const CS_INQUIRY_MESSAGE = "모든 문의는 게시판 문의 부탁드립니다.";
+
 export const CS_CENTER = {
-  phone: "010-0000-0000",
+  inquiry: CS_INQUIRY_MESSAGE,
   hours: "MON-FRI AM 11:00 ~ PM 17:00",
   off: "SAT. SUN. HOLIDAY OFF",
 };
@@ -20,7 +22,5 @@ export const BANK_INFO = {
 export const COMPANY_INFO = {
   name: "코드뮤즈",
   ceo: "이수민",
-  email: "contact@codemuse.shop",
-  address: "경기 고양시 일산동구",
   businessNo: "187-28-02099",
 };

@@ -51,10 +51,13 @@ export default function Footer() {
               <h3 className="text-[13px] font-bold text-[#111] mb-3 tracking-wide">
                 CS CENTER
               </h3>
-              <p className="text-xl md:text-2xl font-semibold text-[#111] mb-2">
-                {CS_CENTER.phone}
+              <p className="text-[12px] text-[#555] leading-relaxed mb-2">
+                {CS_CENTER.inquiry}
               </p>
-              <p className="text-[11px] text-[#888] leading-relaxed">
+              <Link to="/qa" className="text-[11px] text-[#666] hover:text-black underline underline-offset-2">
+                Q&A 게시판 바로가기
+              </Link>
+              <p className="text-[11px] text-[#888] leading-relaxed mt-3">
                 {CS_CENTER.hours}
                 <br />
                 {CS_CENTER.off}
@@ -69,17 +72,14 @@ export default function Footer() {
 
             <div>
               <h3 className="text-[13px] font-bold text-[#111] mb-3">FOLLOW US</h3>
-              <div className="flex flex-col gap-1.5 text-[12px] text-[#666]">
-                <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-black">
-                  @INSTAGRAM
-                </a>
-                <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-black">
-                  @FACEBOOK
-                </a>
-                <a href="https://pf.kakao.com" target="_blank" rel="noreferrer" className="hover:text-black">
-                  @KAKAO
-                </a>
-              </div>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                className="text-[12px] text-[#666] hover:text-black"
+              >
+                @INSTAGRAM
+              </a>
             </div>
 
             <div>
@@ -115,10 +115,8 @@ export default function Footer() {
               </Link>
             </div>
             <p className="text-[10px] text-[#aaa] leading-relaxed">
-              COMPANY. {COMPANY_INFO.name} · CEO. {COMPANY_INFO.ceo} · TEL. {CS_CENTER.phone}{" "}
-              · E-MAIL. {COMPANY_INFO.email}
-              <br />
-              ADDRESS. {COMPANY_INFO.address} · BUSINESS NO. {COMPANY_INFO.businessNo}
+              COMPANY. {COMPANY_INFO.name} · CEO. {COMPANY_INFO.ceo} · BUSINESS NO.{" "}
+              {COMPANY_INFO.businessNo}
             </p>
             <p className="text-[10px] text-[#bbb] mt-3">
               COPYRIGHT © {COMPANY_INFO.name.toUpperCase()} ALL RIGHTS RESERVED.
