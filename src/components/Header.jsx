@@ -21,16 +21,16 @@ const COMMUNITY_LINKS = [
 ];
 
 const navLinkClass =
-  "text-[12px] md:text-[13px] text-[#333] hover:text-black whitespace-nowrap";
+  "text-[14px] md:text-[15px] text-[#333] hover:text-black whitespace-nowrap";
 
 function HeaderAccountLinks() {
   const { isLoggedIn, user } = useAuth();
   const { itemCount } = useCart();
   const linkClass =
-    "text-[11px] text-[#666] hover:text-black whitespace-nowrap tracking-wide";
+    "text-[13px] md:text-[14px] text-[#666] hover:text-black whitespace-nowrap tracking-wide";
 
   return (
-    <div className="flex items-center gap-2 sm:gap-3 shrink-0 min-w-0">
+    <div className="flex items-center gap-2.5 sm:gap-3.5 md:gap-4 shrink-0">
       {isLoggedIn ? (
         <Link to="/mypage" className={`${linkClass} hidden md:inline`}>
           {user?.name}님
@@ -41,7 +41,7 @@ function HeaderAccountLinks() {
             LOGIN
           </Link>
           <Link to="/join" className={`${linkClass} hidden sm:inline`}>
-            회원가입
+            JOIN
             <span className="text-[#c45c4a] font-semibold ml-0.5">
               +{SIGNUP_BONUS_POINTS.toLocaleString()}P
             </span>
@@ -67,7 +67,6 @@ function HeaderAccountLinks() {
             {itemCount > 99 ? "99+" : itemCount}
           </span>
         </span>
-        <span className="hidden min-[400px]:inline tracking-wide">장바구니</span>
       </Link>
     </div>
   );
@@ -95,16 +94,16 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-[#e5e5e5]">
       <PromoBar />
 
-      <div className="max-w-[1280px] mx-auto pl-1 pr-4 sm:pl-2 md:pl-3">
-        <div className="relative flex items-center justify-center min-h-[56px] md:min-h-[72px] py-3">
-          <div className="absolute left-0 flex items-center gap-2 sm:gap-3 md:gap-4 max-w-[58%] sm:max-w-[60%] md:max-w-none overflow-x-auto scrollbar-hide">
+      <div className="max-w-[1280px] mx-auto px-2 sm:px-3">
+        <div className="flex items-center min-h-[56px] md:min-h-[72px] py-3 gap-2 sm:gap-3">
+          <div className="flex flex-1 items-center gap-2.5 sm:gap-3 md:gap-4 min-w-0 overflow-x-auto scrollbar-hide justify-start">
             <button
               type="button"
-              className="shrink-0 p-0.5 -ml-0.5 text-[#333] hover:text-black"
+              className="shrink-0 p-0 text-[#333] hover:text-black"
               aria-label="메뉴 열기"
               onClick={() => setMenuOpen(true)}
             >
-              <span className="material-symbols-outlined text-[26px] md:text-[28px]">
+              <span className="material-symbols-outlined text-[28px] md:text-[30px]">
                 menu
               </span>
             </button>
@@ -118,9 +117,11 @@ export default function Header() {
             <NavDropdown label="COMMUNITY" items={COMMUNITY_LINKS} />
           </div>
 
-          <LogoLink />
+          <div className="shrink-0 px-1 sm:px-3">
+            <LogoLink />
+          </div>
 
-          <div className="absolute right-0 z-10 pl-2 bg-white/95">
+          <div className="flex flex-1 items-center justify-end shrink-0">
             <HeaderAccountLinks />
           </div>
         </div>

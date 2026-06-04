@@ -18,10 +18,10 @@ export default function NavDropdown({ label, items }) {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-0.5 text-[12px] md:text-[13px] text-[#333] hover:text-black py-1"
+        className="flex items-center gap-0.5 text-[14px] md:text-[15px] text-[#333] hover:text-black py-1 whitespace-nowrap"
       >
         {label}
-        <span className="text-[10px] text-[#999]">{open ? "▴" : "▾"}</span>
+        <span className="text-[11px] text-[#999]">{open ? "▴" : "▾"}</span>
       </button>
       {open && (
         <ul className="absolute left-0 top-full mt-1 min-w-[140px] bg-white border border-[#ddd] shadow-md z-50 py-1">
@@ -30,7 +30,7 @@ export default function NavDropdown({ label, items }) {
               <Link
                 to={item.to}
                 onClick={() => setOpen(false)}
-                className="block px-4 py-2 text-[12px] text-[#444] hover:bg-[#f5f5f5] hover:text-black"
+                className="block px-4 py-2 text-[13px] text-[#444] hover:bg-[#f5f5f5] hover:text-black"
               >
                 {item.label}
               </Link>
