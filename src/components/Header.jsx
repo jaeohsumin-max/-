@@ -21,7 +21,7 @@ const MYPAGE_LINKS = [
 function MainNav({ className = "" }) {
   return (
     <nav
-      className={`flex flex-wrap items-center justify-center gap-x-5 xl:gap-x-6 gap-y-2 ${className}`}
+      className={`flex items-center gap-x-4 xl:gap-x-5 ${className}`}
     >
       {CATEGORIES.map((cat) => (
         <NavLink
@@ -29,7 +29,7 @@ function MainNav({ className = "" }) {
           to={getCategoryPath(cat.id)}
           end={cat.id === "all"}
           className={({ isActive }) =>
-            `text-[13px] whitespace-nowrap transition-colors ${
+            `text-[12px] xl:text-[13px] whitespace-nowrap transition-colors ${
               isActive ? "text-black font-semibold" : "text-[#444] hover:text-black"
             }`
           }
@@ -43,8 +43,53 @@ function MainNav({ className = "" }) {
   );
 }
 
-export default function Header() {
+function HeaderUtilities() {
   const { itemCount } = useCart();
+
+  return (
+    <div className="flex items-center gap-2 md:gap-3 shrink-0">
+      <div className="hidden md:block w-32 lg:w-36">
+        <input
+          type="search"
+          placeholder="검색"
+          className="w-full border border-[#ddd] px-3 py-1.5 text-[12px] focus:outline-none focus:border-[#333]"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              const q = e.currentTarget.value.trim();
+              window.location.href = q
+                ? `/shop?search=${encodeURIComponent(q)}`
+                : "/shop";
+            }
+          }}
+        />
+      </div>
+      <Link
+        to="/cart"
+        className="flex items-center gap-1 text-[12px] text-[#333] hover:text-black"
+      >
+        <span className="material-symbols-outlined text-[22px]">shopping_bag</span>
+        <span className="font-medium">{itemCount}</span>
+      </Link>
+    </div>
+  );
+}
+
+function LogoLink() {
+  return (
+    <Link to="/" className="shrink-0 flex items-center">
+      <img
+        src={codemuseLogo}
+        alt="CODEMUSE"
+        width={182}
+        height={112}
+        decoding="async"
+        className="h-11 md:h-12 xl:h-14 w-auto max-w-[8.5rem] md:max-w-[9.5rem] xl:max-w-[11rem] object-contain -translate-y-2"
+      />
+    </Link>
+  );
+}
+
+export default function Header() {
   const { isLoggedIn, user } = useAuth();
 
   return (
@@ -82,55 +127,26 @@ export default function Header() {
       </div>
 
       <div className="max-w-[1280px] mx-auto px-4">
-        {/* 로고 왼쪽 · 검색·장바구니 오른쪽 */}
-        <div className="flex items-center justify-between py-4 md:py-5 gap-4">
-          <Link to="/" className="shrink-0">
-            <img
-              src={codemuseLogo}
-              alt="CODEMUSE"
-              width={182}
-              height={112}
-              decoding="async"
-              className="h-12 md:h-14 w-auto max-w-[9.5rem] md:max-w-[11rem] object-contain block -translate-y-2.5"
-            />
-          </Link>
-
-          <div className="flex items-center gap-3 md:gap-4 shrink-0">
-            <div className="hidden md:block w-36 lg:w-44">
-              <input
-                type="search"
-                placeholder="검색"
-                className="w-full border border-[#ddd] px-3 py-1.5 text-[12px] focus:outline-none focus:border-[#333]"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    const q = e.currentTarget.value.trim();
-                    window.location.href = q
-                      ? `/shop?search=${encodeURIComponent(q)}`
-                      : "/shop";
-                  }
-                }}
-              />
-            </div>
-            <Link
-              to="/cart"
-              className="flex items-center gap-1 text-[12px] text-[#333] hover:text-black shrink-0"
-            >
-              <span className="material-symbols-outlined text-[22px]">shopping_bag</span>
-              <span className="font-medium">{itemCount}</span>
-            </Link>
+        {/* 데스크톱: 로고 · 메뉴 · 검색/장바구니 한 줄 */}
+        <div className="hidden lg:grid lg:grid-cols-[minmax(7rem,10rem)_1fr_auto] lg:items-center lg:gap-3 xl:gap-4 py-3 xl:py-4 min-h-[56px] xl:min-h-[60px]">
+          <LogoLink />
+          <div className="flex justify-center items-center min-w-0 overflow-x-auto scrollbar-hide px-1">
+            <MainNav className="flex-nowrap" />
           </div>
+          <HeaderUtilities />
         </div>
 
-        {/* 카테고리 메뉴 가운데 정렬 */}
-        <div className="hidden lg:block border-t border-[#f0f0f0] py-3">
-          <MainNav />
-        </div>
-      </div>
-
-      {/* 모바일·태블릿: 가운데 정렬 (넘치면 스크롤) */}
-      <div className="lg:hidden border-t border-[#eee] py-2.5 overflow-x-auto">
-        <div className="flex justify-center min-w-min px-4 mx-auto w-max max-w-full">
-          <MainNav className="!flex-nowrap gap-x-4" />
+        {/* 모바일·태블릿: 로고+장바구니 / 메뉴 */}
+        <div className="lg:hidden">
+          <div className="flex items-center justify-between py-3 gap-3">
+            <LogoLink />
+            <HeaderUtilities />
+          </div>
+          <div className="border-t border-[#eee] py-2 overflow-x-auto">
+            <div className="flex justify-start min-w-max px-1 pb-0.5">
+              <MainNav className="flex-nowrap" />
+            </div>
+          </div>
         </div>
       </div>
     </header>
