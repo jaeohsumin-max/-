@@ -15,6 +15,8 @@ import QnaPage from "../page/QnaPage";
 import QnaWritePage from "../page/QnaWritePage";
 import QnaDetailPage from "../page/QnaDetailPage";
 import ReviewPage from "../page/ReviewPage";
+import ReviewWritePage from "../page/ReviewWritePage";
+import ReviewDetailPage from "../page/ReviewDetailPage";
 
 const basename =
   import.meta.env.BASE_URL.replace(/\/$/, "") || undefined;
@@ -40,6 +42,8 @@ const router = createBrowserRouter(
         { path: "/qa/write", element: <QnaWritePage /> },
         { path: "/qa/:id", element: <QnaDetailPage /> },
         { path: "/reviews", element: <ReviewPage /> },
+        { path: "/reviews/write", element: <ReviewWritePage /> },
+        { path: "/reviews/:id", element: <ReviewDetailPage /> },
       ],
     },
   ],
