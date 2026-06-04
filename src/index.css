@@ -35,17 +35,3 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
-/* 헤더 높이에 맞춘 로고 (모바일 32px / 데스크톱 40px) */
-.site-logo {
-  height: 32px;
-  width: auto;
-  max-width: 108px;
-}
-
-@media (min-width: 768px) {
-  .site-logo {
-    height: 40px;
-    max-width: 128px;
-  }
-}

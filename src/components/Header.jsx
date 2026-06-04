@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { CATEGORIES, getCategoryPath } from "../data/products";
+import codemuseLogo from "../assets/codemuse-logo.png";
 
 const UTILITY_LINKS = [
   { to: "/login", label: "Login" },
@@ -14,7 +15,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 bg-[#faf9f6]/90 backdrop-blur-md border-b border-[#e8e4df]">
-      <div className="hidden md:block border-b border-[#e8e4df]/80">
+      <div className="hidden md:block">
         <div className="max-w-7xl mx-auto px-5 md:px-10 flex justify-end items-center h-9 gap-5">
           {UTILITY_LINKS.map((item) => (
             <Link
@@ -38,14 +39,12 @@ export default function Header() {
       </div>
 
       <div className="max-w-7xl mx-auto px-5 md:px-10">
-        <div className="flex items-center justify-between min-h-14 md:min-h-16">
-          <Link to="/" className="flex items-center shrink-0 h-full py-2">
+        <div className="flex items-center justify-between min-h-16 md:min-h-[4.5rem]">
+          <Link to="/" className="flex items-center shrink-0 py-1">
             <img
-              src="/codemuse-logo.png?v=7"
+              src={codemuseLogo}
               alt="CODEMUSE"
-              width={80}
-              height={42}
-              className="site-logo object-contain block"
+              className="h-12 md:h-14 w-auto max-w-[9.5rem] md:max-w-[11rem] object-contain block"
             />
           </Link>
 

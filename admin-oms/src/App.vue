@@ -43,9 +43,9 @@ import logoUrl from "./assets/codemuse-logo.png";
 }
 
 .header-logo {
-  height: 32px;
+  height: 48px;
   width: auto;
-  max-width: 108px;
+  max-width: 152px;
   display: block;
   object-fit: contain;
   object-position: left center;
@@ -53,12 +53,12 @@ import logoUrl from "./assets/codemuse-logo.png";
 
 @media (min-width: 768px) {
   .oms-toolbar {
-    min-height: 60px;
+    min-height: 68px;
   }
 
   .header-logo {
-    height: 40px;
-    max-width: 128px;
+    height: 56px;
+    max-width: 176px;
   }
 }
 </style>
