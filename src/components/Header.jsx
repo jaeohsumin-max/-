@@ -30,7 +30,7 @@ function HeaderAccountLinks() {
     "text-[11px] text-[#666] hover:text-black whitespace-nowrap tracking-wide";
 
   return (
-    <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
+    <div className="flex items-center gap-2 sm:gap-3 shrink-0 min-w-0">
       {isLoggedIn ? (
         <Link to="/mypage" className={`${linkClass} hidden md:inline`}>
           {user?.name}님
@@ -53,16 +53,21 @@ function HeaderAccountLinks() {
       </Link>
       <Link
         to="/cart"
-        className={`${linkClass} flex items-center gap-1.5 text-[#333] hover:text-black`}
-        aria-label="장바구니"
+        className={`${linkClass} shrink-0 flex items-center gap-1.5 text-[#333] hover:text-black`}
+        aria-label={`장바구니 ${itemCount}개`}
       >
-        <span className="material-symbols-outlined text-[22px] font-light">
-          shopping_bag
+        <span className="relative inline-flex shrink-0 items-center justify-center w-[26px] h-[26px]">
+          <span className="material-symbols-outlined text-[24px] font-light leading-none">
+            shopping_bag
+          </span>
+          <span
+            className="absolute -top-0.5 -right-1 inline-flex items-center justify-center min-w-[16px] h-[16px] px-0.5 rounded-full bg-[#333] text-white text-[9px] font-semibold leading-none tabular-nums"
+            aria-hidden="true"
+          >
+            {itemCount > 99 ? "99+" : itemCount}
+          </span>
         </span>
-        <span>CART</span>
-        <span className="inline-flex items-center justify-center min-w-[18px] h-[18px] rounded-full border border-[#ccc] text-[10px] font-medium text-[#555]">
-          {itemCount}
-        </span>
+        <span className="hidden min-[400px]:inline tracking-wide">장바구니</span>
       </Link>
     </div>
   );
@@ -115,7 +120,7 @@ export default function Header() {
 
           <LogoLink />
 
-          <div className="absolute right-0">
+          <div className="absolute right-0 z-10 pl-2 bg-white/95">
             <HeaderAccountLinks />
           </div>
         </div>
