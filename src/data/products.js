@@ -1,7 +1,6 @@
 export const CATEGORIES = [
   { id: "all", label: "ALL" },
   { id: "new", label: "NEW 10%" },
-  { id: "made", label: "MADE" },
   { id: "outer", label: "OUTER" },
   { id: "top", label: "TOP" },
   { id: "bottom", label: "BOTTOM" },
