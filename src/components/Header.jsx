@@ -31,7 +31,6 @@ function HeaderAccountLinks() {
 
   return (
     <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
-      <HeaderSearchBar className="hidden sm:flex" />
       {isLoggedIn ? (
         <Link to="/mypage" className={`${linkClass} hidden md:inline`}>
           {user?.name}님

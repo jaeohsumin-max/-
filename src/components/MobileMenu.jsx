@@ -65,7 +65,7 @@ export default function MobileMenu({ open, onClose }) {
 
       <div className="absolute inset-y-0 left-0 w-full max-w-[400px] md:max-w-[440px] bg-white shadow-xl flex flex-col overflow-hidden">
         {/* 상단: 하늘색 + 유틸 */}
-        <div className="bg-gradient-to-r from-[#b8ebe3] via-[#9ddce8] to-[#c5e8f5] border-b border-[#8ecdd8] px-4 pt-3 pb-4 shrink-0">
+        <div className="bg-gradient-to-r from-[#e8f7f5] via-[#edf8fc] to-[#f5fbff] border-b border-[#dceef5] px-4 pt-3 pb-4 shrink-0">
           <div className="flex items-center justify-between mb-3">
             <div className="flex flex-wrap items-center">
               <Link to="/cart" onClick={onClose} className={topLinkClass}>
@@ -81,7 +81,7 @@ export default function MobileMenu({ open, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="p-1 text-[#2a4a52] hover:text-[#111]"
+              className="p-1 text-[#5a7a82] hover:text-[#111]"
               aria-label="닫기"
             >
               <span className="material-symbols-outlined text-[24px]">close</span>
