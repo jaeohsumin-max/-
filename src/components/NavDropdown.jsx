@@ -18,7 +18,7 @@ export default function NavDropdown({ label, items }) {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-0.5 text-[13px] text-[#333] hover:text-black py-1"
+        className="flex items-center gap-0.5 text-[12px] md:text-[13px] text-[#333] hover:text-black py-1"
       >
         {label}
         <span className="text-[10px] text-[#999]">{open ? "▴" : "▾"}</span>
