@@ -3,7 +3,6 @@ export const SIGNUP_BONUS_POINTS = 2000;
 export const PROMO_ITEMS = [
   "전상품 무료배송",
   `회원가입 시 ${SIGNUP_BONUS_POINTS.toLocaleString()}원 적립금 증정`,
-  "카카오톡 플친 시 1,000원 할인 쿠폰",
 ];
 
 export const CS_INQUIRY_MESSAGE = "모든 문의는 게시판 문의 부탁드립니다.";
