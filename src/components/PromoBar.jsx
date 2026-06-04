@@ -17,15 +17,25 @@ function PromoLine() {
   );
 }
 
+/** 한 사이클: 문구 3개 → 빈 구간(다시 나오기 전 여백) */
+function PromoCycle() {
+  return (
+    <>
+      <div className="inline-flex items-center justify-center shrink-0 px-8 md:px-12 min-w-max">
+        <PromoLine />
+      </div>
+      <div className="inline-block shrink-0 w-[100vw] max-w-full" aria-hidden />
+    </>
+  );
+}
+
 export default function PromoBar() {
   return (
     <div className="bg-gradient-to-r from-[#b8ebe3] via-[#9ddce8] to-[#c5e8f5] text-[#2a4a52] text-[11px] overflow-hidden border-b border-[#8ecdd8]">
-      <div className="promo-marquee py-2.5 whitespace-nowrap">
-        <div className="inline-flex items-center px-6 md:px-10">
-          <PromoLine />
-        </div>
-        <div className="inline-flex items-center px-6 md:px-10" aria-hidden>
-          <PromoLine />
+      <div className="promo-track py-2.5 whitespace-nowrap">
+        <PromoCycle />
+        <div className="inline-flex shrink-0" aria-hidden>
+          <PromoCycle />
         </div>
       </div>
     </div>

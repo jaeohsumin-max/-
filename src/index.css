@@ -18,12 +18,14 @@ body {
   }
 }
 
-.promo-marquee {
+.promo-track {
   display: inline-flex;
-  animation: promo-scroll 28s linear infinite;
+  align-items: center;
+  animation: promo-scroll 52s linear infinite;
+  will-change: transform;
 }
 
-.promo-marquee:hover {
+.promo-track:hover {
   animation-play-state: paused;
 }
 
