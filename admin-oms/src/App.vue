@@ -1,14 +1,14 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated class="bg-grey-10 text-white">
+    <q-header elevated class="bg-white text-grey-9 border-bottom">
       <q-toolbar class="q-px-md">
         <img
           :src="logoUrl"
           alt="CODEMUSE"
-          class="header-logo q-mr-sm"
+          class="header-logo"
         />
         <q-space />
-        <q-chip dense color="grey-8" text-color="white" icon="inventory_2">
+        <q-chip dense color="grey-9" text-color="white" icon="inventory_2">
           OMS
         </q-chip>
       </q-toolbar>
@@ -28,16 +28,23 @@ import logoUrl from "./assets/codemuse-logo.png";
 </script>
 
 <style scoped>
+.border-bottom {
+  border-bottom: 1px solid #e8e4df;
+}
+
 .header-logo {
-  height: 36px;
+  height: 28px;
   width: auto;
+  max-width: min(220px, 55vw);
   display: block;
   object-fit: contain;
+  object-position: left center;
 }
 
 @media (min-width: 600px) {
   .header-logo {
-    height: 44px;
+    height: 34px;
+    max-width: 280px;
   }
 }
 </style>

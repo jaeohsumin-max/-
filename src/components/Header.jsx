@@ -39,11 +39,12 @@ export default function Header() {
 
       <div className="max-w-7xl mx-auto px-5 md:px-10">
         <div className="flex items-center justify-between h-14 md:h-16">
-          <Link
-            to="/"
-            className="font-serif text-2xl md:text-3xl tracking-tight text-[#181512]"
-          >
-            CODEMUSE
+          <Link to="/" className="flex items-center shrink-0">
+            <img
+              src="/codemuse-logo.png"
+              alt="CODEMUSE"
+              className="h-7 md:h-9 w-auto object-contain"
+            />
           </Link>
 
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
