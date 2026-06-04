@@ -82,19 +82,20 @@ export default function Header() {
       </div>
 
       <div className="max-w-[1280px] mx-auto px-4">
-        {/* 로고 가운데 · 장바구니·검색 오른쪽 */}
-        <div className="relative flex items-center justify-center py-4 md:py-5 min-h-[56px] md:min-h-[64px]">
+        {/* 로고 왼쪽 · 검색·장바구니 오른쪽 */}
+        <div className="flex items-center justify-between py-4 md:py-5 gap-4">
           <Link to="/" className="shrink-0">
             <img
               src={codemuseLogo}
               alt="CODEMUSE"
-              width={160}
-              height={48}
-              className="h-10 md:h-11 w-auto object-contain"
+              width={182}
+              height={112}
+              decoding="async"
+              className="h-12 md:h-14 w-auto max-w-[9.5rem] md:max-w-[11rem] object-contain block -translate-y-2.5"
             />
           </Link>
 
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-3 md:gap-4">
+          <div className="flex items-center gap-3 md:gap-4 shrink-0">
             <div className="hidden md:block w-36 lg:w-44">
               <input
                 type="search"
