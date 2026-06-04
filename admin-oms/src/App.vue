@@ -5,6 +5,8 @@
         <img
           :src="logoUrl"
           alt="CODEMUSE"
+          width="100"
+          height="52"
           class="header-logo"
         />
         <q-space />
@@ -37,24 +39,26 @@ import logoUrl from "./assets/codemuse-logo.png";
 }
 
 .oms-toolbar {
-  min-height: 72px;
+  min-height: 56px;
 }
 
 .header-logo {
-  height: 56px;
+  height: 36px;
   width: auto;
+  max-width: 120px;
   display: block;
   object-fit: contain;
   object-position: left center;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   .oms-toolbar {
-    min-height: 88px;
+    min-height: 64px;
   }
 
   .header-logo {
-    height: 72px;
+    height: 44px;
+    max-width: 140px;
   }
 }
 </style>
