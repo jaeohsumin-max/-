@@ -83,7 +83,7 @@ function LogoLink() {
         width={182}
         height={112}
         decoding="async"
-        className="h-11 md:h-12 xl:h-14 w-auto max-w-[8.5rem] md:max-w-[9.5rem] xl:max-w-[11rem] object-contain -translate-y-2"
+        className="h-11 md:h-12 xl:h-14 w-auto max-w-[8.5rem] md:max-w-[9.5rem] xl:max-w-[11rem] object-contain translate-y-1"
       />
     </Link>
   );
