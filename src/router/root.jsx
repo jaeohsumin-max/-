@@ -9,6 +9,8 @@ import OrderCompletePage from "../page/OrderCompletePage";
 import LoginPage from "../page/LoginPage";
 import JoinPage from "../page/JoinPage";
 import MyPage from "../page/MyPage";
+import NoticePage from "../page/NoticePage";
+import NoticeDetailPage from "../page/NoticeDetailPage";
 import QnaPage from "../page/QnaPage";
 import ReviewPage from "../page/ReviewPage";
 
@@ -30,6 +32,8 @@ const router = createBrowserRouter(
         { path: "/login", element: <LoginPage /> },
         { path: "/join", element: <JoinPage /> },
         { path: "/mypage", element: <MyPage /> },
+        { path: "/notice", element: <NoticePage /> },
+        { path: "/notice/:id", element: <NoticeDetailPage /> },
         { path: "/qa", element: <QnaPage /> },
         { path: "/reviews", element: <ReviewPage /> },
       ],

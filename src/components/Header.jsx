@@ -8,6 +8,7 @@ import NavDropdown from "./NavDropdown";
 import PromoBar from "./PromoBar";
 
 const COMMUNITY_LINKS = [
+  { to: "/notice", label: "NOTICE" },
   { to: "/qa", label: "Q&A" },
   { to: "/reviews", label: "REVIEW" },
 ];
