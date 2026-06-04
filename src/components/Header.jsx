@@ -10,7 +10,7 @@ import PromoBar from "./PromoBar";
 function MainNav({ className = "" }) {
   return (
     <nav
-      className={`flex items-center justify-center flex-nowrap gap-x-5 lg:gap-x-6 xl:gap-x-8 ${className}`}
+      className={`flex w-full items-center flex-nowrap justify-start gap-x-10 md:justify-between md:gap-x-0 ${className}`}
     >
       {CATEGORIES.map((cat) => (
         <NavLink
@@ -18,8 +18,8 @@ function MainNav({ className = "" }) {
           to={getCategoryPath(cat.id)}
           end={cat.id === "all"}
           className={({ isActive }) =>
-            `text-[12px] lg:text-[13px] whitespace-nowrap transition-colors ${
-              isActive ? "text-black font-semibold" : "text-[#555] hover:text-black"
+            `text-[13px] md:text-[14px] whitespace-nowrap transition-colors ${
+              isActive ? "text-black font-medium" : "text-[#444] hover:text-black"
             }`
           }
         >
@@ -137,9 +137,9 @@ export default function Header() {
           <LogoLink />
         </div>
 
-        {/* 3행: 카테고리 메뉴 */}
-        <div className="py-3 md:py-3.5 overflow-x-auto scrollbar-hide">
-          <MainNav className="min-w-max mx-auto px-2" />
+        {/* 3행: 카테고리 메뉴 (넓게 펼침) */}
+        <div className="py-4 md:py-5 overflow-x-auto scrollbar-hide md:overflow-visible">
+          <MainNav className="min-w-max md:min-w-0 px-1 md:px-2" />
         </div>
       </div>
     </header>
