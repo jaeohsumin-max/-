@@ -6,10 +6,14 @@ import { SIGNUP_BONUS_POINTS } from "../data/site";
 import codemuseLogo from "../assets/codemuse-logo.png";
 import PromoBar from "./PromoBar";
 
-function MainNav({ className = "" }) {
+function MainNav({ className = "", spread = false }) {
   return (
     <nav
-      className={`flex items-center gap-x-4 xl:gap-x-5 ${className}`}
+      className={`flex items-center flex-nowrap gap-x-5 md:gap-x-6 ${
+        spread
+          ? "lg:w-full lg:justify-between lg:gap-x-0 lg:px-3 xl:px-6"
+          : ""
+      } ${className}`}
     >
       {CATEGORIES.map((cat) => (
         <NavLink
@@ -17,7 +21,7 @@ function MainNav({ className = "" }) {
           to={getCategoryPath(cat.id)}
           end={cat.id === "all"}
           className={({ isActive }) =>
-            `text-[12px] xl:text-[13px] whitespace-nowrap transition-colors ${
+            `text-[13px] lg:text-[14px] whitespace-nowrap transition-colors ${
               isActive ? "text-black font-semibold" : "text-[#444] hover:text-black"
             }`
           }
@@ -85,14 +89,9 @@ export default function Header() {
       <div className="border-b border-[#eee]">
         <div className="max-w-[1280px] mx-auto px-4 h-9 flex items-center justify-end gap-4 text-[11px] text-[#666]">
           {isLoggedIn ? (
-            <>
-              <Link to="/mypage" className="hover:text-black">
-                {user?.name}님
-              </Link>
-              <Link to="/mypage" className="hover:text-black">
-                MY PAGE
-              </Link>
-            </>
+            <Link to="/mypage" className="hover:text-black">
+              {user?.name}님
+            </Link>
           ) : (
             <>
               <Link to="/login" className="hover:text-black font-medium">
@@ -106,8 +105,11 @@ export default function Header() {
               </Link>
             </>
           )}
-          <Link to="/checkout" className="hover:text-black hidden sm:inline">
+          <Link to="/checkout" className="hover:text-black">
             ORDER
+          </Link>
+          <Link to="/mypage" className="hover:text-black">
+            MY PAGE
           </Link>
         </div>
       </div>
@@ -116,8 +118,8 @@ export default function Header() {
         {/* 데스크톱: 로고 · 메뉴 · 검색/장바구니 한 줄 */}
         <div className="hidden lg:grid lg:grid-cols-[minmax(7rem,10rem)_1fr_auto] lg:items-center lg:gap-3 xl:gap-4 py-3 xl:py-4 min-h-[56px] xl:min-h-[60px]">
           <LogoLink />
-          <div className="flex justify-center items-center min-w-0 overflow-x-auto scrollbar-hide px-1">
-            <MainNav className="flex-nowrap" />
+          <div className="flex w-full items-center min-w-0 overflow-x-auto scrollbar-hide px-1 lg:px-2">
+            <MainNav spread className="flex-nowrap" />
           </div>
           <HeaderUtilities />
         </div>
