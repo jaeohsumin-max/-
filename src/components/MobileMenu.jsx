@@ -49,7 +49,7 @@ export default function MobileMenu({ open, onClose }) {
   };
 
   const topLinkClass =
-    "text-[11px] text-[#2a4a52] hover:text-[#111] after:content-['|'] after:mx-2 after:text-[#8ecdd8] last:after:content-none";
+    "text-[11px] text-[#5a7a82] hover:text-[#111] after:content-['|'] after:mx-2 after:text-[#cce5ef] last:after:content-none";
 
   const listLinkClass =
     "block py-3.5 text-[13px] text-[#111] tracking-wide border-b border-[#f5f5f5] hover:bg-[#fafafa]";

@@ -20,7 +20,7 @@ export default function PromoBar() {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-[#b8ebe3] via-[#9ddce8] to-[#c5e8f5] text-[#2a4a52] text-[11px] border-b border-[#8ecdd8]">
+    <div className="bg-gradient-to-r from-[#e8f7f5] via-[#edf8fc] to-[#f5fbff] text-[#5a7a82] text-[11px] border-b border-[#dceef5]">
       <div className="relative h-9 md:h-10 flex items-center justify-center overflow-hidden px-4">
         <p
           className={`text-center tracking-wide whitespace-nowrap transition-all duration-300 ease-in-out ${
