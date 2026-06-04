@@ -110,7 +110,10 @@ function HeaderUtilities() {
 
 function LogoLink() {
   return (
-    <Link to="/" className="shrink-0 flex items-center">
+    <Link
+      to="/"
+      className="shrink-0 flex items-center translate-x-2 md:translate-x-3"
+    >
       <img
         src={codemuseLogo}
         alt="CODEMUSE"
