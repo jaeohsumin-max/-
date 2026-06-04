@@ -126,6 +126,9 @@ export default function Header() {
             <Link to="/shop/best" className={navLinkClass}>
               BEST
             </Link>
+            <Link to="/shop/new" className={navLinkClass}>
+              NEW
+            </Link>
             <NavDropdown label="SHOP" items={SHOP_LINKS} />
             <NavDropdown label="COMMUNITY" items={COMMUNITY_LINKS} />
           </div>
