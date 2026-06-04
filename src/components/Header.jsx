@@ -47,6 +47,9 @@ export default function Header() {
             <img
               src={codemuseLogo}
               alt="CODEMUSE"
+              width={182}
+              height={112}
+              decoding="async"
               className="h-12 md:h-14 w-auto max-w-[9.5rem] md:max-w-[11rem] object-contain block -translate-y-2.5"
             />
           </Link>
