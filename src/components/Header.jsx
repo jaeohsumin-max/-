@@ -97,12 +97,12 @@ export default function Header() {
       <div className="w-full">
         <div className="relative flex items-center justify-center min-h-[56px] md:min-h-[72px] py-3">
           <nav
-            className="absolute left-0 top-0 bottom-0 z-10 flex items-center gap-2 sm:gap-3 md:gap-4 pl-1 sm:pl-2 md:pl-3 max-w-[calc(100%-7rem)] sm:max-w-[calc(100%-9rem)] md:max-w-[52%] overflow-x-auto scrollbar-hide"
+            className="absolute left-0 top-0 bottom-0 z-10 flex items-center gap-2 sm:gap-3 md:gap-4 pl-4 sm:pl-5 md:pl-6 max-w-[calc(100%-7rem)] sm:max-w-[calc(100%-9rem)] md:max-w-[52%] overflow-x-auto scrollbar-hide"
             aria-label="주 메뉴"
           >
             <button
               type="button"
-              className="shrink-0 -ml-0.5 p-0 text-[#333] hover:text-black"
+              className="shrink-0 p-0 text-[#333] hover:text-black"
               aria-label="메뉴 열기"
               onClick={() => setMenuOpen(true)}
             >
@@ -122,7 +122,7 @@ export default function Header() {
 
           <LogoLink />
 
-          <div className="absolute right-0 top-0 bottom-0 z-10 flex items-center pr-2 sm:pr-3 md:pr-4">
+          <div className="absolute right-0 top-0 bottom-0 z-10 flex items-center pr-4 sm:pr-5 md:pr-6">
             <HeaderAccountLinks />
           </div>
         </div>
