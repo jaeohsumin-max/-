@@ -18,6 +18,31 @@ const MYPAGE_LINKS = [
   { to: "/cart", label: "CART" },
 ];
 
+function MainNav({ className = "" }) {
+  return (
+    <nav
+      className={`flex flex-wrap items-center justify-center gap-x-5 xl:gap-x-6 gap-y-2 ${className}`}
+    >
+      {CATEGORIES.map((cat) => (
+        <NavLink
+          key={cat.id}
+          to={getCategoryPath(cat.id)}
+          end={cat.id === "all"}
+          className={({ isActive }) =>
+            `text-[13px] whitespace-nowrap transition-colors ${
+              isActive ? "text-black font-semibold" : "text-[#444] hover:text-black"
+            }`
+          }
+        >
+          {cat.label}
+        </NavLink>
+      ))}
+      <NavDropdown label="COMMUNITY" items={COMMUNITY_LINKS} />
+      <NavDropdown label="MY PAGE" items={MYPAGE_LINKS} />
+    </nav>
+  );
+}
+
 export default function Header() {
   const { itemCount } = useCart();
   const { isLoggedIn, user } = useAuth();
@@ -57,7 +82,8 @@ export default function Header() {
       </div>
 
       <div className="max-w-[1280px] mx-auto px-4">
-        <div className="flex items-center justify-between py-4 md:py-5 gap-4">
+        {/* 로고 가운데 · 장바구니·검색 오른쪽 */}
+        <div className="relative flex items-center justify-center py-4 md:py-5 min-h-[56px] md:min-h-[64px]">
           <Link to="/" className="shrink-0">
             <img
               src={codemuseLogo}
@@ -68,65 +94,42 @@ export default function Header() {
             />
           </Link>
 
-          <div className="hidden md:flex flex-1 max-w-xs mx-6">
-            <input
-              type="search"
-              placeholder="검색"
-              className="w-full border border-[#ddd] px-3 py-2 text-[12px] focus:outline-none focus:border-[#333]"
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  const q = e.currentTarget.value.trim();
-                  window.location.href = q
-                    ? `/shop?search=${encodeURIComponent(q)}`
-                    : "/shop";
-                }
-              }}
-            />
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-3 md:gap-4">
+            <div className="hidden md:block w-36 lg:w-44">
+              <input
+                type="search"
+                placeholder="검색"
+                className="w-full border border-[#ddd] px-3 py-1.5 text-[12px] focus:outline-none focus:border-[#333]"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    const q = e.currentTarget.value.trim();
+                    window.location.href = q
+                      ? `/shop?search=${encodeURIComponent(q)}`
+                      : "/shop";
+                  }
+                }}
+              />
+            </div>
+            <Link
+              to="/cart"
+              className="flex items-center gap-1 text-[12px] text-[#333] hover:text-black shrink-0"
+            >
+              <span className="material-symbols-outlined text-[22px]">shopping_bag</span>
+              <span className="font-medium">{itemCount}</span>
+            </Link>
           </div>
-
-          <Link
-            to="/cart"
-            className="flex items-center gap-1 text-[12px] text-[#333] hover:text-black shrink-0"
-          >
-            <span className="material-symbols-outlined text-[22px]">shopping_bag</span>
-            <span className="font-medium">{itemCount}</span>
-          </Link>
         </div>
 
-        <nav className="hidden lg:flex items-center gap-5 xl:gap-6 pb-3 border-t border-[#f0f0f0] pt-3">
-          {CATEGORIES.map((cat) => (
-            <NavLink
-              key={cat.id}
-              to={getCategoryPath(cat.id)}
-              end={cat.id === "all"}
-              className={({ isActive }) =>
-                `text-[13px] whitespace-nowrap transition-colors ${
-                  isActive ? "text-black font-semibold" : "text-[#444] hover:text-black"
-                }`
-              }
-            >
-              {cat.label}
-            </NavLink>
-          ))}
-          <NavDropdown label="COMMUNITY" items={COMMUNITY_LINKS} />
-          <NavDropdown label="MY PAGE" items={MYPAGE_LINKS} />
-        </nav>
+        {/* 카테고리 메뉴 가운데 정렬 */}
+        <div className="hidden lg:block border-t border-[#f0f0f0] py-3">
+          <MainNav />
+        </div>
       </div>
 
-      <div className="lg:hidden border-t border-[#eee] overflow-x-auto">
-        <div className="flex gap-4 px-4 py-2.5 min-w-max text-[12px]">
-          {CATEGORIES.slice(0, 8).map((cat) => (
-            <NavLink
-              key={cat.id}
-              to={getCategoryPath(cat.id)}
-              end={cat.id === "all"}
-              className={({ isActive }) =>
-                `whitespace-nowrap ${isActive ? "text-black font-semibold" : "text-[#666]"}`
-              }
-            >
-              {cat.label}
-            </NavLink>
-          ))}
+      {/* 모바일·태블릿: 가운데 정렬 (넘치면 스크롤) */}
+      <div className="lg:hidden border-t border-[#eee] py-2.5 overflow-x-auto">
+        <div className="flex justify-center min-w-min px-4 mx-auto w-max max-w-full">
+          <MainNav className="!flex-nowrap gap-x-4" />
         </div>
       </div>
     </header>
