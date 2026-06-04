@@ -17,15 +17,18 @@ function PromoLine() {
   );
 }
 
-/** 한 사이클: 문구 3개 → 빈 구간(다시 나오기 전 여백) */
-function PromoCycle() {
+/** 한 사이클: 문구 3개만 보여 주고, 화면 너비만큼 비운 뒤 다시 등장 */
+function PromoCycle({ ariaHidden = false }) {
   return (
-    <>
-      <div className="inline-flex items-center justify-center shrink-0 px-8 md:px-12 min-w-max">
+    <div
+      className="inline-flex items-center shrink-0"
+      aria-hidden={ariaHidden || undefined}
+    >
+      <div className="inline-flex items-center justify-center px-8 md:px-12">
         <PromoLine />
       </div>
-      <div className="inline-block shrink-0 w-[100vw] max-w-full" aria-hidden />
-    </>
+      <div className="shrink-0 w-[100vw]" />
+    </div>
   );
 }
 
@@ -34,9 +37,7 @@ export default function PromoBar() {
     <div className="bg-gradient-to-r from-[#b8ebe3] via-[#9ddce8] to-[#c5e8f5] text-[#2a4a52] text-[11px] overflow-hidden border-b border-[#8ecdd8]">
       <div className="promo-track py-2.5 whitespace-nowrap">
         <PromoCycle />
-        <div className="inline-flex shrink-0" aria-hidden>
-          <PromoCycle />
-        </div>
+        <PromoCycle ariaHidden />
       </div>
     </div>
   );
