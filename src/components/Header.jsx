@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import { CATEGORIES, getCategoryPath } from "../data/products";
 import { SIGNUP_BONUS_POINTS } from "../data/site";
-import codemuseLogo from "../assets/codemuse-logo.png";
+import CodemuseLogo from "./CodemuseLogo";
 import PromoBar from "./PromoBar";
 
 function MainNav({ className = "" }) {
