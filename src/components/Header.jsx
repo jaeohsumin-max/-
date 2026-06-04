@@ -20,8 +20,8 @@ const COMMUNITY_LINKS = [
   { to: "/reviews", label: "REVIEW" },
 ];
 
-const navLinkClass =
-  "text-[14px] md:text-[15px] text-[#333] hover:text-black whitespace-nowrap";
+const navItemClass =
+  "inline-flex items-center h-5 md:h-[22px] text-[14px] md:text-[15px] leading-none text-[#333] hover:text-black whitespace-nowrap";
 
 function HeaderAccountLinks() {
   const { isLoggedIn, user } = useAuth();
@@ -105,22 +105,26 @@ export default function Header() {
           >
             <button
               type="button"
-              className="shrink-0 p-0 text-[#333] hover:text-black"
+              className={`${navItemClass} shrink-0 w-5 md:w-[22px] justify-center p-0`}
               aria-label="메뉴 열기"
               onClick={() => setMenuOpen(true)}
             >
-              <span className="material-symbols-outlined text-[28px] md:text-[30px]">
+              <span className="material-symbols-outlined text-[20px] md:text-[22px] leading-none">
                 menu
               </span>
             </button>
-            <Link to="/shop/best" className={navLinkClass}>
+            <Link to="/shop/best" className={navItemClass}>
               BEST
             </Link>
-            <Link to="/shop/new" className={navLinkClass}>
+            <Link to="/shop/new" className={navItemClass}>
               NEW
             </Link>
-            <NavDropdown label="SHOP" items={SHOP_LINKS} />
-            <NavDropdown label="COMMUNITY" items={COMMUNITY_LINKS} />
+            <NavDropdown label="SHOP" items={SHOP_LINKS} buttonClassName={navItemClass} />
+            <NavDropdown
+              label="COMMUNITY"
+              items={COMMUNITY_LINKS}
+              buttonClassName={navItemClass}
+            />
           </nav>
 
           <LogoLink />

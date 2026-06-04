@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function NavDropdown({ label, items }) {
+export default function NavDropdown({ label, items, buttonClassName = "" }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -18,7 +18,7 @@ export default function NavDropdown({ label, items }) {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-0.5 text-[14px] md:text-[15px] text-[#333] hover:text-black py-1 whitespace-nowrap"
+        className={`gap-0.5 ${buttonClassName || "inline-flex items-center h-5 md:h-[22px] text-[14px] md:text-[15px] leading-none text-[#333] hover:text-black whitespace-nowrap"}`}
       >
         {label}
         <span className="text-[11px] text-[#999]">{open ? "▴" : "▾"}</span>
