@@ -7,12 +7,6 @@ import codemuseLogo from "../assets/codemuse-logo.png";
 import NavDropdown from "./NavDropdown";
 import PromoBar from "./PromoBar";
 
-const COMMUNITY_LINKS = [
-  { to: "/notice", label: "NOTICE" },
-  { to: "/qa", label: "Q&A" },
-  { to: "/reviews", label: "REVIEW" },
-];
-
 const MYPAGE_LINKS = [
   { to: "/mypage", label: "MY PAGE" },
   { to: "/checkout", label: "ORDER" },
