@@ -6,14 +6,10 @@ import { SIGNUP_BONUS_POINTS } from "../data/site";
 import codemuseLogo from "../assets/codemuse-logo.png";
 import PromoBar from "./PromoBar";
 
-function MainNav({ className = "", spread = false }) {
+function MainNav({ className = "" }) {
   return (
     <nav
-      className={`flex items-center flex-nowrap gap-x-5 md:gap-x-6 ${
-        spread
-          ? "lg:w-full lg:justify-between lg:gap-x-0 lg:px-3 xl:px-6"
-          : ""
-      } ${className}`}
+      className={`flex items-center justify-center flex-nowrap gap-x-5 lg:gap-x-6 xl:gap-x-7 ${className}`}
     >
       {CATEGORIES.map((cat) => (
         <NavLink
@@ -118,8 +114,8 @@ export default function Header() {
         {/* 데스크톱: 로고 · 메뉴 · 검색/장바구니 한 줄 */}
         <div className="hidden lg:grid lg:grid-cols-[minmax(7rem,10rem)_1fr_auto] lg:items-center lg:gap-3 xl:gap-4 py-3 xl:py-4 min-h-[56px] xl:min-h-[60px]">
           <LogoLink />
-          <div className="flex w-full items-center min-w-0 overflow-x-auto scrollbar-hide px-1 lg:px-2">
-            <MainNav spread className="flex-nowrap" />
+          <div className="flex justify-center items-center min-w-0 overflow-x-auto scrollbar-hide px-1">
+            <MainNav className="flex-nowrap" />
           </div>
           <HeaderUtilities />
         </div>
