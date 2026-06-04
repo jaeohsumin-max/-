@@ -1,18 +1,21 @@
 export const CATEGORIES = [
   { id: "all", label: "ALL" },
-  { id: "new", label: "NEW" },
-  { id: "best", label: "BEST" },
+  { id: "new", label: "NEW 10%" },
+  { id: "made", label: "MADE" },
+  { id: "outer", label: "OUTER" },
   { id: "top", label: "TOP" },
   { id: "bottom", label: "BOTTOM" },
-  { id: "dress", label: "DRESS" },
   { id: "skirt", label: "SKIRT" },
+  { id: "dress", label: "DRESS/SET" },
+  { id: "acc", label: "ACC" },
 ];
 
 export const PRODUCTS = [
   {
     id: "p1",
     name: "울 블렌드 오버코트",
-    category: "top",
+    category: "outer",
+    made: true,
     price: 289000,
     originalPrice: 359000,
     rating: 4.8,
@@ -238,9 +241,29 @@ export function getCategoryPath(categoryId) {
 
 export function getProductsByCategory(category) {
   if (!category || category === "all") return PRODUCTS;
-  if (category === "new") return PRODUCTS.filter((p) => p.badge === "NEW");
+  if (category === "new") {
+    return PRODUCTS.filter((p) => p.badge === "NEW" || p.originalPrice);
+  }
   if (category === "best") return PRODUCTS.filter((p) => p.badge === "BEST");
+  if (category === "made") return PRODUCTS.filter((p) => p.made === true);
+  if (category === "outer") {
+    return PRODUCTS.filter((p) => p.category === "outer" || p.name.includes("코트"));
+  }
+  if (category === "acc") return PRODUCTS.filter((p) => p.category === "acc");
   return PRODUCTS.filter((p) => p.category === category);
+}
+
+export function getNewArrivals(limit = 20) {
+  return [...PRODUCTS]
+    .sort((a, b) => (b.badge === "NEW" ? 1 : 0) - (a.badge === "NEW" ? 1 : 0))
+    .slice(0, limit);
+}
+
+export function getBestItems(limit = 20) {
+  return [...PRODUCTS]
+    .filter((p) => p.badge === "BEST" || p.reviews >= 150)
+    .sort((a, b) => b.reviews - a.reviews)
+    .slice(0, limit);
 }
 
 export function formatPrice(price) {

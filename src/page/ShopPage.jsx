@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import {
   CATEGORIES,
@@ -16,8 +16,14 @@ const SORT_OPTIONS = [
 
 export default function ShopPage() {
   const { category = "all" } = useParams();
+  const [searchParams] = useSearchParams();
   const [sort, setSort] = useState("popular");
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(searchParams.get("search") ?? "");
+
+  useEffect(() => {
+    const q = searchParams.get("search");
+    if (q) setSearch(q);
+  }, [searchParams]);
 
   const categoryLabel =
     CATEGORIES.find((c) => c.id === category)?.label ?? "ALL";
@@ -46,19 +52,21 @@ export default function ShopPage() {
   }, [category, sort, search]);
 
   return (
-    <div className="max-w-7xl mx-auto px-5 md:px-10 py-10 md:py-16">
-      <nav className="text-xs text-[#6b6560] mb-6 flex items-center gap-2">
-        <Link to="/" className="hover:text-[#181512]">
-          홈
+    <div className="max-w-[1280px] mx-auto px-4 py-8 md:py-12">
+      <nav className="text-[11px] text-[#999] mb-4 flex items-center gap-1.5">
+        <Link to="/" className="hover:text-black">
+          HOME
         </Link>
         <span>/</span>
-        <span className="text-[#181512]">{categoryLabel}</span>
+        <span className="text-[#333]">{categoryLabel}</span>
       </nav>
 
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
         <div>
-          <h1 className="font-serif text-3xl md:text-5xl mb-2">{categoryLabel}</h1>
-          <p className="text-sm text-[#6b6560]">{products.length}개 상품</p>
+          <h1 className="text-lg md:text-xl font-semibold text-[#111] mb-1">
+            {categoryLabel}
+          </h1>
+          <p className="text-[12px] text-[#888]">{products.length}개 상품</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative">
@@ -70,13 +78,13 @@ export default function ShopPage() {
               placeholder="상품 검색..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="pl-10 pr-4 py-2.5 border border-[#e8e4df] bg-white text-sm w-full sm:w-64 focus:outline-none focus:border-[#181512]"
+              className="pl-10 pr-4 py-2 border border-[#ddd] bg-white text-[12px] w-full sm:w-64 focus:outline-none focus:border-[#333]"
             />
           </div>
           <select
             value={sort}
             onChange={(e) => setSort(e.target.value)}
-            className="px-4 py-2.5 border border-[#e8e4df] bg-white text-sm focus:outline-none focus:border-[#181512]"
+            className="px-4 py-2 border border-[#ddd] bg-white text-[12px] focus:outline-none focus:border-[#333]"
           >
             {SORT_OPTIONS.map((o) => (
               <option key={o.id} value={o.id}>
@@ -89,18 +97,16 @@ export default function ShopPage() {
 
       <div className="flex flex-col lg:flex-row gap-10">
         <aside className="lg:w-48 shrink-0">
-          <p className="text-xs tracking-widest uppercase text-[#6b6560] mb-4">
-            카테고리
-          </p>
-          <ul className="flex lg:flex-col gap-2 flex-wrap">
+          <p className="text-[11px] text-[#999] mb-3 font-medium">카테고리</p>
+          <ul className="flex lg:flex-col gap-1 flex-wrap">
             {CATEGORIES.map((cat) => (
               <li key={cat.id}>
                 <Link
                   to={getCategoryPath(cat.id)}
-                  className={`block px-3 py-2 text-sm tracking-widest uppercase transition-colors ${
+                  className={`block px-3 py-2 text-[12px] transition-colors ${
                     category === cat.id
-                      ? "bg-[#181512] text-white"
-                      : "text-[#6b6560] hover:bg-[#e8e4df]"
+                      ? "bg-black text-white"
+                      : "text-[#666] hover:bg-[#f5f5f5]"
                   }`}
                 >
                   {cat.label}

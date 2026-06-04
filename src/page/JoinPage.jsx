@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import AuthPageLayout, {
+  AuthBenefitBox,
+  authBtnOutline,
+  authBtnPrimary,
+  authInputClass,
+} from "../components/AuthPageLayout";
 import { useAuth } from "../context/AuthContext";
+import { SIGNUP_BONUS_POINTS } from "../data/site";
 import { useDaumPostcode } from "../hooks/useDaumPostcode";
 import { isMemberIdAvailable, registerMember } from "../lib/members";
 import {
@@ -17,22 +24,16 @@ import {
   validatePhone,
 } from "../lib/validation";
 
-const inputClass =
-  "w-full border border-[#e8e4df] bg-white px-3 py-2.5 text-sm text-[#181512] placeholder:text-[#c4c0ba] focus:outline-none focus:border-[#181512]";
-
-const btnOutlineClass =
-  "shrink-0 border border-[#e8e4df] bg-white px-3 py-2.5 text-xs text-[#181512] hover:border-[#181512] transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed";
-
 function RequiredBadge() {
-  return <span className="text-[#c45c4a] text-[10px] ml-0.5">*</span>;
+  return <span className="text-[#e53935] text-[10px] ml-0.5">*</span>;
 }
 
 function FormRow({ label, required, children, className = "" }) {
   return (
     <div
-      className={`grid grid-cols-1 md:grid-cols-[140px_1fr] gap-2 md:gap-4 py-4 border-b border-[#f0ede8] ${className}`}
+      className={`grid grid-cols-1 md:grid-cols-[120px_1fr] gap-2 md:gap-3 py-3 border-b border-[#eee] ${className}`}
     >
-      <div className="text-xs text-[#6b6560] md:pt-2.5 font-medium">
+      <div className="text-[11px] text-[#666] md:pt-2.5 bg-[#fafafa] md:bg-transparent md:px-0 px-1">
         {label}
         {required && <RequiredBadge />}
       </div>
@@ -267,60 +268,66 @@ export default function JoinPage() {
     }
   };
 
+  const joinSide = (
+    <>
+      <AuthBenefitBox />
+      <div className="bg-[#111] text-white border border-[#111] p-5 text-center">
+        <p className="text-[12px] opacity-80 mb-1">회원가입 혜택</p>
+        <p className="text-2xl font-bold text-[#ffeb3b]">
+          +{SIGNUP_BONUS_POINTS.toLocaleString()}
+        </p>
+        <p className="text-[11px] mt-1 opacity-80">적립금 즉시 지급</p>
+      </div>
+    </>
+  );
+
   return (
-    <div className="flex-1 w-full bg-white">
-      <div className="max-w-3xl mx-auto px-5 py-10 md:py-14">
-        <nav className="text-[10px] text-[#a39e98] mb-6 flex items-center gap-1.5">
-          <Link to="/" className="hover:text-[#181512]">
-            home
-          </Link>
-          <span>/</span>
-          <span className="text-[#181512]">join</span>
-        </nav>
+    <AuthPageLayout
+      title="회원가입"
+      subtitle={`가입 완료 시 ${SIGNUP_BONUS_POINTS.toLocaleString()}원 적립금이 지급됩니다.`}
+      breadcrumb="member"
+      side={joinSide}
+    >
+      {postcodeLoadError && (
+        <p className="mb-4 text-[12px] text-[#c45c4a]">{postcodeLoadError}</p>
+      )}
 
-        <h1 className="text-2xl md:text-3xl font-bold tracking-[0.12em] text-[#181512] uppercase text-center">
-          Join Us
-        </h1>
-        <p className="text-sm text-[#6b6560] text-center mt-2 mb-8">회원가입</p>
+      {formError && (
+        <p className="mb-4 text-[12px] text-[#c45c4a] bg-[#fff5f5] border border-[#ffd6d6] px-3 py-2">
+          {formError}
+        </p>
+      )}
 
-        {postcodeLoadError && (
-          <p className="mb-4 text-xs text-[#c45c4a] text-center">{postcodeLoadError}</p>
-        )}
-
-        {formError && (
-          <p className="mb-4 text-xs text-[#c45c4a] text-center bg-[#fdf6f4] py-3 px-4 border border-[#f0ddd8]">
-            {formError}
-          </p>
-        )}
-
-        <form onSubmit={handleSubmit}>
-          <section className="border-t border-[#181512]">
-            <h2 className="text-sm font-semibold text-[#181512] py-4 border-b border-[#e8e4df]">
-              회원구분
-            </h2>
+      <form onSubmit={handleSubmit}>
+        <section className="border border-[#ddd] mb-6">
+          <h2 className="text-[12px] font-bold text-[#111] px-4 py-3 bg-[#f5f5f5] border-b border-[#ddd]">
+            회원구분
+          </h2>
+          <div className="px-4">
             <FormRow label="회원구분" required>
-              <label className="inline-flex items-center gap-2 text-sm text-[#181512] cursor-pointer">
+              <label className="inline-flex items-center gap-2 text-[13px] cursor-pointer">
                 <input
                   type="radio"
                   name="memberType"
                   value="personal"
                   checked={memberType === "personal"}
                   onChange={() => setMemberType("personal")}
-                  className="accent-[#181512]"
+                  className="accent-black"
                 />
                 개인회원
               </label>
             </FormRow>
-          </section>
+          </div>
+        </section>
 
-          <section className="mt-8">
-            <div className="flex items-end justify-between border-b border-[#181512] pb-2 mb-0">
-              <h2 className="text-sm font-semibold text-[#181512]">기본정보</h2>
-              <span className="text-[10px] text-[#a39e98]">
-                <span className="text-[#c45c4a]">*</span> 필수입력사항
-              </span>
-            </div>
-
+        <section className="border border-[#ddd] mb-6">
+          <div className="flex items-center justify-between px-4 py-3 bg-[#f5f5f5] border-b border-[#ddd]">
+            <h2 className="text-[12px] font-bold text-[#111]">기본정보</h2>
+            <span className="text-[10px] text-[#999]">
+              <span className="text-[#e53935]">*</span> 필수입력
+            </span>
+          </div>
+          <div className="px-4">
             <FormRow label="아이디" required>
               <div className="flex gap-2">
                 <input
@@ -328,10 +335,10 @@ export default function JoinPage() {
                   value={memberId}
                   onChange={(e) => setMemberId(e.target.value.toLowerCase())}
                   placeholder="영문소문자/숫자, 4~16자"
-                  className={inputClass}
+                  className={authInputClass}
                   autoComplete="username"
                 />
-                <button type="button" className={btnOutlineClass} onClick={handleIdCheck}>
+                <button type="button" className={authBtnOutline} onClick={handleIdCheck}>
                   중복확인
                 </button>
               </div>
@@ -344,7 +351,7 @@ export default function JoinPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="영문 대소문자/숫자/특수문자 중 3가지 이상, 8~16자"
-                className={inputClass}
+                className={authInputClass}
                 autoComplete="new-password"
               />
             </FormRow>
@@ -354,7 +361,7 @@ export default function JoinPage() {
                 type="password"
                 value={passwordConfirm}
                 onChange={(e) => setPasswordConfirm(e.target.value)}
-                className={inputClass}
+                className={authInputClass}
                 autoComplete="new-password"
               />
             </FormRow>
@@ -364,7 +371,7 @@ export default function JoinPage() {
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className={inputClass}
+                className={authInputClass}
               />
             </FormRow>
 
@@ -376,9 +383,9 @@ export default function JoinPage() {
                     value={zipcode}
                     placeholder="우편번호"
                     readOnly
-                    className={`${inputClass} bg-[#faf9f6]`}
+                    className={`${authInputClass} bg-[#faf9f6]`}
                   />
-                  <button type="button" className={btnOutlineClass} onClick={handlePostcode}>
+                  <button type="button" className={authBtnOutline} onClick={handlePostcode}>
                     우편번호
                   </button>
                 </div>
@@ -388,14 +395,14 @@ export default function JoinPage() {
                   onChange={(e) => setAddress1(e.target.value)}
                   placeholder="기본주소"
                   readOnly
-                  className={`${inputClass} bg-[#faf9f6]`}
+                  className={`${authInputClass} bg-[#faf9f6]`}
                 />
                 <input
                   type="text"
                   value={address2}
                   onChange={(e) => setAddress2(e.target.value)}
                   placeholder="나머지주소 (선택입력가능)"
-                  className={inputClass}
+                  className={authInputClass}
                 />
               </div>
             </FormRow>
@@ -404,7 +411,7 @@ export default function JoinPage() {
               <div className="space-y-2">
                 <div className="flex gap-2">
                   <select
-                    className={`${inputClass} w-24 shrink-0`}
+                    className={`${authInputClass} w-24 shrink-0`}
                     value={phonePrefix}
                     onChange={(e) => setPhonePrefix(e.target.value)}
                   >
@@ -420,12 +427,12 @@ export default function JoinPage() {
                     onChange={(e) =>
                       setPhoneNumber(e.target.value.replace(/\D/g, "").slice(0, 8))
                     }
-                    className={inputClass}
+                    className={authInputClass}
                     placeholder="번호 입력"
                   />
                   <button
                     type="button"
-                    className={btnOutlineClass}
+                    className={authBtnOutline}
                     onClick={handleSendOtp}
                     disabled={otpSending || phoneVerified}
                   >
@@ -438,12 +445,12 @@ export default function JoinPage() {
                     value={otpCode}
                     onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
                     placeholder="인증번호 6자리"
-                    className={inputClass}
+                    className={authInputClass}
                     disabled={phoneVerified}
                   />
                   <button
                     type="button"
-                    className={btnOutlineClass}
+                    className={authBtnOutline}
                     onClick={handleVerifyOtp}
                     disabled={phoneVerified || otpCode.length < 6}
                   >
@@ -464,19 +471,20 @@ export default function JoinPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={inputClass}
+                className={authInputClass}
                 autoComplete="email"
               />
             </FormRow>
-          </section>
+          </div>
+        </section>
 
-          <section className="mt-8">
-            <h2 className="text-sm font-semibold text-[#181512] py-4 border-t border-b border-[#e8e4df]">
-              추가정보
-            </h2>
-
+        <section className="border border-[#ddd] mb-6">
+          <h2 className="text-[12px] font-bold text-[#111] px-4 py-3 bg-[#f5f5f5] border-b border-[#ddd]">
+            추가정보
+          </h2>
+          <div className="px-4">
             <FormRow label="성별" required>
-              <div className="flex gap-6 text-sm text-[#181512]">
+              <div className="flex gap-6 text-[13px]">
                 <label className="inline-flex items-center gap-2 cursor-pointer">
                   <input
                     type="radio"
@@ -484,7 +492,7 @@ export default function JoinPage() {
                     value="male"
                     checked={gender === "male"}
                     onChange={() => setGender("male")}
-                    className="accent-[#181512]"
+                    className="accent-black"
                   />
                   남자
                 </label>
@@ -495,27 +503,28 @@ export default function JoinPage() {
                     value="female"
                     checked={gender === "female"}
                     onChange={() => setGender("female")}
-                    className="accent-[#181512]"
+                    className="accent-black"
                   />
                   여자
                 </label>
               </div>
             </FormRow>
-          </section>
+          </div>
+        </section>
 
-          <section className="mt-8 space-y-4">
-            <h2 className="text-sm font-semibold text-[#181512] border-b border-[#181512] pb-2">
-              전체 동의
-            </h2>
+        <section className="border border-[#ddd] p-4 space-y-3">
+          <h2 className="text-[12px] font-bold text-[#111] pb-2 border-b border-[#eee]">
+            전체 동의
+          </h2>
 
-            <label className="flex items-start gap-2 cursor-pointer py-2">
-              <input
-                type="checkbox"
-                checked={agreeAll}
-                onChange={(e) => handleAgreeAll(e.target.checked)}
-                className="mt-0.5 accent-[#181512]"
-              />
-              <span className="text-sm text-[#181512] font-medium">
+          <label className="flex items-start gap-2 cursor-pointer py-1">
+            <input
+              type="checkbox"
+              checked={agreeAll}
+              onChange={(e) => handleAgreeAll(e.target.checked)}
+              className="mt-0.5 accent-black"
+            />
+            <span className="text-[12px] font-medium text-[#333]">
                 이용약관 및 개인정보수집 및 이용, 쇼핑정보 수신(선택)에 모두
                 동의합니다.
               </span>
@@ -542,47 +551,42 @@ export default function JoinPage() {
               onChange={(v) => updateIndividual(agreeTerms, agreePrivacy, v)}
               optional
             />
-          </section>
+        </section>
 
-          <div className="mt-10 flex flex-col sm:flex-row gap-3">
-            <button
-              type="submit"
-              disabled={submitting}
-              className="flex-1 bg-[#181512] text-white py-4 text-xs tracking-[0.2em] uppercase hover:bg-[#2a2622] transition-colors disabled:opacity-60"
-            >
-              {submitting ? "가입 처리 중…" : "회원가입"}
-            </button>
-            <Link
-              to="/login"
-              className="flex-1 flex items-center justify-center border border-[#e8e4df] text-[#181512] py-4 text-xs tracking-[0.2em] uppercase hover:border-[#181512] transition-colors"
-            >
-              Login
-            </Link>
-          </div>
-        </form>
-      </div>
-    </div>
+        <div className="mt-8 flex flex-col sm:flex-row gap-2 max-w-md">
+          <button type="submit" disabled={submitting} className={authBtnPrimary}>
+            {submitting ? "가입 처리 중…" : "가입하기"}
+          </button>
+          <Link
+            to="/login"
+            className="flex items-center justify-center border border-[#ccc] text-[#333] py-3 text-[12px] hover:border-[#333] sm:w-32"
+          >
+            로그인
+          </Link>
+        </div>
+      </form>
+    </AuthPageLayout>
   );
 }
 
 function AgreementBlock({ title, text, checked, onChange, optional = false }) {
   return (
-    <div className="border border-[#e8e4df]">
-      <label className="flex items-center gap-2 px-4 py-3 border-b border-[#e8e4df] bg-[#faf9f6] cursor-pointer">
+    <div className="border border-[#ddd]">
+      <label className="flex items-center gap-2 px-3 py-2 border-b border-[#eee] bg-[#fafafa] cursor-pointer">
         <input
           type="checkbox"
           checked={checked}
           onChange={(e) => onChange(e.target.checked)}
-          className="accent-[#181512]"
+          className="accent-black"
         />
-        <span className="text-xs font-medium text-[#181512]">
+        <span className="text-[11px] font-medium text-[#333]">
           {title}
           {optional && (
-            <span className="text-[#a39e98] font-normal ml-1">(선택)</span>
+            <span className="text-[#999] font-normal ml-1">(선택)</span>
           )}
         </span>
       </label>
-      <div className="h-28 overflow-y-auto p-4 text-[11px] leading-relaxed text-[#6b6560] whitespace-pre-line bg-white">
+      <div className="h-24 overflow-y-auto p-3 text-[10px] leading-relaxed text-[#666] whitespace-pre-line bg-white">
         {text}
       </div>
     </div>

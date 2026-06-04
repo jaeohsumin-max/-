@@ -1,3 +1,5 @@
+import { SIGNUP_BONUS_POINTS } from "../data/site";
+
 const MEMBERS_KEY = "codemuse_members";
 
 function readMembers() {
@@ -46,6 +48,7 @@ export async function registerMember(payload) {
     gender: payload.gender,
     memberType: payload.memberType,
     agreeMarketing: payload.agreeMarketing,
+    points: SIGNUP_BONUS_POINTS,
     createdAt: new Date().toISOString(),
   };
 

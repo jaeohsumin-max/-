@@ -1,116 +1,129 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { formatPrice } from "../data/products";
+import ProductCard from "../components/ProductCard";
+import {
+  CATEGORIES,
+  getBestItems,
+  getCategoryPath,
+  getNewArrivals,
+  getProductsByCategory,
+} from "../data/products";
 import heroGif from "../assets/output.gif";
 
-const BEST_ITEMS = [
-  { name: "울 블렌드 오버코트", price: 289000 },
-  { name: "캐시미어 터틀넥", price: 89000 },
-  { name: "실크 미디 드레스", price: 168000 },
-  { name: "와이드 슬랙스", price: 98000 },
-  { name: "오버사이즈 블레이저", price: 198000 },
-  { name: "A라인 롱 스커트", price: 72000 },
-  { name: "랩 원피스", price: 128000 },
-  { name: "플리츠 미니 스커트", price: 78000 },
-];
+const HOME_TABS = ["OUTER", "TOP", "BOTTOM", "SKIRT", "DRESS/SET"];
 
-const NEW_ITEMS = [
-  { name: "캐시미어 터틀넥", price: 89000 },
-  { name: "와이드 슬랙스", price: 98000 },
-  { name: "A라인 롱 스커트", price: 72000 },
-  { name: "크롭 니트 가디건", price: 62000 },
-  { name: "오버핏 셔츠", price: 54000 },
-  { name: "롱 트렌치 코트", price: 218000 },
-  { name: "랩 원피스", price: 128000 },
-  { name: "실크 미디 드레스", price: 168000 },
-];
+function SectionBlock({ title, products, moreLink, pageSize = 8 }) {
+  const [page, setPage] = useState(1);
+  const totalPages = Math.max(1, Math.ceil(products.length / pageSize));
+  const slice = products.slice(0, page * pageSize);
+  const canMore = page < totalPages;
 
-const SALE_ITEMS = [
-  { name: "린넨 오버셔츠", price: 78000, originalPrice: 98000 },
-  { name: "하이웨이스트 데님", price: 89000, originalPrice: 109000 },
-  { name: "플리츠 미니 스커트", price: 68000, originalPrice: 82000 },
-  { name: "울 블렌드 오버코트", price: 289000, originalPrice: 359000 },
-  { name: "코튼 맨투맨", price: 45000, originalPrice: 52000 },
-  { name: "벨벳 미디 원피스", price: 118000, originalPrice: 148000 },
-  { name: "오버사이즈 블레이저", price: 198000, originalPrice: 248000 },
-  { name: "크롭 니트 가디건", price: 62000, originalPrice: 78000 },
-];
-
-function ProductGrid({ items, showSale = false, linkTo = "/shop" }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-5">
-      {items.map((item, index) => (
-        <Link
-          key={`${item.name}-${index}`}
-          to={linkTo}
-          className="group block"
-        >
-          <div className="aspect-[3/4] bg-[#ece8e3] mb-3 flex items-center justify-center">
-            <span className="text-[10px] tracking-widest uppercase text-[#a39e98]">
-              Image
-            </span>
+    <section className="py-10 md:py-12 border-b border-[#eee]">
+      <div className="max-w-[1280px] mx-auto px-4">
+        <h2 className="text-center text-[15px] md:text-base font-semibold text-[#111] tracking-wide mb-6 md:mb-8">
+          {title}
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+          {slice.map((product) => (
+            <ProductCard key={product.id} product={product} compact />
+          ))}
+        </div>
+        {canMore && (
+          <div className="text-center mt-8">
+            <button
+              type="button"
+              onClick={() => setPage((p) => p + 1)}
+              className="text-[12px] text-[#666] border border-[#ddd] px-8 py-2.5 hover:border-[#333] hover:text-black transition-colors"
+            >
+              View more ({page}/{totalPages})
+            </button>
           </div>
-          <p className="text-xs md:text-sm text-[#181512] line-clamp-2 leading-snug mb-1.5 group-hover:underline underline-offset-2">
-            {item.name}
-          </p>
-          <div className="flex items-baseline gap-2 flex-wrap">
-            {showSale && item.originalPrice && (
-              <span className="text-[11px] text-[#a39e98] line-through">
-                {formatPrice(item.originalPrice)}
-              </span>
-            )}
-            <span className="text-xs md:text-sm text-[#6b6560]">
-              {formatPrice(item.price)}
-            </span>
-          </div>
-        </Link>
-      ))}
-    </div>
-  );
-}
-
-function SectionHeader({ title, linkTo }) {
-  return (
-    <div className="flex justify-between items-center mb-6 md:mb-8">
-      <h2 className="text-sm tracking-[0.25em] uppercase text-[#181512]">
-        {title}
-      </h2>
-      <Link
-        to={linkTo}
-        className="text-[11px] text-[#6b6560] hover:text-[#181512] tracking-wide"
-      >
-        View all
-      </Link>
-    </div>
+        )}
+        <div className="text-center mt-4">
+          <Link
+            to={moreLink}
+            className="text-[11px] text-[#999] hover:text-black underline underline-offset-2"
+          >
+            전체보기
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }
 
 export default function HomePage() {
+  const [activeTab, setActiveTab] = useState("OUTER");
+  const tabId =
+    CATEGORIES.find((c) => c.label === activeTab)?.id ??
+    (activeTab === "DRESS/SET" ? "dress" : activeTab.toLowerCase());
+  const tabProducts = getProductsByCategory(tabId).slice(0, 4);
+
+  const newArrivals = getNewArrivals(20);
+  const bestItems = getBestItems(26);
+
   return (
     <>
-      <section className="w-full bg-[#f0ede8] flex items-center justify-center py-6 md:py-10">
+      <section className="w-full bg-[#f5f5f5] flex items-center justify-center py-4 md:py-6">
         <img
           src={heroGif}
           alt="CODEMUSE"
-          className="w-full max-w-3xl md:max-w-4xl max-h-[45vh] md:max-h-[50vh] object-contain mx-auto px-5"
+          className="w-full max-w-2xl max-h-[38vh] object-contain mx-auto px-4"
         />
       </section>
 
-      <section className="bg-white py-10 md:py-14">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10">
-          <SectionHeader title="BEST" linkTo="/shop/best" />
-          <ProductGrid items={BEST_ITEMS} linkTo="/shop/best" />
+      <section className="bg-white border-b border-[#eee]">
+        <div className="max-w-[1280px] mx-auto px-4 py-8">
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-6 text-[13px]">
+            {HOME_TABS.map((tab) => (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setActiveTab(tab)}
+                className={`pb-1 border-b-2 transition-colors ${
+                  activeTab === tab
+                    ? "border-black text-black font-semibold"
+                    : "border-transparent text-[#888] hover:text-black"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            {tabProducts.map((product) => (
+              <ProductCard key={product.id} product={product} compact />
+            ))}
+          </div>
+          <p className="text-center mt-6">
+            <Link
+              to={getCategoryPath(tabId)}
+              className="text-[12px] text-[#666] hover:text-black"
+            >
+              {activeTab} 더보기 →
+            </Link>
+          </p>
         </div>
       </section>
 
-      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-10 md:py-14">
-        <SectionHeader title="NEW" linkTo="/shop/new" />
-        <ProductGrid items={NEW_ITEMS} linkTo="/shop/new" />
-      </section>
+      <SectionBlock
+        title="NEW ARRIVALS"
+        products={newArrivals}
+        moreLink="/shop/new"
+        pageSize={10}
+      />
 
-      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-10 md:py-14 border-t border-[#e8e4df]">
-        <SectionHeader title="SALE" linkTo="/shop" />
-        <ProductGrid items={SALE_ITEMS} showSale linkTo="/shop" />
-      </section>
+      <SectionBlock
+        title="BEST ITEM"
+        products={bestItems}
+        moreLink="/shop/best"
+        pageSize={10}
+      />
+
+      <div className="py-12 text-center bg-[#fafafa]">
+        <p className="text-[11px] tracking-[0.3em] text-[#999] uppercase">CODEMUSE</p>
+      </div>
     </>
   );
 }

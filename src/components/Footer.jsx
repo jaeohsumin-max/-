@@ -1,158 +1,145 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { BANK_INFO, COMPANY_INFO, CS_CENTER } from "../data/site";
 
 const NOTICES = [
   {
     date: "2026.03.15",
     title: "Spring Collection Update",
-    body: "New TOP, DRESS, and SKIRT lines will be updated sequentially.",
+    body: "NEW TOP, DRESS, SKIRT 라인이 순차 업데이트됩니다.",
   },
   {
     date: "2026.03.01",
-    title: "Shipping Notice",
-    body: "Orders ship within 1–3 business days. Excludes weekends and public holidays.",
-  },
-  {
-    date: "2026.02.20",
-    title: "Exchange & Return Policy",
-    body: "Unused items may be exchanged or returned within 7 days of delivery.",
+    title: "배송 안내",
+    body: "주문 후 1~3일 내 출고 (주말·공휴일 제외)",
   },
 ];
 
 function Modal({ title, onClose, children }) {
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-5 bg-[#181512]/40 backdrop-blur-sm"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-5 bg-black/40"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
-      aria-label={title}
     >
       <div
-        className="w-full max-w-lg max-h-[85vh] overflow-y-auto bg-white border border-[#e8e4df] shadow-xl"
+        className="w-full max-w-lg max-h-[85vh] overflow-y-auto bg-white border border-[#ddd]"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#e8e4df]">
-          <h2 className="font-serif text-xl text-[#181512]">{title}</h2>
-          <button
-            type="button"
-            onClick={onClose}
-            className="p-1 text-[#6b6560] hover:text-[#181512] transition-colors"
-            aria-label="Close"
-          >
-            <span className="material-symbols-outlined text-[22px]">close</span>
+        <div className="flex items-center justify-between px-5 py-4 border-b border-[#eee]">
+          <h2 className="text-base font-semibold text-[#111]">{title}</h2>
+          <button type="button" onClick={onClose} className="text-[#999] hover:text-black">
+            ✕
           </button>
         </div>
-        <div className="px-6 py-5">{children}</div>
+        <div className="px-5 py-5">{children}</div>
       </div>
     </div>
-  );
-}
-
-function FooterColumn({ title, children, className = "" }) {
-  return (
-    <div className={className}>
-      <h3 className="font-serif text-[15px] text-[#181512] mb-4 tracking-wide">
-        {title}
-      </h3>
-      <div className="space-y-2 text-xs text-[#6b6560] leading-relaxed normal-case tracking-normal">
-        {children}
-      </div>
-    </div>
-  );
-}
-
-function FooterLink({ to, children }) {
-  return (
-    <Link
-      to={to}
-      className="block hover:text-[#181512] transition-colors"
-    >
-      {children}
-    </Link>
   );
 }
 
 export default function Footer() {
   const [openPanel, setOpenPanel] = useState(null);
 
-  const closePanel = () => setOpenPanel(null);
-
   return (
     <>
-      <footer className="mt-auto bg-[#faf9f6] border-t border-[#e8e4df] text-[#181512]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-12 md:py-16">
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 lg:gap-x-10">
-            <FooterColumn title="Customer Center" className="col-span-2 md:col-span-1">
-              <p>모든 문의는 게시판 문의 부탁드립니다</p>
-              <p>
-                교환 반품은 7일이내만 가능하며, 교환반품 신청 후 게시판으로
-                문의주셔야 수거가 진행됩니다
+      <footer className="mt-auto bg-white border-t border-[#e5e5e5] text-[#333]">
+        <div className="max-w-[1280px] mx-auto px-4 py-10 md:py-14">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+            <div>
+              <h3 className="text-[13px] font-bold text-[#111] mb-3 tracking-wide">
+                CS CENTER
+              </h3>
+              <p className="text-xl md:text-2xl font-semibold text-[#111] mb-2">
+                {CS_CENTER.phone}
               </p>
-            </FooterColumn>
+              <p className="text-[11px] text-[#888] leading-relaxed">
+                {CS_CENTER.hours}
+                <br />
+                {CS_CENTER.off}
+              </p>
+            </div>
 
-            <FooterColumn title="Bank Account" className="col-span-2 md:col-span-1">
-              <p className="text-[#181512]">신한 110-633-003213</p>
-              <p>예금주: 이수민(코드뮤즈)</p>
-            </FooterColumn>
+            <div>
+              <h3 className="text-[13px] font-bold text-[#111] mb-3">BANK INFO</h3>
+              <p className="text-[12px] text-[#555]">{BANK_INFO.bank}</p>
+              <p className="text-[12px] text-[#555]">예금주: {BANK_INFO.holder}</p>
+            </div>
 
-            <FooterColumn title="Community">
-              <button
-                type="button"
-                onClick={() => setOpenPanel("notice")}
-                className="block text-left hover:text-[#181512] transition-colors"
-              >
-                Notice
-              </button>
-              <FooterLink to="/qa">Q&amp;A</FooterLink>
-              <FooterLink to="/reviews">Reviews</FooterLink>
-            </FooterColumn>
+            <div>
+              <h3 className="text-[13px] font-bold text-[#111] mb-3">FOLLOW US</h3>
+              <div className="flex flex-col gap-1.5 text-[12px] text-[#666]">
+                <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-black">
+                  @INSTAGRAM
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-black">
+                  @FACEBOOK
+                </a>
+                <a href="https://pf.kakao.com" target="_blank" rel="noreferrer" className="hover:text-black">
+                  @KAKAO
+                </a>
+              </div>
+            </div>
 
-            <FooterColumn title="Social" className="col-span-2 md:col-span-1 lg:col-span-1">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 hover:text-[#181512] transition-colors"
-              >
-                Instagram
-                <span className="material-symbols-outlined text-[14px]">arrow_outward</span>
-              </a>
-            </FooterColumn>
+            <div>
+              <h3 className="text-[13px] font-bold text-[#111] mb-3">COMMUNITY</h3>
+              <div className="flex flex-col gap-1.5 text-[12px]">
+                <button
+                  type="button"
+                  onClick={() => setOpenPanel("notice")}
+                  className="text-left text-[#666] hover:text-black"
+                >
+                  NOTICE
+                </button>
+                <Link to="/qa" className="text-[#666] hover:text-black">
+                  Q&A
+                </Link>
+                <Link to="/reviews" className="text-[#666] hover:text-black">
+                  REVIEW
+                </Link>
+              </div>
+            </div>
           </div>
 
-          <div className="mt-12 pt-6 border-t border-[#e8e4df] text-center text-[10px] text-[#a39e98] leading-relaxed tracking-[0.06em] uppercase">
-            <p className="mb-1">
-              CODEMUSE · CEO Lee Sumin · Business License 187-28-02099
+          <div className="mt-10 pt-6 border-t border-[#eee]">
+            <div className="flex flex-wrap gap-3 text-[11px] text-[#999] mb-4">
+              <button type="button" className="hover:text-[#333]">
+                AGREEMENT
+              </button>
+              <button type="button" className="hover:text-[#333]">
+                PRIVACY POLICY
+              </button>
+              <Link to="/shop" className="hover:text-[#333]">
+                GUIDE
+              </Link>
+            </div>
+            <p className="text-[10px] text-[#aaa] leading-relaxed">
+              COMPANY. {COMPANY_INFO.name} · CEO. {COMPANY_INFO.ceo} · TEL. {CS_CENTER.phone}{" "}
+              · E-MAIL. {COMPANY_INFO.email}
+              <br />
+              ADDRESS. {COMPANY_INFO.address} · BUSINESS NO. {COMPANY_INFO.businessNo}
             </p>
-            <p>Copyright © CODEMUSE All Rights Reserved</p>
+            <p className="text-[10px] text-[#bbb] mt-3">
+              COPYRIGHT © {COMPANY_INFO.name.toUpperCase()} ALL RIGHTS RESERVED.
+            </p>
           </div>
         </div>
       </footer>
 
       {openPanel === "notice" && (
-        <Modal title="Notice" onClose={closePanel}>
-          <ul className="space-y-5">
+        <Modal title="NOTICE" onClose={() => setOpenPanel(null)}>
+          <ul className="space-y-4">
             {NOTICES.map((item) => (
-              <li
-                key={item.title}
-                className="pb-5 border-b border-[#e8e4df] last:border-0 last:pb-0"
-              >
-                <p className="text-[10px] tracking-widest uppercase text-[#a39e98] mb-1">
-                  {item.date}
-                </p>
-                <p className="text-sm font-medium text-[#181512] mb-1">
-                  {item.title}
-                </p>
-                <p className="text-xs leading-relaxed text-[#6b6560] normal-case tracking-normal">
-                  {item.body}
-                </p>
+              <li key={item.title} className="pb-4 border-b border-[#eee] last:border-0">
+                <p className="text-[10px] text-[#aaa] mb-1">{item.date}</p>
+                <p className="text-[13px] font-medium text-[#111] mb-1">{item.title}</p>
+                <p className="text-[12px] text-[#666]">{item.body}</p>
               </li>
             ))}
           </ul>
         </Modal>
       )}
-
     </>
   );
 }

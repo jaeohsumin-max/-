@@ -2,115 +2,126 @@ import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import { CATEGORIES, getCategoryPath } from "../data/products";
+import { SIGNUP_BONUS_POINTS } from "../data/site";
 import codemuseLogo from "../assets/codemuse-logo.png";
+import NavDropdown from "./NavDropdown";
+import PromoBar from "./PromoBar";
+
+const COMMUNITY_LINKS = [
+  { to: "/qa", label: "Q&A" },
+  { to: "/reviews", label: "REVIEW" },
+];
+
+const MYPAGE_LINKS = [
+  { to: "/mypage", label: "MY PAGE" },
+  { to: "/checkout", label: "ORDER" },
+  { to: "/cart", label: "CART" },
+];
 
 export default function Header() {
   const { itemCount } = useCart();
   const { isLoggedIn, user } = useAuth();
 
-  const UTILITY_LINKS = isLoggedIn
-    ? [
-        { to: "/mypage", label: user?.name ?? "My Page" },
-        { to: "/checkout", label: "Order" },
-      ]
-    : [
-        { to: "/login", label: "Login" },
-        { to: "/join", label: "Join" },
-        { to: "/checkout", label: "Order" },
-        { to: "/mypage", label: "My Page" },
-      ];
-
   return (
-    <header className="sticky top-0 z-50 bg-[#faf9f6]/90 backdrop-blur-md border-b border-[#e8e4df]">
-      <div className="hidden md:block">
-        <div className="max-w-7xl mx-auto px-5 md:px-10 flex justify-end items-center h-9 gap-5">
-          {UTILITY_LINKS.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              className="text-[10px] tracking-[0.18em] uppercase text-[#8a8580] hover:text-[#181512] transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Link
-            to="/cart"
-            className="flex items-center gap-1.5 text-[10px] tracking-[0.18em] uppercase text-[#8a8580] hover:text-[#181512] transition-colors"
-          >
-            Cart
-            <span className="min-w-[18px] h-[18px] flex items-center justify-center rounded-full bg-[#c4a882] text-white text-[10px] font-medium leading-none">
-              {itemCount > 99 ? "99+" : itemCount}
-            </span>
+    <header className="sticky top-0 z-50 bg-white border-b border-[#e5e5e5]">
+      <PromoBar />
+
+      <div className="border-b border-[#eee]">
+        <div className="max-w-[1280px] mx-auto px-4 h-9 flex items-center justify-end gap-4 text-[11px] text-[#666]">
+          {isLoggedIn ? (
+            <>
+              <Link to="/mypage" className="hover:text-black">
+                {user?.name}님
+              </Link>
+              <Link to="/mypage" className="hover:text-black">
+                MY PAGE
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/login" className="hover:text-black font-medium">
+                LOGIN
+              </Link>
+              <Link to="/join" className="hover:text-black font-medium">
+                JOIN US{" "}
+                <span className="text-[#c45c4a] font-semibold">
+                  +{SIGNUP_BONUS_POINTS.toLocaleString()}
+                </span>
+              </Link>
+            </>
+          )}
+          <Link to="/checkout" className="hover:text-black hidden sm:inline">
+            ORDER
           </Link>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-5 md:px-10">
-        <div className="flex items-center justify-between min-h-16 md:min-h-[4.5rem]">
-          <Link
-            to="/"
-            className="flex items-center justify-center shrink-0 self-center h-full"
-          >
+      <div className="max-w-[1280px] mx-auto px-4">
+        <div className="flex items-center justify-between py-4 md:py-5 gap-4">
+          <Link to="/" className="shrink-0">
             <img
               src={codemuseLogo}
               alt="CODEMUSE"
-              width={182}
-              height={112}
-              decoding="async"
-              className="h-12 md:h-14 w-auto max-w-[9.5rem] md:max-w-[11rem] object-contain block -translate-y-2.5"
+              width={160}
+              height={48}
+              className="h-10 md:h-11 w-auto object-contain"
             />
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-            {CATEGORIES.map((cat) => (
-              <NavLink
-                key={cat.id}
-                to={getCategoryPath(cat.id)}
-                end={cat.id === "all"}
-                className={({ isActive }) =>
-                  `text-xs xl:text-sm tracking-widest uppercase transition-colors ${
-                    isActive
-                      ? "text-[#181512] font-medium border-b border-[#181512] pb-0.5"
-                      : "text-[#6b6560] hover:text-[#181512]"
-                  }`
+          <div className="hidden md:flex flex-1 max-w-xs mx-6">
+            <input
+              type="search"
+              placeholder="검색"
+              className="w-full border border-[#ddd] px-3 py-2 text-[12px] focus:outline-none focus:border-[#333]"
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  const q = e.currentTarget.value.trim();
+                  window.location.href = q
+                    ? `/shop?search=${encodeURIComponent(q)}`
+                    : "/shop";
                 }
-              >
-                {cat.label}
-              </NavLink>
-            ))}
-          </nav>
-
-          <div className="flex md:hidden items-center gap-3">
-            <Link
-              to="/login"
-              className="text-[10px] tracking-widest uppercase text-[#6b6560]"
-            >
-              Login
-            </Link>
-            <Link
-              to="/cart"
-              className="flex items-center gap-1 text-[10px] tracking-widest uppercase text-[#6b6560]"
-            >
-              Cart
-              <span className="min-w-[16px] h-[16px] flex items-center justify-center rounded-full bg-[#c4a882] text-white text-[9px] font-medium">
-                {itemCount > 99 ? "99+" : itemCount}
-              </span>
-            </Link>
+              }}
+            />
           </div>
-        </div>
-      </div>
 
-      <div className="lg:hidden border-t border-[#e8e4df] overflow-x-auto">
-        <div className="flex gap-5 px-5 py-3 min-w-max">
+          <Link
+            to="/cart"
+            className="flex items-center gap-1 text-[12px] text-[#333] hover:text-black shrink-0"
+          >
+            <span className="material-symbols-outlined text-[22px]">shopping_bag</span>
+            <span className="font-medium">{itemCount}</span>
+          </Link>
+        </div>
+
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-6 pb-3 border-t border-[#f0f0f0] pt-3">
           {CATEGORIES.map((cat) => (
             <NavLink
               key={cat.id}
               to={getCategoryPath(cat.id)}
               end={cat.id === "all"}
               className={({ isActive }) =>
-                `text-xs tracking-widest uppercase whitespace-nowrap ${
-                  isActive ? "text-[#181512] font-medium" : "text-[#6b6560]"
+                `text-[13px] whitespace-nowrap transition-colors ${
+                  isActive ? "text-black font-semibold" : "text-[#444] hover:text-black"
                 }`
+              }
+            >
+              {cat.label}
+            </NavLink>
+          ))}
+          <NavDropdown label="COMMUNITY" items={COMMUNITY_LINKS} />
+          <NavDropdown label="MY PAGE" items={MYPAGE_LINKS} />
+        </nav>
+      </div>
+
+      <div className="lg:hidden border-t border-[#eee] overflow-x-auto">
+        <div className="flex gap-4 px-4 py-2.5 min-w-max text-[12px]">
+          {CATEGORIES.slice(0, 8).map((cat) => (
+            <NavLink
+              key={cat.id}
+              to={getCategoryPath(cat.id)}
+              end={cat.id === "all"}
+              className={({ isActive }) =>
+                `whitespace-nowrap ${isActive ? "text-black font-semibold" : "text-[#666]"}`
               }
             >
               {cat.label}

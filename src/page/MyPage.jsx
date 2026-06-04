@@ -10,72 +10,77 @@ export default function MyPage() {
   }
 
   const profile = getMemberById(user.id);
+  const points = profile?.points ?? 0;
 
   return (
-    <div className="max-w-2xl mx-auto px-5 py-16 md:py-24">
-      <div className="flex items-start justify-between gap-4 mb-10">
+    <div className="max-w-[1280px] mx-auto px-4 py-10 md:py-14">
+      <nav className="text-[11px] text-[#999] mb-6">
+        <Link to="/" className="hover:text-black">
+          HOME
+        </Link>
+        <span className="mx-1">/</span>
+        <span className="text-[#333]">MY PAGE</span>
+      </nav>
+
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-6 border-b border-[#eee]">
         <div>
-          <h1 className="font-serif text-3xl md:text-4xl">My Page</h1>
-          <p className="text-sm text-[#6b6560] mt-2">
-            {user.name}님, 안녕하세요.
+          <h1 className="text-xl font-semibold text-[#111]">MY PAGE</h1>
+          <p className="text-[13px] text-[#666] mt-1">
+            <span className="font-medium text-[#111]">{user.name}</span>님 환영합니다
           </p>
         </div>
-        <button
-          type="button"
-          onClick={logout}
-          className="text-[10px] tracking-widest uppercase border border-[#e8e4df] px-3 py-2 hover:border-[#181512] transition-colors"
-        >
-          Logout
-        </button>
+        <div className="flex items-center gap-4">
+          <div className="text-right">
+            <p className="text-[10px] text-[#999]">적립금</p>
+            <p className="text-lg font-bold text-[#111]">
+              {points.toLocaleString()}
+              <span className="text-[12px] font-normal text-[#666] ml-0.5">P</span>
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={logout}
+            className="text-[11px] border border-[#ccc] px-4 py-2 hover:border-black"
+          >
+            LOGOUT
+          </button>
+        </div>
       </div>
 
       {profile && (
-        <div className="bg-white border border-[#e8e4df] p-5 mb-6 text-sm space-y-2">
+        <div className="bg-[#fafafa] border border-[#ddd] p-5 mb-8 text-[12px] space-y-2 text-[#555]">
           <p>
-            <span className="text-[#a39e98] text-xs uppercase tracking-wider mr-2">
-              ID
-            </span>
+            <span className="text-[#999] w-16 inline-block">아이디</span>
             {profile.id}
           </p>
           <p>
-            <span className="text-[#a39e98] text-xs uppercase tracking-wider mr-2">
-              Email
-            </span>
+            <span className="text-[#999] w-16 inline-block">이메일</span>
             {profile.email}
           </p>
           <p>
-            <span className="text-[#a39e98] text-xs uppercase tracking-wider mr-2">
-              Phone
-            </span>
+            <span className="text-[#999] w-16 inline-block">연락처</span>
             {profile.phone}
           </p>
           <p>
-            <span className="text-[#a39e98] text-xs uppercase tracking-wider mr-2">
-              Address
-            </span>
+            <span className="text-[#999] w-16 inline-block">주소</span>
             ({profile.zipcode}) {profile.address1} {profile.address2}
           </p>
         </div>
       )}
 
-      <div className="grid gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {[
-          { label: "주문 내역", to: "/checkout", desc: "최근 주문 확인" },
-          { label: "장바구니", to: "/cart", desc: "담은 상품 보기" },
-          { label: "쇼핑 계속하기", to: "/shop", desc: "신상품 둘러보기" },
+          { label: "ORDER", to: "/checkout", desc: "주문 · 배송 조회" },
+          { label: "CART", to: "/cart", desc: "장바구니" },
+          { label: "SHOP", to: "/shop", desc: "쇼핑 계속하기" },
         ].map((item) => (
           <Link
             key={item.label}
             to={item.to}
-            className="flex justify-between items-center bg-white p-5 border border-[#e8e4df] hover:border-[#181512] transition-colors"
+            className="block p-5 border border-[#ddd] hover:border-black transition-colors bg-white"
           >
-            <div>
-              <p className="text-sm font-medium tracking-wide">{item.label}</p>
-              <p className="text-xs text-[#6b6560] mt-1">{item.desc}</p>
-            </div>
-            <span className="material-symbols-outlined text-[20px] text-[#6b6560]">
-              chevron_right
-            </span>
+            <p className="text-[13px] font-semibold text-[#111]">{item.label}</p>
+            <p className="text-[11px] text-[#888] mt-1">{item.desc}</p>
           </Link>
         ))}
       </div>

@@ -4,9 +4,27 @@
 
 body {
   font-family: "Hanken Grotesk", system-ui, sans-serif;
-  background-color: #faf9f6;
-  color: #181512;
+  background-color: #fff;
+  color: #333;
   margin: 0;
+}
+
+@keyframes promo-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.promo-marquee {
+  display: inline-flex;
+  animation: promo-scroll 28s linear infinite;
+}
+
+.promo-marquee:hover {
+  animation-play-state: paused;
 }
 
 .font-serif {
