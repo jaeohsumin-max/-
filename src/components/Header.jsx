@@ -61,10 +61,10 @@ function HeaderSearch() {
         aria-expanded={open}
         aria-label="검색"
       >
-        <span className="material-symbols-outlined text-[22px] font-light leading-none">
+        <span className="material-symbols-outlined text-[20px] font-light leading-none">
           search
         </span>
-        <span className="sr-only">SEARCH</span>
+        <span className="text-[11px] tracking-[0.14em] uppercase">SEARCH</span>
       </button>
       {open && (
         <form
@@ -91,37 +91,18 @@ function HeaderSearch() {
   );
 }
 
-function HeaderUtilities({ showPerson = true }) {
+function HeaderUtilities() {
   const { itemCount } = useCart();
-  const { isLoggedIn } = useAuth();
 
   return (
-    <div className="flex items-center gap-3 md:gap-4 shrink-0">
+    <div className="flex items-center gap-4 md:gap-5 shrink-0">
       <HeaderSearch />
-      {showPerson && (
-        <Link
-          to={isLoggedIn ? "/mypage" : "/login"}
-          className="text-[#333] hover:text-black p-0.5"
-          aria-label={isLoggedIn ? "마이페이지" : "로그인"}
-        >
-          <span className="material-symbols-outlined text-[22px] font-light">
-            person
-          </span>
-        </Link>
-      )}
       <Link
         to="/cart"
-        className="relative flex items-center text-[#333] hover:text-black p-0.5"
-        aria-label="장바구니"
+        className="flex items-center gap-1 text-[12px] text-[#333] hover:text-black"
       >
-        <span className="material-symbols-outlined text-[22px] font-light">
-          shopping_bag
-        </span>
-        {itemCount > 0 && (
-          <span className="absolute -top-0.5 -right-1 min-w-[14px] h-[14px] px-0.5 rounded-full bg-[#333] text-white text-[9px] leading-[14px] text-center font-medium">
-            {itemCount > 99 ? "99+" : itemCount}
-          </span>
-        )}
+        <span className="material-symbols-outlined text-[22px]">shopping_bag</span>
+        <span className="font-medium">{itemCount}</span>
       </Link>
     </div>
   );
@@ -177,26 +158,28 @@ export default function Header() {
         </div>
       </div>
 
-      <div className="max-w-[1280px] mx-auto px-4">
-        {/* 데스크톱: 로고 · 메뉴 · 검색/장바구니 한 줄 */}
-        <div className="hidden lg:grid lg:grid-cols-[minmax(7rem,10rem)_1fr_auto] lg:items-center lg:gap-3 xl:gap-4 py-3 xl:py-4 min-h-[56px] xl:min-h-[60px]">
+      {/* 데스크톱: 로고·검색·장바구니는 화면 양끝, 메뉴는 가운데 (모양은 이전과 동일) */}
+      <div className="hidden lg:block relative w-full px-4 md:px-8 xl:px-10 py-3 xl:py-4 min-h-[56px] xl:min-h-[60px]">
+        <div className="flex items-center justify-between w-full">
           <LogoLink />
-          <div className="flex justify-center items-center min-w-0 overflow-x-auto scrollbar-hide px-1">
-            <MainNav className="flex-nowrap" />
-          </div>
           <HeaderUtilities />
         </div>
-
-        {/* 모바일·태블릿: 로고+장바구니 / 메뉴 */}
-        <div className="lg:hidden">
-          <div className="flex items-center justify-between py-3 gap-3">
-            <LogoLink />
-            <HeaderUtilities />
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-32 xl:px-40">
+          <div className="pointer-events-auto max-w-full overflow-x-auto scrollbar-hide">
+            <MainNav className="flex-nowrap" />
           </div>
-          <div className="border-t border-[#eee] py-2 overflow-x-auto">
-            <div className="flex justify-start min-w-max px-1 pb-0.5">
-              <MainNav className="flex-nowrap" />
-            </div>
+        </div>
+      </div>
+
+      {/* 모바일·태블릿 */}
+      <div className="lg:hidden max-w-[1280px] mx-auto px-4">
+        <div className="flex items-center justify-between w-full py-3 gap-3">
+          <LogoLink />
+          <HeaderUtilities />
+        </div>
+        <div className="border-t border-[#eee] py-2 overflow-x-auto">
+          <div className="flex justify-start min-w-max px-1 pb-0.5">
+            <MainNav className="flex-nowrap" />
           </div>
         </div>
       </div>
