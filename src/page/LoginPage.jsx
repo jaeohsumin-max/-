@@ -1,9 +1,47 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  const { login, isLoggedIn, getSavedId } = useAuth();
+  const [memberId, setMemberId] = useState("");
+  const [password, setPassword] = useState("");
   const [saveId, setSaveId] = useState(false);
   const [secureAccess, setSecureAccess] = useState(false);
+  const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    const saved = getSavedId();
+    if (saved) {
+      setMemberId(saved);
+      setSaveId(true);
+    }
+  }, [getSavedId]);
+
+  useEffect(() => {
+    if (isLoggedIn) navigate("/mypage", { replace: true });
+  }, [isLoggedIn, navigate]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    if (!memberId.trim() || !password) {
+      setError("아이디와 비밀번호를 입력해 주세요.");
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      await login(memberId, password, saveId);
+      navigate("/mypage", { replace: true });
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div className="flex-1 w-full bg-white">
@@ -15,12 +53,20 @@ export default function LoginPage() {
           로그인 하시면 다양하고 특별한 혜택을 이용할 수 있습니다.
         </p>
 
-        <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
+        {error && (
+          <p className="mb-4 text-xs text-[#c45c4a] text-center bg-[#fdf6f4] py-3 px-4 border border-[#f0ddd8]">
+            {error}
+          </p>
+        )}
+
+        <form className="space-y-3" onSubmit={handleSubmit}>
           <input
             type="text"
             name="username"
             autoComplete="username"
             placeholder="아이디"
+            value={memberId}
+            onChange={(e) => setMemberId(e.target.value)}
             className="w-full border border-[#e8e4df] bg-white px-4 py-3.5 text-sm text-[#181512] placeholder:text-[#c4c0ba] focus:outline-none focus:border-[#181512]"
           />
           <input
@@ -28,6 +74,8 @@ export default function LoginPage() {
             name="password"
             autoComplete="current-password"
             placeholder="비밀번호"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full border border-[#e8e4df] bg-white px-4 py-3.5 text-sm text-[#181512] placeholder:text-[#c4c0ba] focus:outline-none focus:border-[#181512]"
           />
 
@@ -65,9 +113,10 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-[#181512] text-white py-3.5 text-xs tracking-[0.2em] uppercase hover:bg-[#2a2622] transition-colors"
+            disabled={submitting}
+            className="w-full bg-[#181512] text-white py-3.5 text-xs tracking-[0.2em] uppercase hover:bg-[#2a2622] transition-colors disabled:opacity-60"
           >
-            Login
+            {submitting ? "로그인 중…" : "Login"}
           </button>
 
           <Link
@@ -81,7 +130,9 @@ export default function LoginPage() {
         <div className="grid grid-cols-2 gap-2 mt-6">
           <button
             type="button"
-            className="flex items-center justify-center gap-2 bg-[#03c75a] text-white py-3 text-xs font-medium hover:opacity-90 transition-opacity"
+            className="flex items-center justify-center gap-2 bg-[#03c75a] text-white py-3 text-xs font-medium hover:opacity-90 transition-opacity opacity-60 cursor-not-allowed"
+            title="준비 중"
+            disabled
           >
             <span className="flex h-5 w-5 items-center justify-center bg-white text-[#03c75a] text-[11px] font-black leading-none">
               N
@@ -90,7 +141,9 @@ export default function LoginPage() {
           </button>
           <button
             type="button"
-            className="flex items-center justify-center gap-2 bg-[#fee500] text-[#3c1e1e] py-3 text-xs font-medium hover:opacity-90 transition-opacity"
+            className="flex items-center justify-center gap-2 bg-[#fee500] text-[#3c1e1e] py-3 text-xs font-medium hover:opacity-90 transition-opacity opacity-60 cursor-not-allowed"
+            title="준비 중"
+            disabled
           >
             <span className="text-base leading-none" aria-hidden>
               💬

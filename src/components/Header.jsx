@@ -1,17 +1,24 @@
 import { Link, NavLink } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import { CATEGORIES, getCategoryPath } from "../data/products";
 import codemuseLogo from "../assets/codemuse-logo.png";
 
-const UTILITY_LINKS = [
-  { to: "/login", label: "Login" },
-  { to: "/join", label: "Join" },
-  { to: "/checkout", label: "Order" },
-  { to: "/mypage", label: "My Page" },
-];
-
 export default function Header() {
   const { itemCount } = useCart();
+  const { isLoggedIn, user } = useAuth();
+
+  const UTILITY_LINKS = isLoggedIn
+    ? [
+        { to: "/mypage", label: user?.name ?? "My Page" },
+        { to: "/checkout", label: "Order" },
+      ]
+    : [
+        { to: "/login", label: "Login" },
+        { to: "/join", label: "Join" },
+        { to: "/checkout", label: "Order" },
+        { to: "/mypage", label: "My Page" },
+      ];
 
   return (
     <header className="sticky top-0 z-50 bg-[#faf9f6]/90 backdrop-blur-md border-b border-[#e8e4df]">

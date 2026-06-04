@@ -1,11 +1,27 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { useDaumPostcode } from "../hooks/useDaumPostcode";
+import { isMemberIdAvailable, registerMember } from "../lib/members";
+import {
+  clearPhoneVerification,
+  isPhoneVerified,
+  sendPhoneOtp,
+  verifyPhoneOtp,
+} from "../lib/phoneAuth";
+import {
+  formatPhone,
+  validateEmail,
+  validateMemberId,
+  validatePassword,
+  validatePhone,
+} from "../lib/validation";
 
 const inputClass =
   "w-full border border-[#e8e4df] bg-white px-3 py-2.5 text-sm text-[#181512] placeholder:text-[#c4c0ba] focus:outline-none focus:border-[#181512]";
 
 const btnOutlineClass =
-  "shrink-0 border border-[#e8e4df] bg-white px-3 py-2.5 text-xs text-[#181512] hover:border-[#181512] transition-colors whitespace-nowrap";
+  "shrink-0 border border-[#e8e4df] bg-white px-3 py-2.5 text-xs text-[#181512] hover:border-[#181512] transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed";
 
 function RequiredBadge() {
   return <span className="text-[#c45c4a] text-[10px] ml-0.5">*</span>;
@@ -23,6 +39,13 @@ function FormRow({ label, required, children, className = "" }) {
       <div>{children}</div>
     </div>
   );
+}
+
+function FieldHint({ type, message }) {
+  if (!message) return null;
+  const color =
+    type === "error" ? "text-[#c45c4a]" : type === "success" ? "text-[#3d7a5c]" : "text-[#6b6560]";
+  return <p className={`mt-1.5 text-[11px] ${color}`}>{message}</p>;
 }
 
 const TERMS_TEXT = `제1조(목적)
@@ -44,12 +67,62 @@ const PRIVACY_TEXT = `1. 수집 항목: 아이디, 비밀번호, 이름, 주소,
 4. 이용자는 개인정보 열람·정정·삭제를 요청할 수 있습니다.`;
 
 export default function JoinPage() {
+  const navigate = useNavigate();
+  const { login, isLoggedIn } = useAuth();
+  const { openPostcode, loadError: postcodeLoadError } = useDaumPostcode();
+
   const [memberType, setMemberType] = useState("personal");
+  const [memberId, setMemberId] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [name, setName] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [address1, setAddress1] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [phonePrefix, setPhonePrefix] = useState("010");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [otpCode, setOtpCode] = useState("");
+  const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("");
+
+  const [idChecked, setIdChecked] = useState(false);
+  const [checkedId, setCheckedId] = useState("");
+  const [idMessage, setIdMessage] = useState({ type: "", text: "" });
+
+  const [phoneVerified, setPhoneVerified] = useState(false);
+  const [verifiedPhone, setVerifiedPhone] = useState("");
+  const [phoneMessage, setPhoneMessage] = useState({ type: "", text: "" });
+  const [demoOtp, setDemoOtp] = useState(null);
+  const [otpSending, setOtpSending] = useState(false);
+
   const [agreeAll, setAgreeAll] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [agreePrivacy, setAgreePrivacy] = useState(false);
   const [agreeMarketing, setAgreeMarketing] = useState(false);
-  const [gender, setGender] = useState("");
+
+  const [formError, setFormError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+
+  const fullPhone = formatPhone(phonePrefix, phoneNumber || "");
+
+  useEffect(() => {
+    if (isLoggedIn) navigate("/mypage", { replace: true });
+  }, [isLoggedIn, navigate]);
+
+  useEffect(() => {
+    if (memberId !== checkedId) {
+      setIdChecked(false);
+      setIdMessage({ type: "", text: "" });
+    }
+  }, [memberId, checkedId]);
+
+  useEffect(() => {
+    if (fullPhone !== verifiedPhone) {
+      setPhoneVerified(false);
+      setDemoOtp(null);
+      if (verifiedPhone) clearPhoneVerification(verifiedPhone);
+    }
+  }, [fullPhone, verifiedPhone]);
 
   const handleAgreeAll = (checked) => {
     setAgreeAll(checked);
@@ -63,6 +136,135 @@ export default function JoinPage() {
     setAgreePrivacy(privacy);
     setAgreeMarketing(marketing);
     setAgreeAll(terms && privacy);
+  };
+
+  const handleIdCheck = () => {
+    const err = validateMemberId(memberId);
+    if (err) {
+      setIdMessage({ type: "error", text: err });
+      setIdChecked(false);
+      return;
+    }
+    const id = memberId.trim().toLowerCase();
+    if (isMemberIdAvailable(id)) {
+      setIdChecked(true);
+      setCheckedId(id);
+      setIdMessage({ type: "success", text: "사용 가능한 아이디입니다." });
+    } else {
+      setIdChecked(false);
+      setCheckedId("");
+      setIdMessage({ type: "error", text: "이미 사용 중인 아이디입니다." });
+    }
+  };
+
+  const handlePostcode = () => {
+    openPostcode(({ zonecode, address }) => {
+      setZipcode(zonecode);
+      setAddress1(address);
+    });
+  };
+
+  const handleSendOtp = async () => {
+    const err = validatePhone(phonePrefix, phoneNumber);
+    if (err) {
+      setPhoneMessage({ type: "error", text: err });
+      return;
+    }
+
+    setOtpSending(true);
+    setPhoneMessage({ type: "", text: "" });
+    setDemoOtp(null);
+
+    try {
+      const result = await sendPhoneOtp(fullPhone);
+      if (result.demoCode) {
+        setDemoOtp(result.demoCode);
+        setPhoneMessage({
+          type: "info",
+          text: `인증번호가 발송되었습니다. (데모: ${result.demoCode}) — 3분 내 입력`,
+        });
+      } else {
+        setPhoneMessage({
+          type: "success",
+          text: "인증번호가 휴대전화로 발송되었습니다. 3분 내 입력해 주세요.",
+        });
+      }
+      setOtpCode("");
+    } catch (e) {
+      setPhoneMessage({ type: "error", text: e.message });
+    } finally {
+      setOtpSending(false);
+    }
+  };
+
+  const handleVerifyOtp = () => {
+    const result = verifyPhoneOtp(fullPhone, otpCode);
+    if (!result.ok) {
+      setPhoneMessage({ type: "error", text: result.message });
+      setPhoneVerified(false);
+      return;
+    }
+    setPhoneVerified(true);
+    setVerifiedPhone(fullPhone);
+    setDemoOtp(null);
+    setPhoneMessage({ type: "success", text: result.message });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormError("");
+
+    const idErr = validateMemberId(memberId);
+    if (idErr) return setFormError(idErr);
+    if (!idChecked || checkedId !== memberId.trim().toLowerCase()) {
+      return setFormError("아이디 중복확인을 해주세요.");
+    }
+
+    const pwErr = validatePassword(password);
+    if (pwErr) return setFormError(pwErr);
+    if (password !== passwordConfirm) {
+      return setFormError("비밀번호 확인이 일치하지 않습니다.");
+    }
+    if (!name.trim()) return setFormError("이름을 입력해 주세요.");
+    if (!zipcode || !address1.trim()) {
+      return setFormError("주소를 입력해 주세요. 우편번호 찾기를 이용해 주세요.");
+    }
+
+    const phoneErr = validatePhone(phonePrefix, phoneNumber);
+    if (phoneErr) return setFormError(phoneErr);
+    if (!phoneVerified || !isPhoneVerified(fullPhone)) {
+      return setFormError("휴대전화 인증을 완료해 주세요.");
+    }
+
+    const emailErr = validateEmail(email);
+    if (emailErr) return setFormError(emailErr);
+    if (!gender) return setFormError("성별을 선택해 주세요.");
+    if (!agreeTerms || !agreePrivacy) {
+      return setFormError("필수 약관에 동의해 주세요.");
+    }
+
+    setSubmitting(true);
+    try {
+      await registerMember({
+        id: memberId,
+        password,
+        name,
+        email,
+        phone: fullPhone,
+        zipcode,
+        address1,
+        address2,
+        gender,
+        memberType,
+        agreeMarketing,
+      });
+      await login(memberId, password, false);
+      navigate("/mypage", { replace: true });
+    } catch (err) {
+      setFormError(err.message || "회원가입에 실패했습니다.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -81,7 +283,17 @@ export default function JoinPage() {
         </h1>
         <p className="text-sm text-[#6b6560] text-center mt-2 mb-8">회원가입</p>
 
-        <form onSubmit={(e) => e.preventDefault()}>
+        {postcodeLoadError && (
+          <p className="mb-4 text-xs text-[#c45c4a] text-center">{postcodeLoadError}</p>
+        )}
+
+        {formError && (
+          <p className="mb-4 text-xs text-[#c45c4a] text-center bg-[#fdf6f4] py-3 px-4 border border-[#f0ddd8]">
+            {formError}
+          </p>
+        )}
+
+        <form onSubmit={handleSubmit}>
           <section className="border-t border-[#181512]">
             <h2 className="text-sm font-semibold text-[#181512] py-4 border-b border-[#e8e4df]">
               회원구분
@@ -113,29 +325,47 @@ export default function JoinPage() {
               <div className="flex gap-2">
                 <input
                   type="text"
+                  value={memberId}
+                  onChange={(e) => setMemberId(e.target.value.toLowerCase())}
                   placeholder="영문소문자/숫자, 4~16자"
                   className={inputClass}
+                  autoComplete="username"
                 />
-                <button type="button" className={btnOutlineClass}>
+                <button type="button" className={btnOutlineClass} onClick={handleIdCheck}>
                   중복확인
                 </button>
               </div>
+              <FieldHint type={idMessage.type} message={idMessage.text} />
             </FormRow>
 
             <FormRow label="비밀번호" required>
               <input
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="영문 대소문자/숫자/특수문자 중 3가지 이상, 8~16자"
                 className={inputClass}
+                autoComplete="new-password"
               />
             </FormRow>
 
             <FormRow label="비밀번호 확인" required>
-              <input type="password" className={inputClass} />
+              <input
+                type="password"
+                value={passwordConfirm}
+                onChange={(e) => setPasswordConfirm(e.target.value)}
+                className={inputClass}
+                autoComplete="new-password"
+              />
             </FormRow>
 
             <FormRow label="이름" required>
-              <input type="text" className={inputClass} />
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className={inputClass}
+              />
             </FormRow>
 
             <FormRow label="주소" required>
@@ -143,17 +373,27 @@ export default function JoinPage() {
                 <div className="flex gap-2">
                   <input
                     type="text"
+                    value={zipcode}
                     placeholder="우편번호"
                     readOnly
                     className={`${inputClass} bg-[#faf9f6]`}
                   />
-                  <button type="button" className={btnOutlineClass}>
+                  <button type="button" className={btnOutlineClass} onClick={handlePostcode}>
                     우편번호
                   </button>
                 </div>
-                <input type="text" placeholder="기본주소" className={inputClass} />
                 <input
                   type="text"
+                  value={address1}
+                  onChange={(e) => setAddress1(e.target.value)}
+                  placeholder="기본주소"
+                  readOnly
+                  className={`${inputClass} bg-[#faf9f6]`}
+                />
+                <input
+                  type="text"
+                  value={address2}
+                  onChange={(e) => setAddress2(e.target.value)}
                   placeholder="나머지주소 (선택입력가능)"
                   className={inputClass}
                 />
@@ -163,30 +403,70 @@ export default function JoinPage() {
             <FormRow label="휴대전화" required>
               <div className="space-y-2">
                 <div className="flex gap-2">
-                  <select className={`${inputClass} w-24 shrink-0`} defaultValue="010">
-                    <option value="010">010</option>
-                    <option value="011">011</option>
-                    <option value="016">016</option>
-                    <option value="017">017</option>
-                    <option value="018">018</option>
-                    <option value="019">019</option>
+                  <select
+                    className={`${inputClass} w-24 shrink-0`}
+                    value={phonePrefix}
+                    onChange={(e) => setPhonePrefix(e.target.value)}
+                  >
+                    {["010", "011", "016", "017", "018", "019"].map((p) => (
+                      <option key={p} value={p}>
+                        {p}
+                      </option>
+                    ))}
                   </select>
-                  <input type="tel" placeholder="" className={inputClass} />
-                  <button type="button" className={btnOutlineClass}>
-                    인증번호받기
+                  <input
+                    type="tel"
+                    value={phoneNumber}
+                    onChange={(e) =>
+                      setPhoneNumber(e.target.value.replace(/\D/g, "").slice(0, 8))
+                    }
+                    className={inputClass}
+                    placeholder="번호 입력"
+                  />
+                  <button
+                    type="button"
+                    className={btnOutlineClass}
+                    onClick={handleSendOtp}
+                    disabled={otpSending || phoneVerified}
+                  >
+                    {otpSending ? "발송중…" : "인증번호받기"}
                   </button>
                 </div>
                 <div className="flex gap-2">
-                  <input type="text" placeholder="인증번호" className={inputClass} />
-                  <button type="button" className={btnOutlineClass}>
+                  <input
+                    type="text"
+                    value={otpCode}
+                    onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                    placeholder="인증번호 6자리"
+                    className={inputClass}
+                    disabled={phoneVerified}
+                  />
+                  <button
+                    type="button"
+                    className={btnOutlineClass}
+                    onClick={handleVerifyOtp}
+                    disabled={phoneVerified || otpCode.length < 6}
+                  >
                     확인
                   </button>
                 </div>
+                <FieldHint type={phoneMessage.type} message={phoneMessage.text} />
+                {demoOtp && !phoneVerified && (
+                  <p className="text-[10px] text-[#a39e98]">
+                    SMS 웹훅 미설정 시 화면에 표시된 인증번호를 입력하세요.
+                  </p>
+                )}
               </div>
             </FormRow>
 
             <FormRow label="이메일" required>
-              <input type="email" className={inputClass} />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={inputClass}
+                autoComplete="email"
+              />
             </FormRow>
           </section>
 
@@ -267,9 +547,10 @@ export default function JoinPage() {
           <div className="mt-10 flex flex-col sm:flex-row gap-3">
             <button
               type="submit"
-              className="flex-1 bg-[#181512] text-white py-4 text-xs tracking-[0.2em] uppercase hover:bg-[#2a2622] transition-colors"
+              disabled={submitting}
+              className="flex-1 bg-[#181512] text-white py-4 text-xs tracking-[0.2em] uppercase hover:bg-[#2a2622] transition-colors disabled:opacity-60"
             >
-              회원가입
+              {submitting ? "가입 처리 중…" : "회원가입"}
             </button>
             <Link
               to="/login"
