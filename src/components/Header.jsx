@@ -32,7 +32,6 @@ function MainNav({ className = "" }) {
           {cat.label}
         </NavLink>
       ))}
-      <NavDropdown label="COMMUNITY" items={COMMUNITY_LINKS} />
       <NavDropdown label="MY PAGE" items={MYPAGE_LINKS} />
     </nav>
   );
