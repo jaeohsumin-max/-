@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh lpR fFf">
-    <q-header elevated class="bg-white text-grey-9 border-bottom">
+    <q-header elevated class="text-grey-9 border-bottom oms-header">
       <q-toolbar class="q-px-md">
         <img
           :src="logoUrl"
@@ -32,10 +32,13 @@ import logoUrl from "./assets/codemuse-logo.png";
   border-bottom: 1px solid #e8e4df;
 }
 
+.oms-header {
+  background-color: #faf9f6 !important;
+}
+
 .header-logo {
-  height: 28px;
+  height: 40px;
   width: auto;
-  max-width: min(220px, 55vw);
   display: block;
   object-fit: contain;
   object-position: left center;
@@ -43,8 +46,7 @@ import logoUrl from "./assets/codemuse-logo.png";
 
 @media (min-width: 600px) {
   .header-logo {
-    height: 34px;
-    max-width: 280px;
+    height: 48px;
   }
 }
 </style>

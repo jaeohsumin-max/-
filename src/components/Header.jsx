@@ -41,9 +41,9 @@ export default function Header() {
         <div className="flex items-center justify-between h-14 md:h-16">
           <Link to="/" className="flex items-center shrink-0">
             <img
-              src="/codemuse-logo.png"
+              src="/codemuse-logo.png?v=2"
               alt="CODEMUSE"
-              className="h-7 md:h-9 w-auto object-contain"
+              className="h-10 md:h-12 w-auto object-contain"
             />
           </Link>
 
