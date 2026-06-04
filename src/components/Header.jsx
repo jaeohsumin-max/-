@@ -38,12 +38,12 @@ export default function Header() {
       </div>
 
       <div className="max-w-7xl mx-auto px-5 md:px-10">
-        <div className="flex items-center justify-between h-14 md:h-16">
-          <Link to="/" className="flex items-center shrink-0">
+        <div className="flex items-center justify-between h-16 md:h-[4.5rem]">
+          <Link to="/" className="flex items-center shrink-0 py-1">
             <img
-              src="/codemuse-logo.png?v=2"
+              src="/codemuse-logo.png?v=3"
               alt="CODEMUSE"
-              className="h-10 md:h-12 w-auto object-contain"
+              className="h-14 md:h-24 w-auto object-contain block"
             />
           </Link>
 
