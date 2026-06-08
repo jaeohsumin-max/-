@@ -1,12 +1,34 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import {
+  DEFAULT_EXCHANGE_INFO,
+  DEFAULT_PAYMENT_INFO,
+  DEFAULT_SHIPPING_INFO,
+  ProductDetailTabs,
+  RichProductDetail,
+} from "../components/ProductDetailSections";
 import {
   getProductById,
   formatPrice,
   getDiscountPercent,
   CATEGORIES,
 } from "../data/products";
+
+const DETAIL_TABS = [
+  { id: "detail", label: "상품상세" },
+  { id: "shipping", label: "배송/교환" },
+  { id: "payment", label: "결제안내" },
+  { id: "review", label: "REVIEW" },
+  { id: "qa", label: "Q&A" },
+];
+
+function getDisplayImages(product, color) {
+  if (product.colorImages?.[color]?.length) {
+    return product.colorImages[color];
+  }
+  return product.images;
+}
 
 export default function ProductDetailPage() {
   const { id } = useParams();
@@ -19,6 +41,19 @@ export default function ProductDetailPage() {
   const [quantity, setQuantity] = useState(1);
   const [imageIndex, setImageIndex] = useState(0);
   const [added, setAdded] = useState(false);
+  const [activeTab, setActiveTab] = useState("detail");
+
+  const size = selectedSize || product?.sizes?.[0] || "FREE";
+  const color = selectedColor || product?.colors?.[0] || "-";
+
+  const displayImages = useMemo(
+    () => (product ? getDisplayImages(product, color) : []),
+    [product, color],
+  );
+
+  useEffect(() => {
+    setImageIndex(0);
+  }, [color, id]);
 
   if (!product) {
     return (
@@ -34,8 +69,8 @@ export default function ProductDetailPage() {
   const discount = getDiscountPercent(product.price, product.originalPrice);
   const categoryLabel =
     CATEGORIES.find((c) => c.id === product.category)?.label ?? "";
-  const size = selectedSize || product.sizes[0] || "FREE";
-  const color = selectedColor || product.colors[0] || "-";
+  const lineTotal = product.price * quantity;
+  const isRich = Boolean(product.detail);
 
   const handleAddToCart = () => {
     addItem(product.id, size, color, quantity);
@@ -49,203 +84,313 @@ export default function ProductDetailPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-5 md:px-10 py-10 md:py-16">
-      <nav className="text-xs text-[#6b6560] mb-8 flex items-center gap-2 flex-wrap">
-        <Link to="/" className="hover:text-[#181512]">
-          홈
-        </Link>
-        <span>/</span>
-        <Link
-          to={`/shop/${product.category}`}
-          className="hover:text-[#181512]"
-        >
-          {categoryLabel}
-        </Link>
-        <span>/</span>
-        <span className="text-[#181512] line-clamp-1">{product.name}</span>
-      </nav>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-        <div>
-          <div className="aspect-[3/4] bg-[#f0ede8] overflow-hidden rounded-sm mb-4">
-            <img
-              src={product.images[imageIndex] ?? product.images[0]}
-              alt={product.name}
-              className="w-full h-full object-cover"
-            />
-          </div>
-          {product.images.length > 1 && (
-            <div className="flex gap-2">
-              {product.images.map((img, i) => (
-                <button
-                  key={img}
-                  type="button"
-                  onClick={() => setImageIndex(i)}
-                  className={`w-16 h-20 overflow-hidden border-2 ${
-                    imageIndex === i ? "border-[#181512]" : "border-transparent"
-                  }`}
-                >
-                  <img src={img} alt="" className="w-full h-full object-cover" />
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div>
-          {product.badge && (
-            <span className="inline-block text-[10px] tracking-widest bg-[#181512] text-white px-2 py-1 mb-3">
-              {product.badge}
-            </span>
-          )}
-          <p className="text-xs tracking-widest uppercase text-[#a39e98] mb-2">
+    <div className="bg-white">
+      <div className="max-w-[1100px] mx-auto px-4 md:px-6 py-6 md:py-10">
+        <nav className="text-[11px] text-[#888] mb-6 flex items-center gap-1.5 flex-wrap">
+          <Link to="/" className="hover:text-[#111]">
+            홈
+          </Link>
+          <span>&gt;</span>
+          <Link
+            to={`/shop/${product.category}`}
+            className="hover:text-[#111]"
+          >
             {categoryLabel}
-          </p>
-          <h1 className="font-serif text-2xl md:text-4xl mb-4">{product.name}</h1>
+          </Link>
+          <span>&gt;</span>
+          <span className="text-[#333] line-clamp-1">{product.name}</span>
+        </nav>
 
-          <div className="flex items-center gap-2 mb-6">
-            <div className="flex text-[#c45c4a]">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <span
-                  key={i}
-                  className={`material-symbols-outlined text-[18px] ${
-                    i <= Math.round(product.rating) ? "fill-1" : ""
-                  }`}
-                >
-                  star
-                </span>
-              ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          <div>
+            <div className="aspect-[3/4] bg-[#f7f7f7] overflow-hidden mb-3">
+              <img
+                src={displayImages[imageIndex] ?? displayImages[0]}
+                alt={product.name}
+                className="w-full h-full object-cover"
+              />
             </div>
-            <span className="text-sm text-[#6b6560]">
-              {product.rating} · 리뷰 {product.reviews}개
-            </span>
-          </div>
-
-          <div className="flex items-baseline gap-3 mb-8 pb-8 border-b border-[#e8e4df]">
-            {product.originalPrice && (
-              <>
-                <span className="text-lg text-[#a39e98] line-through">
-                  {formatPrice(product.originalPrice)}
-                </span>
-                <span className="text-sm font-bold text-[#c45c4a]">
-                  {discount}%
-                </span>
-              </>
+            {displayImages.length > 1 && (
+              <div className="flex gap-1.5 overflow-x-auto scrollbar-hide">
+                {displayImages.map((img, i) => (
+                  <button
+                    key={`${img}-${i}`}
+                    type="button"
+                    onClick={() => setImageIndex(i)}
+                    className={`shrink-0 w-14 h-[4.5rem] overflow-hidden border ${
+                      imageIndex === i ? "border-[#333]" : "border-[#ddd]"
+                    }`}
+                  >
+                    <img
+                      src={img}
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
             )}
-            <span className="text-2xl font-semibold">
-              {formatPrice(product.price)}
-            </span>
           </div>
 
-          <p className="text-sm text-[#6b6560] leading-relaxed mb-8">
-            {product.description}
-          </p>
+          <div>
+            {product.badge && (
+              <span className="inline-block text-[10px] tracking-wide border border-[#ccc] text-[#666] px-2 py-0.5 mb-3">
+                {product.badge}
+              </span>
+            )}
 
-          {product.sizes.length > 0 && (
-            <div className="mb-6">
-              <p className="text-xs tracking-widest uppercase mb-3">사이즈</p>
-              <div className="flex flex-wrap gap-2">
-                {product.sizes.map((s) => (
-                  <button
-                    key={s}
-                    type="button"
-                    onClick={() => setSelectedSize(s)}
-                    className={`min-w-[48px] px-4 py-2 text-sm border ${
-                      size === s
-                        ? "border-[#181512] bg-[#181512] text-white"
-                        : "border-[#e8e4df] hover:border-[#181512]"
-                    }`}
-                  >
-                    {s}
-                  </button>
-                ))}
-              </div>
+            <h1 className="text-[18px] md:text-[22px] font-medium text-[#111] leading-snug mb-2">
+              {product.name}
+            </h1>
+
+            {product.tagline && (
+              <p className="text-[12px] md:text-[13px] text-[#666] leading-relaxed mb-5">
+                {product.tagline}
+              </p>
+            )}
+
+            <table className="w-full text-[12px] md:text-[13px] border-t border-[#333] mb-6">
+              <tbody>
+                <tr className="border-b border-[#e5e5e5]">
+                  <th className="w-[30%] py-3 px-3 bg-[#fafafa] text-left font-medium text-[#555]">
+                    상품명
+                  </th>
+                  <td className="py-3 px-3 text-[#333]">{product.name}</td>
+                </tr>
+                <tr className="border-b border-[#e5e5e5]">
+                  <th className="py-3 px-3 bg-[#fafafa] text-left font-medium text-[#555]">
+                    판매가
+                  </th>
+                  <td className="py-3 px-3">
+                    {product.originalPrice ? (
+                      <span className="text-[#aaa] line-through">
+                        {formatPrice(product.originalPrice)}
+                      </span>
+                    ) : (
+                      <span className="font-semibold text-[#111]">
+                        {formatPrice(product.price)}
+                      </span>
+                    )}
+                  </td>
+                </tr>
+                {product.originalPrice && (
+                  <tr className="border-b border-[#e5e5e5]">
+                    <th className="py-3 px-3 bg-[#fafafa] text-left font-medium text-[#555]">
+                      할인판매가
+                    </th>
+                    <td className="py-3 px-3">
+                      <span className="font-semibold text-[#111] text-[15px] md:text-[16px]">
+                        {formatPrice(product.price)}
+                      </span>
+                      {discount > 0 && (
+                        <span className="ml-2 text-[#c45c4a] font-semibold">
+                          {discount}%
+                        </span>
+                      )}
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+
+            {!isRich && (
+              <p className="text-[13px] text-[#666] leading-relaxed mb-6">
+                {product.description}
+              </p>
+            )}
+
+            <table className="w-full text-[12px] md:text-[13px] border-t border-[#e5e5e5] mb-6">
+              <tbody>
+                {product.colors.length > 0 && (
+                  <tr className="border-b border-[#e5e5e5]">
+                    <th className="w-[30%] py-3 px-3 bg-[#fafafa] text-left font-medium text-[#555] align-middle">
+                      COLOR
+                    </th>
+                    <td className="py-3 px-3">
+                      <select
+                        value={color}
+                        onChange={(e) => setSelectedColor(e.target.value)}
+                        className="w-full max-w-[240px] border border-[#ccc] bg-white px-3 py-2 text-[13px] focus:outline-none focus:border-[#333]"
+                      >
+                        <option value="" disabled>
+                          옵션 선택
+                        </option>
+                        {product.colors.map((c) => (
+                          <option key={c} value={c}>
+                            {c}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                )}
+                {product.sizes.length > 0 && (
+                  <tr className="border-b border-[#e5e5e5]">
+                    <th className="py-3 px-3 bg-[#fafafa] text-left font-medium text-[#555] align-middle">
+                      SIZE
+                    </th>
+                    <td className="py-3 px-3">
+                      <select
+                        value={size}
+                        onChange={(e) => setSelectedSize(e.target.value)}
+                        className="w-full max-w-[240px] border border-[#ccc] bg-white px-3 py-2 text-[13px] focus:outline-none focus:border-[#333]"
+                      >
+                        <option value="" disabled>
+                          옵션 선택
+                        </option>
+                        {product.sizes.map((s) => (
+                          <option key={s} value={s}>
+                            {s}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                  </tr>
+                )}
+                <tr className="border-b border-[#e5e5e5]">
+                  <th className="py-3 px-3 bg-[#fafafa] text-left font-medium text-[#555] align-middle">
+                    수량
+                  </th>
+                  <td className="py-3 px-3">
+                    <div className="inline-flex items-center border border-[#ccc]">
+                      <button
+                        type="button"
+                        onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                        className="w-8 h-8 flex items-center justify-center text-[#666] hover:bg-[#f5f5f5]"
+                        aria-label="수량 감소"
+                      >
+                        −
+                      </button>
+                      <span className="w-10 text-center text-[13px]">{quantity}</span>
+                      <button
+                        type="button"
+                        onClick={() => setQuantity((q) => Math.min(99, q + 1))}
+                        className="w-8 h-8 flex items-center justify-center text-[#666] hover:bg-[#f5f5f5]"
+                        aria-label="수량 증가"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div className="flex items-center justify-between py-4 border-t border-[#333] mb-5">
+              <span className="text-[12px] text-[#666]">Total (Qty)</span>
+              <span className="text-[16px] font-semibold text-[#111]">
+                {formatPrice(lineTotal)}{" "}
+                <span className="text-[12px] font-normal text-[#888]">
+                  ({quantity}개)
+                </span>
+              </span>
             </div>
-          )}
 
-          {product.colors.length > 0 && (
-            <div className="mb-6">
-              <p className="text-xs tracking-widest uppercase mb-3">컬러</p>
-              <div className="flex flex-wrap gap-2">
-                {product.colors.map((c) => (
-                  <button
-                    key={c}
-                    type="button"
-                    onClick={() => setSelectedColor(c)}
-                    className={`px-4 py-2 text-sm border ${
-                      color === c
-                        ? "border-[#181512] bg-[#181512] text-white"
-                        : "border-[#e8e4df] hover:border-[#181512]"
-                    }`}
-                  >
-                    {c}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <div className="mb-8">
-            <p className="text-xs tracking-widest uppercase mb-3">수량</p>
-            <div className="inline-flex items-center border border-[#e8e4df]">
+            <div className="grid grid-cols-2 gap-2">
               <button
                 type="button"
-                onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                className="w-10 h-10 flex items-center justify-center hover:bg-[#f0ede8]"
+                onClick={handleBuyNow}
+                className="py-3.5 text-[12px] md:text-[13px] bg-[#333] text-white hover:bg-[#111] transition-colors"
               >
-                −
+                BUY NOW
               </button>
-              <span className="w-12 text-center text-sm">{quantity}</span>
               <button
                 type="button"
-                onClick={() => setQuantity((q) => Math.min(99, q + 1))}
-                className="w-10 h-10 flex items-center justify-center hover:bg-[#f0ede8]"
+                onClick={handleAddToCart}
+                className="py-3.5 text-[12px] md:text-[13px] border border-[#333] text-[#333] hover:bg-[#333] hover:text-white transition-colors"
               >
-                +
+                {added ? "ADDED ✓" : "ADD TO CART"}
               </button>
             </div>
-            <p className="text-xs text-[#6b6560] mt-2">
-              재고 {product.stock}개
+
+            <p className="text-[11px] text-[#999] mt-3 leading-relaxed">
+              할인가가 적용된 최종 결제예정금액은 주문 시 확인할 수 있습니다.
             </p>
-          </div>
 
-          <div className="flex flex-col sm:flex-row gap-3">
-            <button
-              type="button"
-              onClick={handleAddToCart}
-              className="flex-1 border border-[#181512] py-4 text-xs tracking-widest uppercase hover:bg-[#181512] hover:text-white transition-colors"
-            >
-              {added ? "장바구니에 담았습니다 ✓" : "장바구니 담기"}
-            </button>
-            <button
-              type="button"
-              onClick={handleBuyNow}
-              className="flex-1 bg-[#181512] text-white py-4 text-xs tracking-widest uppercase hover:bg-[#3d3834] transition-colors"
-            >
-              바로 구매
-            </button>
+            <p className="text-[11px] text-[#aaa] mt-2">재고 {product.stock}개</p>
           </div>
+        </div>
+      </div>
 
-          <div className="mt-10 grid grid-cols-3 gap-4 text-center text-xs text-[#6b6560]">
-            <div className="p-4 bg-white rounded-sm">
-              <span className="material-symbols-outlined text-[24px] mb-2 block">
-                local_shipping
-              </span>
-              무료배송
+      <div className="max-w-[1100px] mx-auto px-4 md:px-6 pb-16">
+        <ProductDetailTabs
+          tabs={DETAIL_TABS}
+          active={activeTab}
+          onChange={setActiveTab}
+        />
+
+        <div className="py-8 md:py-10">
+          {activeTab === "detail" && (
+            <>
+              {isRich ? (
+                <RichProductDetail detail={product.detail} />
+              ) : (
+                <p className="text-[13px] text-[#444] leading-relaxed whitespace-pre-line">
+                  {product.description}
+                </p>
+              )}
+              {displayImages.length > 1 && (
+                <div className="mt-10 space-y-2">
+                  {displayImages.map((img, i) => (
+                    <img
+                      key={`${img}-detail-${i}`}
+                      src={img}
+                      alt={`${product.name} 상세 ${i + 1}`}
+                      className="w-full"
+                      loading="lazy"
+                    />
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+
+          {activeTab === "shipping" && (
+            <div className="text-[13px] text-[#444] leading-[1.85] whitespace-pre-line space-y-8">
+              <div>
+                <h3 className="text-[14px] font-semibold text-[#111] mb-3">
+                  배송정보
+                </h3>
+                <p>{DEFAULT_SHIPPING_INFO}</p>
+              </div>
+              <div>
+                <h3 className="text-[14px] font-semibold text-[#111] mb-3">
+                  교환 및 반품정보
+                </h3>
+                <p>{DEFAULT_EXCHANGE_INFO}</p>
+              </div>
             </div>
-            <div className="p-4 bg-white rounded-sm">
-              <span className="material-symbols-outlined text-[24px] mb-2 block">
-                sync
-              </span>
-              1일 교환
+          )}
+
+          {activeTab === "payment" && (
+            <p className="text-[13px] text-[#444] leading-[1.85] whitespace-pre-line">
+              {DEFAULT_PAYMENT_INFO}
+            </p>
+          )}
+
+          {activeTab === "review" && (
+            <div className="text-center py-12 text-[13px] text-[#888]">
+              <p className="mb-4">게시물이 없습니다</p>
+              <Link
+                to="/reviews"
+                className="text-[12px] text-[#333] underline underline-offset-2"
+              >
+                REVIEW 전체보기
+              </Link>
             </div>
-            <div className="p-4 bg-white rounded-sm">
-              <span className="material-symbols-outlined text-[24px] mb-2 block">
-                verified
-              </span>
-              정품 보증
+          )}
+
+          {activeTab === "qa" && (
+            <div className="text-center py-12 text-[13px] text-[#888]">
+              <p className="mb-4">게시물이 없습니다</p>
+              <Link
+                to="/qa"
+                className="text-[12px] text-[#333] underline underline-offset-2"
+              >
+                Q&A 전체보기
+              </Link>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </div>
