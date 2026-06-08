@@ -128,7 +128,7 @@ export const PRODUCTS = [
     ],
     listImages: [
       "/products/raglan-tee/07.png",
-      "/products/raglan-tee/03.png",
+      "/products/raglan-tee/04.png",
     ],
     sizes: ["FREE"],
     colors: ["Navy", "Purple"],
