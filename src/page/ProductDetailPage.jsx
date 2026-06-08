@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import ProductImageSlideshow from "../components/ProductImageSlideshow";
 import { useCart } from "../context/CartContext";
 import {
   DEFAULT_EXCHANGE_INFO,
@@ -134,10 +135,12 @@ export default function ProductDetailPage() {
             )}
 
             <div className="aspect-[3/4] bg-[#f7f7f7] overflow-hidden mb-3">
-              <img
-                src={displayImages[imageIndex] ?? displayImages[0]}
+              <ProductImageSlideshow
+                images={displayImages}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                index={imageIndex}
+                onIndexChange={setImageIndex}
+                autoPlay={displayImages.length > 1}
               />
             </div>
             {displayImages.length > 1 && (
