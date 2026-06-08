@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const DEFAULT_INTERVAL_MS = 2200;
+const MANUAL_SELECT_PAUSE_MS = 5000;
 
 export default function ProductImageSlideshow({
   images,
@@ -11,8 +12,11 @@ export default function ProductImageSlideshow({
   intervalMs = DEFAULT_INTERVAL_MS,
   className = "",
 }) {
-  const [paused, setPaused] = useState(false);
+  const [hoverPaused, setHoverPaused] = useState(false);
+  const [manualPaused, setManualPaused] = useState(false);
   const indexRef = useRef(index);
+  const advancingRef = useRef(false);
+  const skipNextPauseRef = useRef(true);
   const safeImages = images?.length ? images : [];
 
   useEffect(() => {
@@ -20,11 +24,34 @@ export default function ProductImageSlideshow({
   }, [index]);
 
   useEffect(() => {
+    if (skipNextPauseRef.current) {
+      skipNextPauseRef.current = false;
+      return undefined;
+    }
+    if (advancingRef.current) {
+      advancingRef.current = false;
+      return undefined;
+    }
+
+    setManualPaused(true);
+    const timer = setTimeout(() => setManualPaused(false), MANUAL_SELECT_PAUSE_MS);
+    return () => clearTimeout(timer);
+  }, [index]);
+
+  useEffect(() => {
+    skipNextPauseRef.current = true;
+    setManualPaused(false);
+  }, [images]);
+
+  const paused = hoverPaused || manualPaused;
+
+  useEffect(() => {
     if (!autoPlay || safeImages.length <= 1 || paused) return undefined;
 
     const timer = setInterval(() => {
       const next = (indexRef.current + 1) % safeImages.length;
       indexRef.current = next;
+      advancingRef.current = true;
       onIndexChange(next);
     }, intervalMs);
 
@@ -40,10 +67,10 @@ export default function ProductImageSlideshow({
   return (
     <div
       className={`relative w-full h-full overflow-hidden ${className}`}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
+      onMouseEnter={() => setHoverPaused(true)}
+      onMouseLeave={() => setHoverPaused(false)}
+      onFocus={() => setHoverPaused(true)}
+      onBlur={() => setHoverPaused(false)}
     >
       {safeImages.map((src, i) => (
         <img
