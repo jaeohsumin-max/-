@@ -71,8 +71,7 @@ export const PRODUCTS = [
     originalPrice: 27900,
     rating: 4.9,
     reviews: 0,
-    badge: "BEST",
-    badges: ["BEST", "NEW"],
+    badges: ["NEW"],
     tagline:
       "청순함과 여리여리함을 동시에! 스퀘어넥&오프숄더 투웨이 연출이 가능한 로맨틱 블라우스",
     description:
@@ -113,8 +112,7 @@ export const PRODUCTS = [
     originalPrice: 12600,
     rating: 4.9,
     reviews: 0,
-    badge: "BEST",
-    badges: ["BEST", "NEW"],
+    badges: ["NEW"],
     tagline: "꾸안꾸 데일리룩으로 완벽한 여리핏 배색 나그랑 티셔츠입니다.",
     description:
       "여유 있게 파인 보트넥 디자인으로, 한쪽 어깨를 살짝 내려 은근한 오프숄더로 연출해 주시면 목선과 쇄골 라인이 한층 더 여리여리하게 돋보입니다. 어깨 라인이 부각되지 않는 나그랑(래글런) 소매 배색이 상체를 더욱 슬림해 보이게 만들어줍니다.",
