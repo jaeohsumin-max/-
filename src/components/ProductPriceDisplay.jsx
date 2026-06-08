@@ -43,7 +43,7 @@ function ColorSwatch({ color }) {
 
 function getColorSwatchValues(color) {
   const map = {
-    Ivory: ["#f0ebe3"],
+    Ivory: ["#faf7f0"],
     Gray: ["#a8a8a8"],
     Black: ["#222222"],
     Pink: ["#f4c4d0"],
