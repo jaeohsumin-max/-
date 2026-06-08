@@ -84,7 +84,7 @@ function LogoLink() {
         width={182}
         height={112}
         decoding="async"
-        className="h-10 sm:h-12 md:h-14 w-auto max-w-[8.5rem] md:max-w-[10rem] object-contain"
+        className="h-8 sm:h-10 md:h-14 w-auto max-w-[7rem] sm:max-w-[8.5rem] md:max-w-[10rem] object-contain"
       />
     </Link>
   );
@@ -97,10 +97,10 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-[#e5e5e5]">
       <PromoBar />
 
-      <div className="w-full">
-        <div className="relative flex items-center justify-center min-h-[56px] md:min-h-[72px] py-3">
+      <div className="w-full px-4 sm:px-5 md:px-6">
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center min-h-[56px] md:min-h-[72px] py-3 gap-2 sm:gap-3">
           <nav
-            className="absolute left-0 top-0 bottom-0 z-10 flex items-center gap-2 sm:gap-3 md:gap-4 pl-4 sm:pl-5 md:pl-6 max-w-[calc(100%-7rem)] sm:max-w-[calc(100%-9rem)] md:max-w-[52%] overflow-x-auto scrollbar-hide"
+            className="flex items-center gap-2 sm:gap-3 md:gap-4 min-w-0 overflow-x-auto scrollbar-hide justify-start"
             aria-label="주 메뉴"
           >
             <button
@@ -113,23 +113,27 @@ export default function Header() {
                 menu
               </span>
             </button>
-            <Link to="/shop/best" className={navItemClass}>
-              BEST
-            </Link>
-            <Link to="/shop/new" className={navItemClass}>
-              NEW
-            </Link>
-            <NavDropdown label="SHOP" items={SHOP_LINKS} buttonClassName={navItemClass} />
-            <NavDropdown
-              label="COMMUNITY"
-              items={COMMUNITY_LINKS}
-              buttonClassName={navItemClass}
-            />
+            <div className="hidden md:flex items-center gap-3 md:gap-4 shrink-0">
+              <Link to="/shop/best" className={navItemClass}>
+                BEST
+              </Link>
+              <Link to="/shop/new" className={navItemClass}>
+                NEW
+              </Link>
+              <NavDropdown label="SHOP" items={SHOP_LINKS} buttonClassName={navItemClass} />
+              <NavDropdown
+                label="COMMUNITY"
+                items={COMMUNITY_LINKS}
+                buttonClassName={navItemClass}
+              />
+            </div>
           </nav>
 
-          <LogoLink />
+          <div className="justify-self-center shrink-0 max-w-[42vw] sm:max-w-none">
+            <LogoLink />
+          </div>
 
-          <div className="absolute right-0 top-0 bottom-0 z-10 flex items-center pr-4 sm:pr-5 md:pr-6">
+          <div className="flex items-center justify-end min-w-0">
             <HeaderAccountLinks />
           </div>
         </div>
