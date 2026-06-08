@@ -150,7 +150,7 @@ export const PRODUCTS = [
     name: "[-3kg/여리핏] 무드 스퀘어넥 셔링 골지 니트반팔",
     category: "top",
     price: 15900,
-    originalPrice: 24900,
+    originalPrice: 25900,
     rating: 4.9,
     reviews: 0,
     badge: "BEST",
