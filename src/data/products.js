@@ -95,6 +95,43 @@ export const PRODUCTS = [
       ],
     },
   },
+  {
+    id: "p15",
+    name: "[살안타/데일리룩] 배색 나그랑 루즈넥 긴팔 티셔츠",
+    category: "top",
+    price: 15900,
+    originalPrice: 25900,
+    rating: 4.9,
+    reviews: 0,
+    badge: "BEST",
+    badges: ["BEST", "NEW"],
+    tagline: "꾸안꾸 데일리룩으로 완벽한 여리핏 배색 나그랑 티셔츠입니다.",
+    description:
+      "여유 있게 파인 보트넥 디자인으로, 한쪽 어깨를 살짝 내려 은근한 오프숄더로 연출해 주시면 목선과 쇄골 라인이 한층 더 여리여리하게 돋보입니다. 어깨 라인이 부각되지 않는 나그랑(래글런) 소매 배색이 상체를 더욱 슬림해 보이게 만들어줍니다.",
+    images: [
+      "/products/raglan-tee/01.png",
+      "/products/raglan-tee/02.png",
+      "/products/raglan-tee/03.png",
+      "/products/raglan-tee/04.png",
+      "/products/raglan-tee/05.png",
+      "/products/raglan-tee/06.png",
+      "/products/raglan-tee/07.png",
+      "/products/raglan-tee/08.png",
+    ],
+    sizes: ["FREE"],
+    colors: ["White Navy", "Gray Burgundy"],
+    stock: 56,
+    detail: {
+      comment: [
+        "꾸안꾸 데일리룩으로 완벽한 여리핏 배색 나그랑 티셔츠",
+        "여유 있게 파인 보트넥 디자인으로 목선과 쇄골 라인이 여리여리하게 돋보입니다",
+        "한쪽 어깨를 살짝 내려 은근한 오프숄더로 연출하기 좋은 스타일",
+        "어깨 라인이 부각되지 않는 나그랑 소매 배색이 상체를 더욱 슬림해 보이게 만들어 줍니다",
+        "바디에 부드럽게 감기는 가볍고 유연한 소재감으로 여름 실내 에어컨 룩에 적합합니다",
+        "살안타템으로도 활용하기 좋은 데일리 긴팔 티셔츠",
+      ],
+    },
+  },
 ];
 
 export function getProductById(id) {
