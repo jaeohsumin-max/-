@@ -80,6 +80,8 @@ export const PRODUCTS = [
       "/products/rosy-blouse/04.png",
       "/products/rosy-blouse/05.png",
       "/products/rosy-blouse/07.png",
+      "/products/rosy-blouse/08.png",
+      "/products/rosy-blouse/09.png",
     ],
     sizes: ["FREE"],
     colors: ["Pink"],
