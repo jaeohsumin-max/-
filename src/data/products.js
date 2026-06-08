@@ -32,6 +32,10 @@ export const PRODUCTS = [
       "/products/popcorn-cardigan/gray-3.png",
       "/products/popcorn-cardigan/gray-4.png",
     ],
+    listImages: [
+      "/products/popcorn-cardigan/ivory-1.png",
+      "/products/popcorn-cardigan/gray-1.png",
+    ],
     colorImages: {
       Ivory: [
         "/products/popcorn-cardigan/ivory-1.png",
@@ -83,6 +87,10 @@ export const PRODUCTS = [
       "/products/rosy-blouse/07.png",
       "/products/rosy-blouse/09.png",
     ],
+    listImages: [
+      "/products/rosy-blouse/08.png",
+      "/products/rosy-blouse/01.png",
+    ],
     sizes: ["FREE"],
     colors: ["Pink"],
     stock: 52,
@@ -120,6 +128,10 @@ export const PRODUCTS = [
       "/products/raglan-tee/07.png",
       "/products/raglan-tee/08.png",
     ],
+    listImages: [
+      "/products/raglan-tee/08.png",
+      "/products/raglan-tee/06.png",
+    ],
     sizes: ["FREE"],
     colors: ["Navy", "Purple"],
     stock: 56,
@@ -138,6 +150,11 @@ export const PRODUCTS = [
 
 export function getProductById(id) {
   return PRODUCTS.find((p) => p.id === id);
+}
+
+export function getProductListImages(product) {
+  if (product?.listImages?.length) return product.listImages;
+  return product?.images ?? [];
 }
 
 export function getProductBadges(product) {

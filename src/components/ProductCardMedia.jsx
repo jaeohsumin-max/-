@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { getProductListImages } from "../data/products";
 import ProductImageSlideshow from "./ProductImageSlideshow";
 
 export default function ProductCardMedia({ product, className = "", children }) {
   const [imageIndex, setImageIndex] = useState(0);
-  const images = product.images ?? [];
+  const images = getProductListImages(product);
 
   return (
     <div className={`relative overflow-hidden bg-[#f5f5f5] ${className}`}>
