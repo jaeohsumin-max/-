@@ -219,6 +219,7 @@ export const PRODUCTS = [
     rating: 4.9,
     reviews: 0,
     badge: "BEST",
+    badges: ["BEST", "NEW"],
     tagline:
       "입는 순간 여리여리한 실루엣 완성, 한여름까지 손이 갈 필수 소장 가디건",
     description:
@@ -280,6 +281,16 @@ export function getProductById(id) {
   return PRODUCTS.find((p) => p.id === id);
 }
 
+export function getProductBadges(product) {
+  if (product?.badges?.length) return product.badges;
+  if (product?.badge) return [product.badge];
+  return [];
+}
+
+export function hasProductBadge(product, badge) {
+  return getProductBadges(product).includes(badge);
+}
+
 export function getCategoryPath(categoryId) {
   return categoryId === "all" ? "/shop" : `/shop/${categoryId}`;
 }
@@ -287,9 +298,13 @@ export function getCategoryPath(categoryId) {
 export function getProductsByCategory(category) {
   if (!category || category === "all") return PRODUCTS;
   if (category === "new") {
-    return PRODUCTS.filter((p) => p.badge === "NEW" || p.originalPrice);
+    return PRODUCTS.filter(
+      (p) => hasProductBadge(p, "NEW") || p.originalPrice,
+    );
   }
-  if (category === "best") return PRODUCTS.filter((p) => p.badge === "BEST");
+  if (category === "best") {
+    return PRODUCTS.filter((p) => hasProductBadge(p, "BEST"));
+  }
   if (category === "made") return PRODUCTS.filter((p) => p.made === true);
   if (category === "outer") {
     return PRODUCTS.filter((p) => p.category === "outer" || p.name.includes("코트"));
@@ -300,13 +315,16 @@ export function getProductsByCategory(category) {
 
 export function getNewArrivals(limit = 20) {
   return [...PRODUCTS]
-    .sort((a, b) => (b.badge === "NEW" ? 1 : 0) - (a.badge === "NEW" ? 1 : 0))
+    .sort(
+      (a, b) =>
+        (hasProductBadge(b, "NEW") ? 1 : 0) - (hasProductBadge(a, "NEW") ? 1 : 0),
+    )
     .slice(0, limit);
 }
 
 export function getBestItems(limit = 20) {
   return [...PRODUCTS]
-    .filter((p) => p.badge === "BEST" || p.reviews >= 150)
+    .filter((p) => hasProductBadge(p, "BEST") || p.reviews >= 150)
     .sort((a, b) => b.reviews - a.reviews)
     .slice(0, limit);
 }

@@ -5,6 +5,7 @@ import {
   CATEGORIES,
   getCategoryPath,
   getProductsByCategory,
+  hasProductBadge,
 } from "../data/products";
 
 const PER_PAGE = 12;
@@ -132,8 +133,8 @@ export default function ShopPage() {
         break;
       case "new":
         sorted.sort((a, b) => {
-          const aNew = a.badge === "NEW" ? 1 : 0;
-          const bNew = b.badge === "NEW" ? 1 : 0;
+          const aNew = hasProductBadge(a, "NEW") ? 1 : 0;
+          const bNew = hasProductBadge(b, "NEW") ? 1 : 0;
           return bNew - aNew || b.reviews - a.reviews;
         });
         break;

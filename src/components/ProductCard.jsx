@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
-import { formatPrice, getDiscountPercent } from "../data/products";
+import {
+  formatPrice,
+  getDiscountPercent,
+  getProductBadges,
+  hasProductBadge,
+} from "../data/products";
 import ProductCardMedia from "./ProductCardMedia";
 
 export default function ProductCard({
@@ -10,8 +15,9 @@ export default function ProductCard({
 }) {
   const discount = getDiscountPercent(product.price, product.originalPrice);
   const hasSale = product.originalPrice && product.originalPrice > product.price;
-  const isNew = product.badge === "NEW";
-  const isBest = product.badge === "BEST";
+  const isNew = hasProductBadge(product, "NEW");
+  const isBest = hasProductBadge(product, "BEST");
+  const displayBadges = getProductBadges(product);
 
   if (mall) {
     return (
@@ -69,10 +75,17 @@ export default function ProductCard({
         product={product}
         className="aspect-[3/4] mb-2 md:mb-3 group-hover:opacity-95 transition-opacity"
       >
-        {product.badge && (
-          <span className="absolute top-2 left-2 bg-black text-white text-[9px] px-1.5 py-0.5">
-            {product.badge}
-          </span>
+        {displayBadges.length > 0 && (
+          <div className="absolute top-2 left-2 flex flex-wrap gap-1 z-[2]">
+            {displayBadges.map((badge) => (
+              <span
+                key={badge}
+                className="bg-black text-white text-[9px] px-1.5 py-0.5"
+              >
+                {badge}
+              </span>
+            ))}
+          </div>
         )}
         {discount > 0 && (
           <span className="absolute top-2 right-2 bg-[#c45c4a] text-white text-[9px] font-bold px-1.5 py-0.5">

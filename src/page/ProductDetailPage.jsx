@@ -13,6 +13,7 @@ import {
   getProductById,
   formatPrice,
   getDiscountPercent,
+  getProductBadges,
   CATEGORIES,
 } from "../data/products";
 
@@ -150,10 +151,17 @@ export default function ProductDetailPage() {
           </div>
 
           <div>
-            {product.badge && (
-              <span className="inline-block text-[10px] tracking-wide border border-[#ccc] text-[#666] px-2 py-0.5 mb-3">
-                {product.badge}
-              </span>
+            {getProductBadges(product).length > 0 && (
+              <div className="flex flex-wrap gap-1.5 mb-3">
+                {getProductBadges(product).map((badge) => (
+                  <span
+                    key={badge}
+                    className="inline-block text-[10px] tracking-wide border border-[#ccc] text-[#666] px-2 py-0.5"
+                  >
+                    {badge}
+                  </span>
+                ))}
+              </div>
             )}
 
             <h1 className="text-[18px] md:text-[22px] font-medium text-[#111] leading-snug mb-2">
