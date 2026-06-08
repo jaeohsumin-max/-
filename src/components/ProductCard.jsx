@@ -25,14 +25,14 @@ export default function ProductCard({
           product={product}
           className="aspect-[3/4] mb-2 group-hover:opacity-95 transition-opacity"
         />
-        <div className="flex flex-wrap gap-1 mb-1 min-h-[14px]">
+        <div className="flex flex-wrap gap-1 md:gap-1.5 mb-1 min-h-[14px] md:min-h-[20px]">
           {isBest && (
-            <span className="text-[9px] text-[#888] border border-[#ddd] px-1">
+            <span className="text-[9px] md:text-[11px] text-[#888] border border-[#ddd] px-1 md:px-2.5 md:py-0.5 tracking-wide">
               Best
             </span>
           )}
           {isNew && (
-            <span className="text-[9px] text-[#888] border border-[#ddd] px-1">
+            <span className="text-[9px] md:text-[11px] text-[#888] border border-[#ddd] px-1 md:px-2.5 md:py-0.5 tracking-wide">
               New
             </span>
           )}
@@ -64,11 +64,11 @@ export default function ProductCard({
         className="aspect-[3/4] mb-2 md:mb-3 group-hover:opacity-95 transition-opacity"
       >
         {displayBadges.length > 0 && (
-          <div className="absolute top-2 left-2 flex flex-wrap gap-1 z-[2]">
+          <div className="absolute top-2 left-2 md:top-2.5 md:left-2.5 flex flex-wrap gap-1 md:gap-1.5 z-[2]">
             {displayBadges.map((badge) => (
               <span
                 key={badge}
-                className="bg-black text-white text-[9px] px-1.5 py-0.5"
+                className="bg-black text-white text-[9px] md:text-[11px] px-1.5 md:px-2.5 py-0.5 md:py-1 tracking-wide"
               >
                 {badge}
               </span>
