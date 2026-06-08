@@ -15,6 +15,25 @@ import {
   CATEGORIES,
 } from "../data/products";
 
+function getColorImageGroups(product) {
+  if (!product.colorImages) {
+    return [{ color: null, images: product.images }];
+  }
+  return product.colors
+    .map((colorName) => ({
+      color: colorName,
+      images: product.colorImages[colorName] ?? [],
+    }))
+    .filter((group) => group.images.length > 0);
+}
+
+function getImagesForColor(product, color) {
+  if (product.colorImages?.[color]?.length) {
+    return product.colorImages[color];
+  }
+  return product.images;
+}
+
 const DETAIL_TABS = [
   { id: "detail", label: "상품상세" },
   { id: "shipping", label: "배송/교환" },
@@ -39,8 +58,6 @@ export default function ProductDetailPage() {
   const size = selectedSize || product?.sizes?.[0] || "FREE";
   const color = selectedColor || product?.colors?.[0] || "-";
 
-  const displayImages = product?.images ?? [];
-
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-5 py-32 text-center">
@@ -57,6 +74,14 @@ export default function ProductDetailPage() {
     CATEGORIES.find((c) => c.id === product.category)?.label ?? "";
   const lineTotal = product.price * quantity;
   const isRich = Boolean(product.detail);
+  const hasColorImages = Boolean(product.colorImages);
+  const colorImageGroups = getColorImageGroups(product);
+  const displayImages = getImagesForColor(product, color);
+
+  const handleColorChange = (nextColor) => {
+    setSelectedColor(nextColor);
+    setImageIndex(0);
+  };
 
   const handleAddToCart = () => {
     addItem(product.id, size, color, quantity);
@@ -89,6 +114,25 @@ export default function ProductDetailPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           <div>
+            {hasColorImages && (
+              <div className="flex flex-wrap gap-2 mb-3">
+                {product.colors.map((c) => (
+                  <button
+                    key={c}
+                    type="button"
+                    onClick={() => handleColorChange(c)}
+                    className={`min-w-[72px] px-3 py-2 text-[12px] border transition-colors ${
+                      color === c
+                        ? "border-[#333] bg-[#333] text-white"
+                        : "border-[#ccc] text-[#555] hover:border-[#333]"
+                    }`}
+                  >
+                    {c}
+                  </button>
+                ))}
+              </div>
+            )}
+
             <div className="aspect-[3/4] bg-[#f7f7f7] overflow-hidden mb-3">
               <img
                 src={displayImages[imageIndex] ?? displayImages[0]}
@@ -195,7 +239,7 @@ export default function ProductDetailPage() {
                     <td className="py-3 px-3">
                       <select
                         value={color}
-                        onChange={(e) => setSelectedColor(e.target.value)}
+                        onChange={(e) => handleColorChange(e.target.value)}
                         className="w-full max-w-[240px] border border-[#ccc] bg-white px-3 py-2 text-[13px] focus:outline-none focus:border-[#333]"
                       >
                         <option value="" disabled>
@@ -315,16 +359,27 @@ export default function ProductDetailPage() {
                   {product.description}
                 </p>
               )}
-              {displayImages.length > 1 && (
-                <div className="mt-10 space-y-2">
-                  {displayImages.map((img, i) => (
-                    <img
-                      key={`${img}-detail-${i}`}
-                      src={img}
-                      alt={`${product.name} 상세 ${i + 1}`}
-                      className="w-full"
-                      loading="lazy"
-                    />
+              {colorImageGroups.some((g) => g.images.length > 0) && (
+                <div className="mt-10 space-y-10">
+                  {colorImageGroups.map((group) => (
+                    <div key={group.color ?? "all"}>
+                      {group.color && (
+                        <h4 className="text-[13px] font-semibold text-[#111] mb-3 pb-2 border-b border-[#eee]">
+                          {group.color}
+                        </h4>
+                      )}
+                      <div className="space-y-2">
+                        {group.images.map((img, i) => (
+                          <img
+                            key={`${group.color}-${img}-${i}`}
+                            src={img}
+                            alt={`${product.name} ${group.color ?? ""} ${i + 1}`}
+                            className="w-full"
+                            loading="lazy"
+                          />
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               )}
