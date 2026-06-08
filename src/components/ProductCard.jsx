@@ -43,20 +43,29 @@ export default function ProductCard({
           <span className="text-[#888]">상품명 :</span> {product.name}
         </p>
         <div className="text-[11px] text-[#555] space-y-0.5">
-          {hasSale && (
+          {hasSale ? (
+            <>
+              <p>
+                <span className="text-[#888]">판매가 :</span>{" "}
+                <span className="line-through text-[#aaa]">
+                  {formatPrice(product.originalPrice)}
+                </span>
+              </p>
+              <p>
+                <span className="text-[#888]">할인판매가 :</span>{" "}
+                <span className="text-[#111] font-semibold">
+                  {formatPrice(product.price)}
+                </span>
+              </p>
+            </>
+          ) : (
             <p>
-              <span className="text-[#888]">소비자가 :</span>{" "}
-              <span className="line-through text-[#aaa]">
-                {formatPrice(product.originalPrice)}
+              <span className="text-[#888]">판매가 :</span>{" "}
+              <span className="text-[#111] font-semibold">
+                {formatPrice(product.price)}
               </span>
             </p>
           )}
-          <p>
-            <span className="text-[#888]">판매가 :</span>{" "}
-            <span className="text-[#111] font-semibold">
-              {formatPrice(product.price)}
-            </span>
-          </p>
         </div>
         <p className="text-[10px] text-[#ccc] mt-1.5">리뷰 :</p>
       </Link>

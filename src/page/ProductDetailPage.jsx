@@ -327,7 +327,7 @@ export default function ProductDetailPage() {
             </div>
 
             <p className="text-[11px] text-[#999] mt-3 leading-relaxed">
-              할인가가 적용된 최종 결제예정금액은 주문 시 확인할 수 있습니다.
+              할인판매가가 적용된 최종 결제예정금액은 주문 시 확인할 수 있습니다.
             </p>
 
             <p className="text-[11px] text-[#aaa] mt-2">재고 {product.stock}개</p>
