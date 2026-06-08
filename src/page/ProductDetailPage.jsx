@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import {
@@ -23,13 +23,6 @@ const DETAIL_TABS = [
   { id: "qa", label: "Q&A" },
 ];
 
-function getDisplayImages(product, color) {
-  if (product.colorImages?.[color]?.length) {
-    return product.colorImages[color];
-  }
-  return product.images;
-}
-
 export default function ProductDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -46,14 +39,7 @@ export default function ProductDetailPage() {
   const size = selectedSize || product?.sizes?.[0] || "FREE";
   const color = selectedColor || product?.colors?.[0] || "-";
 
-  const displayImages = useMemo(
-    () => (product ? getDisplayImages(product, color) : []),
-    [product, color],
-  );
-
-  useEffect(() => {
-    setImageIndex(0);
-  }, [color, id]);
+  const displayImages = product?.images ?? [];
 
   if (!product) {
     return (
