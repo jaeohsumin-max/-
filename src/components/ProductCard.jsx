@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import {
-  formatPrice,
   getDiscountPercent,
   getProductBadges,
   hasProductBadge,
 } from "../data/products";
 import ProductCardMedia from "./ProductCardMedia";
+import ProductPriceDisplay, { ColorSwatches } from "./ProductPriceDisplay";
 
 export default function ProductCard({
   product,
@@ -14,7 +14,6 @@ export default function ProductCard({
   mall = false,
 }) {
   const discount = getDiscountPercent(product.price, product.originalPrice);
-  const hasSale = product.originalPrice && product.originalPrice > product.price;
   const isNew = hasProductBadge(product, "NEW");
   const isBest = hasProductBadge(product, "BEST");
   const displayBadges = getProductBadges(product);
@@ -40,33 +39,13 @@ export default function ProductCard({
         </div>
         <p className="text-[10px] text-[#aaa] mb-0.5">codemuse</p>
         <p className="text-[11px] text-[#333] line-clamp-2 leading-snug mb-2 min-h-[2.25rem]">
-          <span className="text-[#888]">상품명 :</span> {product.name}
+          {product.name}
         </p>
-        <div className="text-[11px] text-[#555] space-y-0.5">
-          {hasSale ? (
-            <>
-              <p>
-                <span className="text-[#888]">판매가 :</span>{" "}
-                <span className="line-through text-[#aaa]">
-                  {formatPrice(product.originalPrice)}
-                </span>
-              </p>
-              <p>
-                <span className="text-[#888]">할인판매가 :</span>{" "}
-                <span className="text-[#111] font-semibold">
-                  {formatPrice(product.price)}
-                </span>
-              </p>
-            </>
-          ) : (
-            <p>
-              <span className="text-[#888]">판매가 :</span>{" "}
-              <span className="text-[#111] font-semibold">
-                {formatPrice(product.price)}
-              </span>
-            </p>
-          )}
-        </div>
+        <ProductPriceDisplay
+          price={product.price}
+          originalPrice={product.originalPrice}
+        />
+        <ColorSwatches colors={product.colors} className="mt-2" />
         <p className="text-[10px] text-[#ccc] mt-1.5">리뷰 :</p>
       </Link>
     );
@@ -110,32 +89,11 @@ export default function ProductCard({
 
       <p className={nameClass}>{product.name}</p>
 
-      <div
-        className={`space-y-0.5 ${list ? "text-[11px] md:text-[12px]" : "text-[11px] md:text-[12px]"} text-[#666]`}
-      >
-        {hasSale ? (
-          <>
-            <p>
-              <span className="text-[#888] font-medium">판매가 :</span>{" "}
-              <span className="text-[#999]">{formatPrice(product.originalPrice)}</span>
-            </p>
-            <p>
-              <span className="text-[#888] font-medium">할인판매가 :</span>{" "}
-              <span className="text-[#111] font-semibold">{formatPrice(product.price)}</span>
-            </p>
-          </>
-        ) : (
-          <p>
-            <span className="text-[#888] font-medium">판매가 :</span>{" "}
-            <span className="text-[#111] font-semibold">{formatPrice(product.price)}</span>
-          </p>
-        )}
-        {product.colors?.length > 0 && list && (
-          <p className="text-[10px] text-[#aaa] pt-0.5">
-            <span className="text-[#888]">상품색상 :</span> {product.colors.length} color
-          </p>
-        )}
-      </div>
+      <ProductPriceDisplay
+        price={product.price}
+        originalPrice={product.originalPrice}
+      />
+      <ColorSwatches colors={product.colors} className="mt-2" />
     </Link>
   );
 }

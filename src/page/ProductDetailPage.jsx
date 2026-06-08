@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ProductImageSlideshow from "../components/ProductImageSlideshow";
+import ProductPriceDisplay, { ColorSwatches } from "../components/ProductPriceDisplay";
 import { useCart } from "../context/CartContext";
 import {
   DEFAULT_EXCHANGE_INFO,
@@ -12,7 +13,6 @@ import {
 import {
   getProductById,
   formatPrice,
-  getDiscountPercent,
   getProductBadges,
   CATEGORIES,
 } from "../data/products";
@@ -68,7 +68,6 @@ export default function ProductDetailPage() {
     );
   }
 
-  const discount = getDiscountPercent(product.price, product.originalPrice);
   const categoryLabel =
     CATEGORIES.find((c) => c.id === product.category)?.label ?? "";
   const lineTotal = product.price * quantity;
@@ -169,54 +168,19 @@ export default function ProductDetailPage() {
             </h1>
 
             {product.tagline && (
-              <p className="text-[12px] md:text-[13px] text-[#666] leading-relaxed mb-5">
+              <p className="text-[12px] md:text-[13px] text-[#666] leading-relaxed mb-4">
                 {product.tagline}
               </p>
             )}
 
-            <table className="w-full text-[12px] md:text-[13px] border-t border-[#333] mb-6">
-              <tbody>
-                <tr className="border-b border-[#e5e5e5]">
-                  <th className="w-[30%] py-3 px-3 bg-[#fafafa] text-left font-medium text-[#555]">
-                    상품명
-                  </th>
-                  <td className="py-3 px-3 text-[#333]">{product.name}</td>
-                </tr>
-                <tr className="border-b border-[#e5e5e5]">
-                  <th className="py-3 px-3 bg-[#fafafa] text-left font-medium text-[#555]">
-                    판매가
-                  </th>
-                  <td className="py-3 px-3">
-                    {product.originalPrice ? (
-                      <span className="text-[#aaa] line-through">
-                        {formatPrice(product.originalPrice)}
-                      </span>
-                    ) : (
-                      <span className="font-semibold text-[#111]">
-                        {formatPrice(product.price)}
-                      </span>
-                    )}
-                  </td>
-                </tr>
-                {product.originalPrice && (
-                  <tr className="border-b border-[#e5e5e5]">
-                    <th className="py-3 px-3 bg-[#fafafa] text-left font-medium text-[#555]">
-                      할인판매가
-                    </th>
-                    <td className="py-3 px-3">
-                      <span className="font-semibold text-[#111] text-[15px] md:text-[16px]">
-                        {formatPrice(product.price)}
-                      </span>
-                      {discount > 0 && (
-                        <span className="ml-2 text-[#c45c4a] font-semibold">
-                          {discount}%
-                        </span>
-                      )}
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+            <div className="mb-6 pb-6 border-b border-[#e5e5e5]">
+              <ProductPriceDisplay
+                price={product.price}
+                originalPrice={product.originalPrice}
+                variant="detail"
+              />
+              <ColorSwatches colors={product.colors} className="mt-3" />
+            </div>
 
             {!isRich && (
               <p className="text-[13px] text-[#666] leading-relaxed mb-6">

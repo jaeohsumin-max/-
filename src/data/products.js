@@ -187,7 +187,7 @@ export function getBestItems(limit = 20) {
 }
 
 export function formatPrice(price) {
-  return new Intl.NumberFormat("ko-KR").format(price) + "원";
+  return `${new Intl.NumberFormat("en-US").format(price)} won`;
 }
 
 export function getDiscountPercent(price, originalPrice) {
