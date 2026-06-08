@@ -277,7 +277,6 @@ export const PRODUCTS = [
       "/products/rosy-blouse/03.png",
       "/products/rosy-blouse/04.png",
       "/products/rosy-blouse/05.png",
-      "/products/rosy-blouse/06.png",
       "/products/rosy-blouse/07.png",
     ],
     sizes: ["FREE"],
