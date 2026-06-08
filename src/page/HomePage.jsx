@@ -52,7 +52,6 @@ function MallSection({ eyebrow, title, products, moreLink, pageSize = 8 }) {
 
 export default function HomePage() {
   const nowBest = getBestItems(8);
-  const bestItems = getBestItems(40);
   const newArrivals = getNewArrivals(8);
 
   return (
@@ -71,13 +70,6 @@ export default function HomePage() {
         products={nowBest}
         moreLink="/shop/best"
         pageSize={8}
-      />
-
-      <MallSection
-        title="BEST ITEM"
-        products={bestItems}
-        moreLink="/shop/best"
-        pageSize={12}
       />
 
       <MallSection
