@@ -47,6 +47,7 @@ function getColorSwatchValues(color) {
     Gray: ["#a8a8a8"],
     Black: ["#222222"],
     Pink: ["#f4c4d0"],
+    Brown: ["#8b6f5c"],
     Navy: ["#243b5c"],
     Purple: ["#7a5c8f"],
   };

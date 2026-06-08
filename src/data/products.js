@@ -145,6 +145,46 @@ export const PRODUCTS = [
       ],
     },
   },
+  {
+    id: "p16",
+    name: "[-3kg/여리핏] 무드 스퀘어넥 셔링 골지 니트반팔",
+    category: "top",
+    price: 15900,
+    originalPrice: 24900,
+    rating: 4.9,
+    reviews: 0,
+    badge: "BEST",
+    badges: ["BEST", "NEW"],
+    tagline:
+      "심플하면서도 상체가 정말 말라 보이는 실루엣을 완성해 주는 하트 스퀘어넥 골지 니트",
+    description:
+      "심플하면서도 상체가 정말 말라 보이는 실루엣을 완성해 주는 하트 스퀘어넥 골지 니트입니다. 은근하게 파인 하트넥 디자인이 목선과 쇄골 라인을 가장 예쁘게 강조해 주어 완벽한 여리핏을 연출해 줍니다.",
+    images: [
+      "/products/mood-knit-top/01.png",
+      "/products/mood-knit-top/02.png",
+      "/products/mood-knit-top/03.png",
+      "/products/mood-knit-top/04.png",
+      "/products/mood-knit-top/05.png",
+      "/products/mood-knit-top/06.png",
+      "/products/mood-knit-top/07.png",
+    ],
+    listImages: [
+      "/products/mood-knit-top/01.png",
+      "/products/mood-knit-top/03.png",
+    ],
+    sizes: ["FREE"],
+    colors: ["Pink", "Black", "Brown"],
+    stock: 60,
+    detail: {
+      comment: [
+        "심플하면서도 상체가 정말 말라 보이는 실루엣을 완성해 주는 하트 스퀘어넥 골지 니트입니다",
+        "은근하게 파인 하트넥 디자인이 목선과 쇄골 라인을 가장 예쁘게 강조해 주어 완벽한 여리핏을 연출해 줍니다",
+        "바디를 쫀쫀하게 잡아주는 세로 골지 니트 소재가 부해 보임 없이 군살을 싹 잡아주어, 입었을 때 몸통이 훨씬 슬림하고 가녀려 보이는 효과를 줍니다",
+        "바스트 중앙의 셔링은 밋밋함 없이 사랑스러운 디테일 포인트가 되어줍니다",
+        "모델컷처럼 와이드 팬츠나 조거 팬츠와 매치하여 힙한 스트릿 무드의 꾸안꾸룩으로 연출하거나, 깔끔한 스커트와 함께 로맨틱한 데이트룩으로도 활용도가 높은 만능 아이템입니다",
+      ],
+    },
+  },
 ];
 
 export function getProductById(id) {
