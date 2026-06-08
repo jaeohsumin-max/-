@@ -38,8 +38,29 @@ export function ProductDetailTabs({ tabs, active, onChange }) {
   );
 }
 
+export function ProductComment({ lines }) {
+  if (!lines?.length) return null;
+
+  return (
+    <div className="py-10 md:py-14 text-center">
+      <h3 className="text-[13px] md:text-[14px] tracking-[0.35em] text-[#111] font-light mb-8 md:mb-10">
+        COMMENT
+      </h3>
+      <div className="max-w-[520px] mx-auto space-y-1 text-[13px] md:text-[14px] text-[#444] leading-[1.9] font-light">
+        {lines.map((line) => (
+          <p key={line}>{line}</p>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function RichProductDetail({ detail }) {
   if (!detail) return null;
+
+  if (detail.comment?.length) {
+    return <ProductComment lines={detail.comment} />;
+  }
 
   return (
     <div className="text-[13px] text-[#444] leading-[1.85] space-y-10">
