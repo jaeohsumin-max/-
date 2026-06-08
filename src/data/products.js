@@ -218,7 +218,7 @@ export const PRODUCTS = [
     originalPrice: 32900,
     rating: 4.9,
     reviews: 0,
-    badge: "NEW",
+    badge: "BEST",
     tagline:
       "입는 순간 여리여리한 실루엣 완성, 한여름까지 손이 갈 필수 소장 가디건",
     description:
