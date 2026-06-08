@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ProductImageSlideshow from "../components/ProductImageSlideshow";
 import { useCart } from "../context/CartContext";
@@ -28,13 +28,6 @@ function getColorImageGroups(product) {
     .filter((group) => group.images.length > 0);
 }
 
-function getImagesForColor(product, color) {
-  if (product.colorImages?.[color]?.length) {
-    return product.colorImages[color];
-  }
-  return product.images;
-}
-
 const DETAIL_TABS = [
   { id: "detail", label: "상품상세" },
   { id: "shipping", label: "배송/교환" },
@@ -56,8 +49,12 @@ export default function ProductDetailPage() {
   const [added, setAdded] = useState(false);
   const [activeTab, setActiveTab] = useState("detail");
 
-  const size = selectedSize || product?.sizes?.[0] || "FREE";
-  const color = selectedColor || product?.colors?.[0] || "-";
+  useEffect(() => {
+    setSelectedSize("");
+    setSelectedColor("");
+    setImageIndex(0);
+    setQuantity(1);
+  }, [id]);
 
   if (!product) {
     return (
@@ -75,23 +72,29 @@ export default function ProductDetailPage() {
     CATEGORIES.find((c) => c.id === product.category)?.label ?? "";
   const lineTotal = product.price * quantity;
   const isRich = Boolean(product.detail);
-  const hasColorImages = Boolean(product.colorImages);
   const colorImageGroups = getColorImageGroups(product);
-  const displayImages = getImagesForColor(product, color);
-
-  const handleColorChange = (nextColor) => {
-    setSelectedColor(nextColor);
-    setImageIndex(0);
-  };
+  const displayImages = product.images;
+  const needsColor = product.colors.length > 0;
+  const needsSize = product.sizes.length > 0;
+  const optionsReady =
+    (!needsColor || selectedColor) && (!needsSize || selectedSize);
 
   const handleAddToCart = () => {
-    addItem(product.id, size, color, quantity);
+    if (!optionsReady) {
+      window.alert("COLOR, SIZE 옵션을 선택해 주세요.");
+      return;
+    }
+    addItem(product.id, selectedSize, selectedColor, quantity);
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
 
   const handleBuyNow = () => {
-    addItem(product.id, size, color, quantity);
+    if (!optionsReady) {
+      window.alert("COLOR, SIZE 옵션을 선택해 주세요.");
+      return;
+    }
+    addItem(product.id, selectedSize, selectedColor, quantity);
     navigate("/cart");
   };
 
@@ -115,25 +118,6 @@ export default function ProductDetailPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           <div>
-            {hasColorImages && (
-              <div className="flex flex-wrap gap-2 mb-3">
-                {product.colors.map((c) => (
-                  <button
-                    key={c}
-                    type="button"
-                    onClick={() => handleColorChange(c)}
-                    className={`min-w-[72px] px-3 py-2 text-[12px] border transition-colors ${
-                      color === c
-                        ? "border-[#333] bg-[#333] text-white"
-                        : "border-[#ccc] text-[#555] hover:border-[#333]"
-                    }`}
-                  >
-                    {c}
-                  </button>
-                ))}
-              </div>
-            )}
-
             <div className="aspect-[3/4] bg-[#f7f7f7] overflow-hidden mb-3">
               <ProductImageSlideshow
                 images={displayImages}
@@ -241,13 +225,11 @@ export default function ProductDetailPage() {
                     </th>
                     <td className="py-3 px-3">
                       <select
-                        value={color}
-                        onChange={(e) => handleColorChange(e.target.value)}
+                        value={selectedColor}
+                        onChange={(e) => setSelectedColor(e.target.value)}
                         className="w-full max-w-[240px] border border-[#ccc] bg-white px-3 py-2 text-[13px] focus:outline-none focus:border-[#333]"
                       >
-                        <option value="" disabled>
-                          옵션 선택
-                        </option>
+                        <option value="">옵션 선택</option>
                         {product.colors.map((c) => (
                           <option key={c} value={c}>
                             {c}
@@ -264,13 +246,11 @@ export default function ProductDetailPage() {
                     </th>
                     <td className="py-3 px-3">
                       <select
-                        value={size}
+                        value={selectedSize}
                         onChange={(e) => setSelectedSize(e.target.value)}
                         className="w-full max-w-[240px] border border-[#ccc] bg-white px-3 py-2 text-[13px] focus:outline-none focus:border-[#333]"
                       >
-                        <option value="" disabled>
-                          옵션 선택
-                        </option>
+                        <option value="">옵션 선택</option>
                         {product.sizes.map((s) => (
                           <option key={s} value={s}>
                             {s}
@@ -323,14 +303,16 @@ export default function ProductDetailPage() {
               <button
                 type="button"
                 onClick={handleBuyNow}
-                className="py-3.5 text-[12px] md:text-[13px] bg-[#333] text-white hover:bg-[#111] transition-colors"
+                disabled={!optionsReady}
+                className="py-3.5 text-[12px] md:text-[13px] bg-[#333] text-white hover:bg-[#111] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 BUY NOW
               </button>
               <button
                 type="button"
                 onClick={handleAddToCart}
-                className="py-3.5 text-[12px] md:text-[13px] border border-[#333] text-[#333] hover:bg-[#333] hover:text-white transition-colors"
+                disabled={!optionsReady}
+                className="py-3.5 text-[12px] md:text-[13px] border border-[#333] text-[#333] hover:bg-[#333] hover:text-white transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 {added ? "ADDED ✓" : "ADD TO CART"}
               </button>

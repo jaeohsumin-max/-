@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { formatPrice, getDiscountPercent } from "../data/products";
+import ProductCardMedia from "./ProductCardMedia";
 
 export default function ProductCard({
   product,
@@ -15,14 +16,10 @@ export default function ProductCard({
   if (mall) {
     return (
       <Link to={`/product/${product.id}`} className="group block text-left">
-        <div className="relative aspect-[3/4] overflow-hidden bg-[#f5f5f5] mb-2">
-          <img
-            src={product.images[0]}
-            alt={product.name}
-            className="w-full h-full object-cover group-hover:opacity-95 transition-opacity"
-            loading="lazy"
-          />
-        </div>
+        <ProductCardMedia
+          product={product}
+          className="aspect-[3/4] mb-2 group-hover:opacity-95 transition-opacity"
+        />
         <div className="flex flex-wrap gap-1 mb-1 min-h-[14px]">
           {isBest && (
             <span className="text-[9px] text-[#888] border border-[#ddd] px-1">
@@ -68,13 +65,10 @@ export default function ProductCard({
 
   return (
     <Link to={`/product/${product.id}`} className="group block">
-      <div className="relative aspect-[3/4] overflow-hidden bg-[#f5f5f5] mb-2 md:mb-3">
-        <img
-          src={product.images[0]}
-          alt={product.name}
-          className="w-full h-full object-cover group-hover:opacity-95 transition-opacity"
-          loading="lazy"
-        />
+      <ProductCardMedia
+        product={product}
+        className="aspect-[3/4] mb-2 md:mb-3 group-hover:opacity-95 transition-opacity"
+      >
         {product.badge && (
           <span className="absolute top-2 left-2 bg-black text-white text-[9px] px-1.5 py-0.5">
             {product.badge}
@@ -85,12 +79,12 @@ export default function ProductCard({
             {discount}%
           </span>
         )}
-        <div className="absolute inset-x-0 bottom-0 flex opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="absolute inset-x-0 bottom-0 z-[2] flex opacity-0 group-hover:opacity-100 transition-opacity">
           <span className="flex-1 bg-black/80 text-white text-[10px] py-2 text-center">
             장바구니 담기
           </span>
         </div>
-      </div>
+      </ProductCardMedia>
 
       <p className={nameClass}>{product.name}</p>
 
