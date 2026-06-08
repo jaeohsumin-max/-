@@ -158,17 +158,17 @@ export const PRODUCTS = [
     description:
       "심플하면서도 상체가 정말 말라 보이는 실루엣을 완성해 주는 하트 스퀘어넥 골지 니트입니다. 은근하게 파인 하트넥 디자인이 목선과 쇄골 라인을 가장 예쁘게 강조해 주어 완벽한 여리핏을 연출해 줍니다.",
     images: [
+      "/products/mood-knit-top/07.png",
       "/products/mood-knit-top/03.png",
       "/products/mood-knit-top/04.png",
       "/products/mood-knit-top/05.png",
-      "/products/mood-knit-top/07.png",
       "/products/mood-knit-top/01.png",
       "/products/mood-knit-top/02.png",
       "/products/mood-knit-top/06.png",
     ],
     listImages: [
+      "/products/mood-knit-top/07.png",
       "/products/mood-knit-top/01.png",
-      "/products/mood-knit-top/03.png",
     ],
     sizes: ["FREE"],
     colors: ["Pink", "Black", "Brown", "White"],
