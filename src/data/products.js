@@ -171,7 +171,7 @@ export const PRODUCTS = [
       "/products/mood-knit-top/03.png",
     ],
     sizes: ["FREE"],
-    colors: ["Pink", "Black", "Brown"],
+    colors: ["Pink", "Black", "Brown", "White"],
     stock: 60,
     detail: {
       comment: [
