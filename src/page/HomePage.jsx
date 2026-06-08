@@ -68,7 +68,7 @@ export default function HomePage() {
       <MallSection
         eyebrow="실시간 인기 순위!"
         title="NOW BEST"
-        products={nowBest.length ? nowBest : newArrivals}
+        products={nowBest}
         moreLink="/shop/best"
         pageSize={8}
       />
@@ -78,6 +78,13 @@ export default function HomePage() {
         products={bestItems}
         moreLink="/shop/best"
         pageSize={12}
+      />
+
+      <MallSection
+        title="NEW ARRIVALS"
+        products={newArrivals}
+        moreLink="/shop/new"
+        pageSize={8}
       />
     </>
   );

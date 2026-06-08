@@ -211,9 +211,7 @@ export function getCategoryPath(categoryId) {
 export function getProductsByCategory(category) {
   if (!category || category === "all") return PRODUCTS;
   if (category === "new") {
-    return PRODUCTS.filter(
-      (p) => hasProductBadge(p, "NEW") || p.originalPrice,
-    );
+    return PRODUCTS.filter((p) => hasProductBadge(p, "NEW"));
   }
   if (category === "best") {
     return PRODUCTS.filter((p) => hasProductBadge(p, "BEST"));
@@ -227,19 +225,11 @@ export function getProductsByCategory(category) {
 }
 
 export function getNewArrivals(limit = 20) {
-  return [...PRODUCTS]
-    .sort(
-      (a, b) =>
-        (hasProductBadge(b, "NEW") ? 1 : 0) - (hasProductBadge(a, "NEW") ? 1 : 0),
-    )
-    .slice(0, limit);
+  return PRODUCTS.filter((p) => hasProductBadge(p, "NEW")).slice(0, limit);
 }
 
 export function getBestItems(limit = 20) {
-  return [...PRODUCTS]
-    .filter((p) => hasProductBadge(p, "BEST") || p.reviews >= 150)
-    .sort((a, b) => b.reviews - a.reviews)
-    .slice(0, limit);
+  return PRODUCTS.filter((p) => hasProductBadge(p, "BEST")).slice(0, limit);
 }
 
 export function formatPrice(price) {
