@@ -97,7 +97,7 @@ export const PRODUCTS = [
   },
   {
     id: "p15",
-    name: "[살안타/데일리룩] 배색 나그랑 루즈넥 긴팔 티셔츠",
+    name: "[살안타/데일리룩] 배색 여름 긴팔 티셔츠",
     category: "top",
     price: 11300,
     originalPrice: 12600,
@@ -119,7 +119,7 @@ export const PRODUCTS = [
       "/products/raglan-tee/08.png",
     ],
     sizes: ["FREE"],
-    colors: ["White Navy", "Gray Burgundy"],
+    colors: ["Navy", "Purple"],
     stock: 56,
     detail: {
       comment: [

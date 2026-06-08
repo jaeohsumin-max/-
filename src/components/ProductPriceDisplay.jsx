@@ -47,8 +47,8 @@ function getColorSwatchValues(color) {
     Gray: ["#a8a8a8"],
     Black: ["#222222"],
     Pink: ["#f4c4d0"],
-    "White Navy": ["#ffffff", "#1f2d4d"],
-    "Gray Burgundy": ["#b0b0b0", "#6d3b4b"],
+    Navy: ["#243b5c"],
+    Purple: ["#7a5c8f"],
   };
 
   return map[color] ?? ["#cccccc"];
