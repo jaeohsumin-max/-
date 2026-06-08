@@ -30,6 +30,7 @@ export const PRODUCTS = [
       "/products/popcorn-cardigan/gray-1.png",
       "/products/popcorn-cardigan/gray-2.png",
       "/products/popcorn-cardigan/gray-3.png",
+      "/products/popcorn-cardigan/gray-4.png",
     ],
     colorImages: {
       Ivory: [
@@ -40,6 +41,7 @@ export const PRODUCTS = [
         "/products/popcorn-cardigan/gray-1.png",
         "/products/popcorn-cardigan/gray-2.png",
         "/products/popcorn-cardigan/gray-3.png",
+        "/products/popcorn-cardigan/gray-4.png",
       ],
       Black: ["/products/popcorn-cardigan/gray-3.png"],
     },
