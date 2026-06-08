@@ -74,13 +74,13 @@ export const PRODUCTS = [
     description:
       "얼굴에 형광등을 켜주는 화사한 딸기우유 핑크 컬러로, 입자마자 사랑스러운 분위기가 가득해지는 블라우스입니다. 넥라인의 은은한 레이스 디테일과 바스트 부분의 리본 셔링이 포인트가 되어주며, 과하지 않은 퍼프 소매가 팔뚝살을 자연스럽게 커버해 줍니다.",
     images: [
+      "/products/rosy-blouse/08.png",
       "/products/rosy-blouse/01.png",
       "/products/rosy-blouse/02.png",
       "/products/rosy-blouse/03.png",
       "/products/rosy-blouse/04.png",
       "/products/rosy-blouse/05.png",
       "/products/rosy-blouse/07.png",
-      "/products/rosy-blouse/08.png",
       "/products/rosy-blouse/09.png",
     ],
     sizes: ["FREE"],
