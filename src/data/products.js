@@ -258,6 +258,43 @@ export const PRODUCTS = [
     },
   },
   {
+    id: "p14",
+    name: "[청순여리/실물극찬] 로지 스퀘어넥 셔링 블라우스",
+    category: "top",
+    price: 22900,
+    originalPrice: 32900,
+    rating: 4.9,
+    reviews: 0,
+    badge: "BEST",
+    badges: ["BEST", "NEW"],
+    tagline:
+      "청순함과 여리여리함을 동시에! 스퀘어넥&오프숄더 투웨이 연출이 가능한 로맨틱 블라우스",
+    description:
+      "얼굴에 형광등을 켜주는 화사한 딸기우유 핑크 컬러로, 입자마자 사랑스러운 분위기가 가득해지는 블라우스입니다. 넥라인의 은은한 레이스 디테일과 바스트 부분의 리본 셔링이 포인트가 되어주며, 과하지 않은 퍼프 소매가 팔뚝살을 자연스럽게 커버해 줍니다.",
+    images: [
+      "/products/rosy-blouse/01.png",
+      "/products/rosy-blouse/02.png",
+      "/products/rosy-blouse/03.png",
+      "/products/rosy-blouse/04.png",
+      "/products/rosy-blouse/05.png",
+      "/products/rosy-blouse/06.png",
+      "/products/rosy-blouse/07.png",
+    ],
+    sizes: ["FREE"],
+    colors: ["Pink"],
+    stock: 52,
+    detail: {
+      comment: [
+        "얼굴에 형광등을 켜주는 화사한 딸기우유 핑크 컬러의 로맨틱 블라우스",
+        "입자마자 사랑스러운 분위기가 가득해지며, 넥라인 레이스와 바스트 리본 셔링이 포인트가 됩니다",
+        "과하지 않은 퍼프 소매가 팔뚝살을 자연스럽게 커버해 줍니다",
+        "어깨를 올려 청순한 스퀘어넥으로, 살짝 내려 여리여리한 오프숄더로 연출할 수 있는 투웨이 디자인",
+        "스퀘어넥과 오프숄더 두 가지 스타일링이 가능해 활용도가 높은 아이템입니다",
+        "데이트룩, 휴양지룩, 피크닉룩으로 강력 추천하는 데일리 블라우스",
+      ],
+    },
+  },
+  {
     id: "p12",
     name: "A라인 롱 스커트",
     category: "skirt",
