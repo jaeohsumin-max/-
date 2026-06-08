@@ -119,18 +119,18 @@ export const PRODUCTS = [
     description:
       "여유 있게 파인 보트넥 디자인으로, 한쪽 어깨를 살짝 내려 은근한 오프숄더로 연출해 주시면 목선과 쇄골 라인이 한층 더 여리여리하게 돋보입니다. 어깨 라인이 부각되지 않는 나그랑(래글런) 소매 배색이 상체를 더욱 슬림해 보이게 만들어줍니다.",
     images: [
+      "/products/raglan-tee/07.png",
       "/products/raglan-tee/01.png",
       "/products/raglan-tee/02.png",
       "/products/raglan-tee/03.png",
       "/products/raglan-tee/04.png",
       "/products/raglan-tee/05.png",
       "/products/raglan-tee/06.png",
-      "/products/raglan-tee/07.png",
       "/products/raglan-tee/08.png",
     ],
     listImages: [
-      "/products/raglan-tee/08.png",
-      "/products/raglan-tee/06.png",
+      "/products/raglan-tee/07.png",
+      "/products/raglan-tee/03.png",
     ],
     sizes: ["FREE"],
     colors: ["Navy", "Purple"],
