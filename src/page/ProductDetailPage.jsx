@@ -355,7 +355,7 @@ export default function ProductDetailPage() {
                           loading="lazy"
                         />
                         {label && (
-                          <p className="mt-4 text-center text-[13px] md:text-[14px] text-[#333] tracking-wide">
+                          <p className="mt-5 text-center text-[18px] md:text-[22px] font-medium text-[#111] tracking-wide">
                             {label}
                           </p>
                         )}

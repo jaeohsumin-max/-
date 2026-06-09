@@ -49,6 +49,15 @@ export const PRODUCTS = [
       ],
       Black: ["/products/popcorn-cardigan/gray-3.png"],
     },
+    detailImages: [
+      { src: "/products/popcorn-cardigan/detail-ivory.png", label: "Ivory" },
+      { src: "/products/popcorn-cardigan/detail-gray.png", label: "Gray" },
+      {
+        src: "/products/popcorn-cardigan/detail-colors.png",
+        label: "Ivory · Gray · Black",
+      },
+      { src: "/products/popcorn-cardigan/detail-black.png", label: "Black" },
+    ],
     sizes: ["FREE"],
     colors: ["Ivory", "Gray", "Black"],
     stock: 48,
