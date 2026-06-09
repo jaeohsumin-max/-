@@ -341,16 +341,27 @@ export default function ProductDetailPage() {
                 </div>
               )}
               {product.detailImages?.length > 0 && (
-                <div className="mt-10 space-y-2">
-                  {product.detailImages.map((img, i) => (
-                    <img
-                      key={`detail-${img}-${i}`}
-                      src={img}
-                      alt={`${product.name} 상세 ${i + 1}`}
-                      className="w-full"
-                      loading="lazy"
-                    />
-                  ))}
+                <div className="mt-16 md:mt-24 pt-10 md:pt-14 space-y-12 md:space-y-16">
+                  {product.detailImages.map((item, i) => {
+                    const src = typeof item === "string" ? item : item.src;
+                    const label = typeof item === "string" ? null : item.label;
+
+                    return (
+                      <div key={`detail-${src}-${i}`}>
+                        <img
+                          src={src}
+                          alt={`${product.name} ${label ?? "상세"} ${i + 1}`}
+                          className="w-full"
+                          loading="lazy"
+                        />
+                        {label && (
+                          <p className="mt-4 text-center text-[13px] md:text-[14px] text-[#333] tracking-wide">
+                            {label}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </>
