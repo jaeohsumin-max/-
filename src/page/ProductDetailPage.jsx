@@ -316,29 +316,43 @@ export default function ProductDetailPage() {
                   {product.description}
                 </p>
               )}
-              {colorImageGroups.some((g) => g.images.length > 0) && (
-                <div className="mt-10 space-y-10">
-                  {colorImageGroups.map((group) => (
-                    <div key={group.color ?? "all"}>
-                      {group.color && (
-                        <h4 className="text-[13px] font-semibold text-[#111] mb-3 pb-2 border-b border-[#eee]">
-                          {group.color}
-                        </h4>
-                      )}
-                      <div className="space-y-2">
-                        {group.images.map((img, i) => (
-                          <img
-                            key={`${group.color}-${img}-${i}`}
-                            src={img}
-                            alt={`${product.name} ${group.color ?? ""} ${i + 1}`}
-                            className="w-full"
-                            loading="lazy"
-                          />
-                        ))}
-                      </div>
-                    </div>
+              {product.detailImages?.length > 0 ? (
+                <div className="mt-10 space-y-2">
+                  {product.detailImages.map((img, i) => (
+                    <img
+                      key={`detail-${img}-${i}`}
+                      src={img}
+                      alt={`${product.name} 상세 ${i + 1}`}
+                      className="w-full"
+                      loading="lazy"
+                    />
                   ))}
                 </div>
+              ) : (
+                colorImageGroups.some((g) => g.images.length > 0) && (
+                  <div className="mt-10 space-y-10">
+                    {colorImageGroups.map((group) => (
+                      <div key={group.color ?? "all"}>
+                        {group.color && (
+                          <h4 className="text-[13px] font-semibold text-[#111] mb-3 pb-2 border-b border-[#eee]">
+                            {group.color}
+                          </h4>
+                        )}
+                        <div className="space-y-2">
+                          {group.images.map((img, i) => (
+                            <img
+                              key={`${group.color}-${img}-${i}`}
+                              src={img}
+                              alt={`${product.name} ${group.color ?? ""} ${i + 1}`}
+                              className="w-full"
+                              loading="lazy"
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )
               )}
             </>
           )}

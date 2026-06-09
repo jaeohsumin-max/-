@@ -171,6 +171,12 @@ export const PRODUCTS = [
       "/products/mood-knit-top/01.png",
       "/products/mood-knit-top/06.png",
     ],
+    detailImages: [
+      "/products/mood-knit-top/white.png",
+      "/products/mood-knit-top/brown.png",
+      "/products/mood-knit-top/pink.png",
+      "/products/mood-knit-top/black.png",
+    ],
     sizes: ["FREE"],
     colors: ["Pink", "Black", "Brown", "White"],
     stock: 60,
