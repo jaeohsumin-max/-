@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { getBestItems, getNewArrivals } from "../data/products";
-import heroGif from "../assets/output.gif";
 
 function MallSection({ eyebrow, title, products, moreLink, pageSize = 8 }) {
   const [page, setPage] = useState(1);
@@ -56,14 +55,6 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="w-full bg-white flex items-center justify-center py-2 md:py-4 border-b border-[#f0f0f0]">
-        <img
-          src={heroGif}
-          alt="CODEMUSE"
-          className="w-full max-w-3xl max-h-[42vh] object-contain mx-auto px-4"
-        />
-      </section>
-
       <MallSection
         eyebrow="실시간 인기 순위!"
         title="NOW BEST"
