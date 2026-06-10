@@ -15,12 +15,13 @@ export default function ProductCardMedia({ product, className = "", children }) 
           index={imageIndex}
           onIndexChange={setImageIndex}
           autoPlay
+          mirrorCrop
         />
       ) : (
         <img
           src={images[0]}
           alt={product.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-[center_62%]"
           loading="lazy"
         />
       )}

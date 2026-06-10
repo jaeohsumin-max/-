@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 const DEFAULT_INTERVAL_MS = 2200;
 const MANUAL_SELECT_PAUSE_MS = 5000;
+const MIRROR_OBJECT_POSITION = "center 62%";
 
 export default function ProductImageSlideshow({
   images,
@@ -11,6 +12,7 @@ export default function ProductImageSlideshow({
   autoPlay = true,
   intervalMs = DEFAULT_INTERVAL_MS,
   className = "",
+  mirrorCrop = false,
 }) {
   const [hoverPaused, setHoverPaused] = useState(false);
   const [manualPaused, setManualPaused] = useState(false);
@@ -81,6 +83,7 @@ export default function ProductImageSlideshow({
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[900ms] ease-in-out ${
             i === activeIndex ? "opacity-100 z-[1]" : "opacity-0 z-0"
           }`}
+          style={mirrorCrop ? { objectPosition: MIRROR_OBJECT_POSITION } : undefined}
         />
       ))}
     </div>

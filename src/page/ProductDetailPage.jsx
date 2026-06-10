@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ProductImageSlideshow from "../components/ProductImageSlideshow";
+import MirrorShotImage from "../components/MirrorShotImage";
 import ProductPriceDisplay, { ColorSwatches } from "../components/ProductPriceDisplay";
 import { useCart } from "../context/CartContext";
 import {
@@ -125,6 +126,7 @@ export default function ProductDetailPage() {
                 index={imageIndex}
                 onIndexChange={setImageIndex}
                 autoPlay={displayImages.length > 1}
+                mirrorCrop
               />
             </div>
             {displayImages.length > 1 && (
@@ -141,7 +143,7 @@ export default function ProductDetailPage() {
                     <img
                       src={img}
                       alt=""
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-[center_62%]"
                     />
                   </button>
                 ))}
@@ -327,12 +329,10 @@ export default function ProductDetailPage() {
                       )}
                       <div className="space-y-2">
                         {group.images.map((img, i) => (
-                          <img
+                          <MirrorShotImage
                             key={`${group.color}-${img}-${i}`}
                             src={img}
                             alt={`${product.name} ${group.color ?? ""} ${i + 1}`}
-                            className="w-full"
-                            loading="lazy"
                           />
                         ))}
                       </div>
