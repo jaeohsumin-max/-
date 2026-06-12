@@ -273,8 +273,6 @@ export const PRODUCTS = [
       "/products/lace-cami/08.png",
       "/products/lace-cami/09.png",
       "/products/lace-cami/10.png",
-      "/products/lace-cami/11.png",
-      "/products/lace-cami/12.png",
     ],
     listImages: [
       "/products/lace-cami/01.png",
@@ -284,8 +282,8 @@ export const PRODUCTS = [
     colors: ["White", "Mint"],
     stock: 50,
     detailImages: [
-      { src: "/products/lace-cami/white.png", label: "White" },
-      { src: "/products/lace-cami/mint.png", label: "Mint" },
+      { src: "/products/lace-cami/white-mannequin.png", label: "White" },
+      { src: "/products/lace-cami/mint-mannequin.png", label: "Mint" },
     ],
     detail: {
       commentImage: "/products/lace-cami/01.png",
