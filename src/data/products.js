@@ -41,7 +41,7 @@ export const PRODUCTS = [
         "/products/popcorn-cardigan/ivory-1.png",
         "/products/popcorn-cardigan/ivory-2.png",
       ],
-      Gray: [
+      Melange: [
         "/products/popcorn-cardigan/gray-1.png",
         "/products/popcorn-cardigan/gray-2.png",
         "/products/popcorn-cardigan/gray-3.png",
@@ -50,12 +50,12 @@ export const PRODUCTS = [
     },
     detailImages: [
       { src: "/products/popcorn-cardigan/detail-ivory.png", label: "Ivory" },
-      { src: "/products/popcorn-cardigan/detail-gray.png", label: "Gray" },
+      { src: "/products/popcorn-cardigan/detail-gray.png", label: "Melange" },
       { src: "/products/popcorn-cardigan/detail-black.png", label: "Black" },
       { src: "/products/popcorn-cardigan/detail-colors.png" },
     ],
     sizes: ["FREE"],
-    colors: ["Ivory", "Gray", "Black"],
+    colors: ["Ivory", "Melange", "Black"],
     stock: 48,
     detail: {
       commentImage: "/products/popcorn-cardigan/ivory-1.png",
@@ -65,6 +65,9 @@ export const PRODUCTS = [
         "드롭 숄더로 여리여리한 실루엣을 원하시는 분",
         "나시·탑 위에 레이어드하기 좋은 시즌리스 아이템을 찾으셨던 분",
       ],
+      composition: "아크릴 100",
+      size: "FREE",
+      modelSize: "Ivory FREE 사이즈 착용",
     },
   },
   {
@@ -144,6 +147,8 @@ export const PRODUCTS = [
         "나그랑 소매로 상체가 슬림해 보이길 원하시는 분",
         "여름 실내 에어컨 룩에 활용하기 좋은 긴팔 티를 찾으셨던 분",
       ],
+      composition: "폴리에스테르 65 레이온 35",
+      size: "FREE",
     },
   },
   {
@@ -191,6 +196,11 @@ export const PRODUCTS = [
         "쫀쫀한 골지 소재로 군살을 잡아주는 핏을 선호하시는 분",
         "스커트·팬츠 모두 잘 어울리는 데일리 니트를 찾으셨던 분",
       ],
+      composition: "면 57 모달 38 스판 5",
+      size: {
+        labels: "가슴단면 / 어깨단면 / 총길이 / 팔길이 / 암홀(cm)",
+        values: "30 / 29 / 50 / 9 / 17",
+      },
     },
   },
   {
@@ -235,6 +245,7 @@ export const PRODUCTS = [
         "부해 보임 없이 상체 라인을 깔끔하게 잡아주는 여리여리한 스탠다드 핏을 원하시는 분",
         "스커트와 러블리하게, 팬츠와 캐주얼하게 다양한 믹스매치 코디를 즐기시는 분",
       ],
+      modelSize: "Light Yellow FREE 사이즈 착용",
     },
   },
 ];

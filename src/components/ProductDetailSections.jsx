@@ -65,16 +65,65 @@ export function ProductComment({ lines, image, productName = "" }) {
   );
 }
 
+export function ProductSpecSection({ composition, size, modelSize }) {
+  if (!composition && !size && !modelSize) return null;
+
+  return (
+    <div className="py-10 md:py-14 text-center max-w-[640px] mx-auto border-t border-[#eee]">
+      {composition && (
+        <div className="mb-10 md:mb-12">
+          <h3 className="text-[13px] md:text-[14px] tracking-[0.25em] text-[#111] font-light mb-4">
+            혼용률
+          </h3>
+          <p className="text-[14px] text-[#444]">{composition}</p>
+        </div>
+      )}
+
+      {size && (
+        <div className="mb-10 md:mb-12">
+          <h3 className="text-[13px] md:text-[14px] tracking-[0.25em] text-[#111] font-light mb-4">
+            SIZE
+          </h3>
+          {typeof size === "object" ? (
+            <>
+              <p className="text-[13px] text-[#666] mb-2">{size.labels}</p>
+              <p className="text-[14px] text-[#333]">{size.values}</p>
+            </>
+          ) : (
+            <p className="text-[14px] text-[#333]">{size}</p>
+          )}
+        </div>
+      )}
+
+      {modelSize && (
+        <div>
+          <h3 className="text-[13px] md:text-[14px] tracking-[0.25em] text-[#111] font-light mb-4">
+            MODEL SIZE
+          </h3>
+          <p className="text-[14px] text-[#444]">{modelSize}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function RichProductDetail({ detail, productName = "" }) {
   if (!detail) return null;
 
   if (detail.comment?.length) {
     return (
-      <ProductComment
-        lines={detail.comment}
-        image={detail.commentImage}
-        productName={productName}
-      />
+      <>
+        <ProductComment
+          lines={detail.comment}
+          image={detail.commentImage}
+          productName={productName}
+        />
+        <ProductSpecSection
+          composition={detail.composition}
+          size={detail.size}
+          modelSize={detail.modelSize}
+        />
+      </>
     );
   }
 
