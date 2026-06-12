@@ -246,6 +246,7 @@ export const PRODUCTS = [
         "스커트와 러블리하게, 팬츠와 캐주얼하게 다양한 믹스매치 코디를 즐기시는 분",
       ],
       composition: "면 100",
+      size: "FREE",
       modelSize: "Light Yellow FREE 사이즈 착용",
     },
   },
