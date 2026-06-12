@@ -65,6 +65,13 @@ export function ProductComment({ lines, image, productName = "" }) {
   );
 }
 
+const SIZE_NOTICE_LINES = [
+  "*위의 실측사이즈는 '단면의 길이'입니다.",
+  "*측정 방법에 따라 1~3cm 정도의 차이가 있을 수 있습니다.",
+  "*사용자의 모니터의 화면 해상도, 화면 설정에 따라 색상의 차이가 있을 수 있습니다.",
+  "제품컷의 색상이 실제 제품 색상과 비슷합니다.",
+];
+
 export function ProductSpecSection({ composition, size, modelSize }) {
   if (!composition && !size && !modelSize) return null;
 
@@ -92,6 +99,11 @@ export function ProductSpecSection({ composition, size, modelSize }) {
           ) : (
             <p className="text-[14px] text-[#333]">{size}</p>
           )}
+          <div className="mt-8 md:mt-10 space-y-1.5 text-[12px] md:text-[13px] text-[#888] leading-relaxed">
+            {SIZE_NOTICE_LINES.map((line) => (
+              <p key={line}>{line}</p>
+            ))}
+          </div>
         </div>
       )}
 
