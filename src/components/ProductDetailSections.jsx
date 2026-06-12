@@ -38,28 +38,44 @@ export function ProductDetailTabs({ tabs, active, onChange }) {
   );
 }
 
-export function ProductComment({ lines }) {
+export function ProductComment({ lines, image, productName = "" }) {
   if (!lines?.length) return null;
 
   return (
-    <div className="py-10 md:py-14 text-center">
-      <h3 className="text-[13px] md:text-[14px] tracking-[0.35em] text-[#111] font-light mb-8 md:mb-10">
-        COMMENT
-      </h3>
-      <div className="max-w-[520px] mx-auto space-y-1 text-[13px] md:text-[14px] text-[#444] leading-[1.9] font-light">
+    <div className="py-10 md:py-14">
+      {image && (
+        <div className="max-w-[240px] md:max-w-[280px] mx-auto mb-8 md:mb-10">
+          <img
+            src={image}
+            alt={productName}
+            className="w-full rounded-2xl"
+            loading="lazy"
+          />
+        </div>
+      )}
+      <ul className="max-w-[520px] mx-auto space-y-3 text-[14px] md:text-[15px] text-[#444] leading-[1.75]">
         {lines.map((line) => (
-          <p key={line}>{line}</p>
+          <li key={line} className="flex gap-2.5">
+            <span className="shrink-0 text-[#999]">•</span>
+            <span>{line}</span>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }
 
-export function RichProductDetail({ detail }) {
+export function RichProductDetail({ detail, productName = "" }) {
   if (!detail) return null;
 
   if (detail.comment?.length) {
-    return <ProductComment lines={detail.comment} />;
+    return (
+      <ProductComment
+        lines={detail.comment}
+        image={detail.commentImage}
+        productName={productName}
+      />
+    );
   }
 
   return (

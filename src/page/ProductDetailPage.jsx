@@ -312,7 +312,7 @@ export default function ProductDetailPage() {
           {activeTab === "detail" && (
             <>
               {isRich ? (
-                <RichProductDetail detail={product.detail} />
+                <RichProductDetail detail={product.detail} productName={product.name} />
               ) : (
                 <p className="text-[13px] text-[#444] leading-relaxed whitespace-pre-line">
                   {product.description}
