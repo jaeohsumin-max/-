@@ -231,9 +231,9 @@ export const PRODUCTS = [
     colors: ["Light Yellow", "White", "Light Mint"],
     stock: 54,
     detailImages: [
-      { src: "/products/puzzle-tee/cream-back.png", label: "Light Yellow" },
       { src: "/products/puzzle-tee/cream-front.png", label: "Light Yellow" },
       { src: "/products/puzzle-tee/cream-detail.png", label: "Light Yellow" },
+      { src: "/products/puzzle-tee/cream-back.png", label: "Light Yellow" },
       { src: "/products/puzzle-tee/white.png", label: "White" },
       { src: "/products/puzzle-tee/mint.png", label: "Light Mint" },
     ],
@@ -245,6 +245,7 @@ export const PRODUCTS = [
         "부해 보임 없이 상체 라인을 깔끔하게 잡아주는 여리여리한 스탠다드 핏을 원하시는 분",
         "스커트와 러블리하게, 팬츠와 캐주얼하게 다양한 믹스매치 코디를 즐기시는 분",
       ],
+      composition: "면 100",
       modelSize: "Light Yellow FREE 사이즈 착용",
     },
   },

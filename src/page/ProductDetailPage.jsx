@@ -341,7 +341,7 @@ export default function ProductDetailPage() {
                 </div>
               )}
               {product.detailImages?.length > 0 && (
-                <div className="mt-16 md:mt-24 pt-10 md:pt-14 space-y-12 md:space-y-16">
+                <div className="mt-20 md:mt-32 pt-14 md:pt-20 space-y-12 md:space-y-16">
                   {product.detailImages.map((item, i) => {
                     const src = typeof item === "string" ? item : item.src;
                     const label = typeof item === "string" ? null : item.label;
