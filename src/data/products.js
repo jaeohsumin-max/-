@@ -250,6 +250,55 @@ export const PRODUCTS = [
       modelSize: "Light Yellow FREE 사이즈 착용",
     },
   },
+  {
+    id: "p18",
+    name: "[소장가치] 청량 민트코어 여리 무드 레이스 나시(2color)",
+    category: "top",
+    price: 11900,
+    originalPrice: 17900,
+    rating: 4.9,
+    reviews: 0,
+    badges: ["NEW"],
+    tagline:
+      "청량한 민트코어 무드, 화이트 크로스 레이스 포인트 슬림핏 나시",
+    description:
+      "청량하면서도 사랑스러운 민트코어 감성의 레이스 나시입니다. 은은한 화이트 크로스 레이스 배색이 포인트가 되며, Mint · White 두 가지 컬러로 여름철 단독 착용은 물론 이너로도 활용하기 좋습니다.",
+    images: [
+      "/products/lace-cami/01.png",
+      "/products/lace-cami/02.png",
+      "/products/lace-cami/03.png",
+      "/products/lace-cami/04.png",
+      "/products/lace-cami/05.png",
+      "/products/lace-cami/06.png",
+      "/products/lace-cami/07.png",
+      "/products/lace-cami/08.png",
+      "/products/lace-cami/09.png",
+      "/products/lace-cami/10.png",
+    ],
+    listImages: [
+      "/products/lace-cami/01.png",
+      "/products/lace-cami/02.png",
+    ],
+    sizes: ["FREE"],
+    colors: ["Mint", "White"],
+    stock: 50,
+    detailImages: [
+      { src: "/products/lace-cami/white-mannequin.png", label: "White" },
+      { src: "/products/lace-cami/mint-mannequin.png", label: "Mint" },
+    ],
+    detail: {
+      commentImage: "/products/lace-cami/01.png",
+      comment: [
+        "청량하면서도 사랑스러운 '민트코어' 감성의 룩을 연출하고 싶으신 분",
+        "여리여리한 목선과 쇄골 라인을 돋보이게 해주는 슬림핏 나시탑을 찾으셨던 분",
+        "은은한 화이트 크로스 레이스 배색으로 밋밋함 없이 포인트가 되는 이너를 원하시는 분",
+        "여름철 단독 착용은 물론, 얇은 가디건이나 볼레로 안에 활용도 높게 코디하고 싶으신 분",
+      ],
+      composition: "폴리에스테르 60 레이온 35 스판 5",
+      size: "FREE",
+      modelSize: "Mint FREE 사이즈 착용",
+    },
+  },
 ];
 
 export function getProductById(id) {
