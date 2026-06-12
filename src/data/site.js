@@ -12,7 +12,7 @@ export const CS_CENTER = {
 };
 
 export const BANK_INFO = {
-  bank: "신한 110-633-003213",
+  bank: "KB국민 217037-04-011020",
   holder: "이수민(코드뮤즈)",
 };
 
