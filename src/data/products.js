@@ -205,7 +205,7 @@ export const PRODUCTS = [
     tagline:
       "핀터레스트 감성의 빈티지 키치 무드, 퍼즐 패치 포인트 스탠다드 핏 티셔츠",
     description:
-      "몽글몽글 솜사탕 같은 퍼즐 패치 그래픽이 포인트가 되는 스탠다드 핏 티셔츠입니다. Cream · White · Mint 세 가지 컬러로 스커트와 러블리하게, 팬츠와 캐주얼하게 다양하게 연출할 수 있습니다.",
+      "몽글몽글 솜사탕 같은 퍼즐 패치 그래픽이 포인트가 되는 스탠다드 핏 티셔츠입니다. Light Yellow · White · Light Mint 세 가지 컬러로 스커트와 러블리하게, 팬츠와 캐주얼하게 다양하게 연출할 수 있습니다.",
     images: [
       "/products/puzzle-tee/01.png",
       "/products/puzzle-tee/02.png",
@@ -218,14 +218,14 @@ export const PRODUCTS = [
       "/products/puzzle-tee/02.png",
     ],
     sizes: ["FREE"],
-    colors: ["Cream", "White", "Mint"],
+    colors: ["Light Yellow", "White", "Light Mint"],
     stock: 54,
     detailImages: [
-      { src: "/products/puzzle-tee/cream-back.png", label: "Cream" },
-      { src: "/products/puzzle-tee/cream-front.png", label: "Cream" },
-      { src: "/products/puzzle-tee/cream-detail.png", label: "Cream" },
+      { src: "/products/puzzle-tee/cream-back.png", label: "Light Yellow" },
+      { src: "/products/puzzle-tee/cream-front.png", label: "Light Yellow" },
+      { src: "/products/puzzle-tee/cream-detail.png", label: "Light Yellow" },
       { src: "/products/puzzle-tee/white.png", label: "White" },
-      { src: "/products/puzzle-tee/mint.png", label: "Mint" },
+      { src: "/products/puzzle-tee/mint.png", label: "Light Mint" },
     ],
     detail: {
       commentImage: "/products/puzzle-tee/01.png",
