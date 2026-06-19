@@ -201,6 +201,29 @@ export function ProductCustomDetail({ sections }) {
           );
         }
 
+        if (section.type === "specInfo") {
+          return (
+            <div
+              key={key}
+              className="my-16 md:my-20 text-center text-[11px] md:text-[12px] text-[#555] leading-[2.4]"
+            >
+              {section.composition && (
+                <div className="mb-16 md:mb-20">
+                  <p className="mb-4">혼용률</p>
+                  <p>{section.composition}</p>
+                </div>
+              )}
+              {section.size && (
+                <div>
+                  <p className="mb-4">SIZE: {section.size.name ?? "FREE"}</p>
+                  {section.size.labels && <p>{section.size.labels}</p>}
+                  {section.size.values && <p className="my-5">{section.size.values}</p>}
+                </div>
+              )}
+            </div>
+          );
+        }
+
         if (section.type === "modelInfo") {
           return (
             <div

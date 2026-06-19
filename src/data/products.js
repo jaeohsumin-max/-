@@ -27,10 +27,15 @@ export const PRODUCTS = [
     images: [
       "/products/popcorn-cardigan/ivory-1.png",
       "/products/popcorn-cardigan/ivory-2.png",
+      "/products/popcorn-cardigan/ivory-extra-01.png",
+      "/products/popcorn-cardigan/ivory-extra-02.png",
       "/products/popcorn-cardigan/gray-1.png",
       "/products/popcorn-cardigan/gray-2.png",
       "/products/popcorn-cardigan/gray-3.png",
       "/products/popcorn-cardigan/gray-4.png",
+      "/products/popcorn-cardigan/melange-extra-01.png",
+      "/products/popcorn-cardigan/melange-extra-02.png",
+      "/products/popcorn-cardigan/melange-extra-03.png",
     ],
     listImages: [
       "/products/popcorn-cardigan/ivory-1.png",
@@ -40,12 +45,17 @@ export const PRODUCTS = [
       Ivory: [
         "/products/popcorn-cardigan/ivory-1.png",
         "/products/popcorn-cardigan/ivory-2.png",
+        "/products/popcorn-cardigan/ivory-extra-01.png",
+        "/products/popcorn-cardigan/ivory-extra-02.png",
       ],
       Melange: [
         "/products/popcorn-cardigan/gray-1.png",
         "/products/popcorn-cardigan/gray-2.png",
         "/products/popcorn-cardigan/gray-3.png",
         "/products/popcorn-cardigan/gray-4.png",
+        "/products/popcorn-cardigan/melange-extra-01.png",
+        "/products/popcorn-cardigan/melange-extra-02.png",
+        "/products/popcorn-cardigan/melange-extra-03.png",
       ],
     },
     detailImages: [
@@ -59,6 +69,125 @@ export const PRODUCTS = [
     stock: 48,
     detail: {
       commentImage: "/products/popcorn-cardigan/ivory-1.png",
+      customSections: [
+        {
+          type: "notice",
+          heading: "☝︎ 상품정보를 확대해서 볼 수 있어요!",
+          title: "[notice]",
+          lines: [
+            "배송 예정일은 데이터를 분석하여 자동으로 예측한 일정으로,",
+            "실제 출고일과는 무관한 점 참고 부탁드립니다.",
+          ],
+        },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/intro-01.png",
+          alt: "여름 시스루 가디건 인트로 1",
+        },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/intro-02.png",
+          alt: "여름 시스루 가디건 인트로 2",
+        },
+        {
+          type: "text",
+          lines: [
+            "어디에서나 있는 흔한 디자인이 아닌,",
+            "통기성 좋은 소재와 은은한 비침으로 소장 가치 충분한 가디건 ･ ♡",
+            "자연스럽게 떨어지는 드롭 숄더 라인으로",
+            "어깨 부각 없이 한층 더 여리여리한 실루엣을 완성해 주어요 !",
+            "나시나 탑 위에 툭 걸쳐만 주어도 뻔하지 않은 무드 가득 -",
+            "올여름 내내 남다른 감성으로 입어질 썸머 가디건으로 추천드려요",
+          ],
+        },
+        {
+          type: "specInfo",
+          composition: "아크릴 100",
+          size: {
+            name: "FREE",
+            labels: "가슴단면 / 어깨단면 / 총길이 / 팔길이 / 암홀(cm)",
+            values: "55 / 55 / 30 / 43 / 18",
+          },
+        },
+        { type: "label", text: "Ivory" },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/ivory-1.png",
+          alt: "Ivory",
+        },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/ivory-2.png",
+          alt: "Ivory",
+        },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/ivory-extra-01.png",
+          alt: "Ivory",
+        },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/ivory-extra-02.png",
+          alt: "Ivory",
+        },
+        { type: "label", text: "Melange" },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/gray-1.png",
+          alt: "Melange",
+        },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/gray-2.png",
+          alt: "Melange",
+        },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/gray-3.png",
+          alt: "Melange",
+        },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/gray-4.png",
+          alt: "Melange",
+        },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/melange-extra-01.png",
+          alt: "Melange",
+        },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/melange-extra-02.png",
+          alt: "Melange",
+        },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/melange-extra-03.png",
+          alt: "Melange",
+        },
+        { type: "dividerTitle", text: "DETAIL" },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/detail-ivory.png",
+          alt: "Ivory detail",
+        },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/detail-gray.png",
+          alt: "Melange detail",
+        },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/detail-black.png",
+          alt: "Black detail",
+        },
+        {
+          type: "image",
+          src: "/products/popcorn-cardigan/detail-colors.png",
+          alt: "Color detail",
+        },
+      ],
       comment: [
         "여름철 가볍게 걸치기 좋은 시스루 가디건을 찾으셨던 분",
         "은은한 비침과 통기성 좋은 소재를 선호하시는 분",
