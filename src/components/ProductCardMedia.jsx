@@ -5,9 +5,14 @@ import ProductImageSlideshow from "./ProductImageSlideshow";
 export default function ProductCardMedia({ product, className = "", children }) {
   const [imageIndex, setImageIndex] = useState(0);
   const images = getProductListImages(product);
+  const imageFit = product.thumbnailFit ?? "cover";
 
   return (
-    <div className={`relative overflow-hidden bg-[#f5f5f5] ${className}`}>
+    <div
+      className={`relative overflow-hidden ${
+        imageFit === "contain" ? "bg-white" : "bg-[#f5f5f5]"
+      } ${className}`}
+    >
       {images.length > 1 ? (
         <ProductImageSlideshow
           images={images}
@@ -15,13 +20,16 @@ export default function ProductCardMedia({ product, className = "", children }) 
           index={imageIndex}
           onIndexChange={setImageIndex}
           autoPlay
-          mirrorCrop
+          mirrorCrop={imageFit !== "contain"}
+          imageFit={imageFit}
         />
       ) : (
         <img
           src={images[0]}
           alt={product.name}
-          className="w-full h-full object-cover object-[center_62%]"
+          className={`w-full h-full ${
+            imageFit === "contain" ? "object-contain" : "object-cover object-[center_62%]"
+          }`}
           loading="lazy"
         />
       )}

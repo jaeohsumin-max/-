@@ -13,6 +13,7 @@ export default function ProductImageSlideshow({
   intervalMs = DEFAULT_INTERVAL_MS,
   className = "",
   mirrorCrop = false,
+  imageFit = "cover",
 }) {
   const [hoverPaused, setHoverPaused] = useState(false);
   const [manualPaused, setManualPaused] = useState(false);
@@ -80,10 +81,16 @@ export default function ProductImageSlideshow({
           src={src}
           alt={i === activeIndex ? alt : ""}
           aria-hidden={i !== activeIndex}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[900ms] ease-in-out ${
+          className={`absolute inset-0 w-full h-full ${
+            imageFit === "contain" ? "object-contain" : "object-cover"
+          } transition-opacity duration-[900ms] ease-in-out ${
             i === activeIndex ? "opacity-100 z-[1]" : "opacity-0 z-0"
           }`}
-          style={mirrorCrop ? { objectPosition: MIRROR_OBJECT_POSITION } : undefined}
+          style={
+            mirrorCrop && imageFit !== "contain"
+              ? { objectPosition: MIRROR_OBJECT_POSITION }
+              : undefined
+          }
         />
       ))}
     </div>
