@@ -421,22 +421,17 @@ export const PRODUCTS = [
         { type: "dividerTitle", text: "DETAIL" },
         {
           type: "image",
-          src: "/products/summer-pintuck-pants/pattern-detail.png",
-          alt: "detail pattern",
-        },
-        {
-          type: "image",
-          src: "https://d3ha2047wt6x28.cloudfront.net/6Cvyqk8ZXdI/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NTYwMjEzMTNtLnBuZw",
+          src: "/products/summer-pintuck-pants/detail-01.png",
           alt: "detail 1",
         },
         {
           type: "image",
-          src: "https://d3ha2047wt6x28.cloudfront.net/sutj9EX20_I/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NjI0ODk4MjltLmpwZWc",
+          src: "/products/summer-pintuck-pants/detail-02.png",
           alt: "detail 2",
         },
         {
           type: "image",
-          src: "https://d3ha2047wt6x28.cloudfront.net/atfZpErQnXw/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NjE5Mjc1MjNtLnBuZw",
+          src: "/products/summer-pintuck-pants/detail-03.png",
           alt: "detail 3",
         },
       ],
