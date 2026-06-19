@@ -243,7 +243,7 @@ export const PRODUCTS = [
     id: "p15",
     name: "[살안타/데일리룩] 배색 나그랑 여름 긴팔 티셔츠",
     category: "top",
-    price: 11300,
+    price: 9900,
     originalPrice: 12600,
     rating: 4.9,
     reviews: 0,
