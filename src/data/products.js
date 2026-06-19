@@ -327,9 +327,13 @@ export const PRODUCTS = [
         "https://d3ha2047wt6x28.cloudfront.net/6Cvyqk8ZXdI/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NTYwMjEzMTNtLnBuZw",
       customSections: [
         {
-          type: "image",
-          src: "/products/summer-pintuck-pants/notice.png",
-          alt: "notice",
+          type: "notice",
+          heading: "☝︎ 상품정보를 확대해서 볼 수 있어요!",
+          title: "[notice]",
+          lines: [
+            "배송 예정일은 데이터를 분석하여 자동으로 예측한 일정으로,",
+            "실제 출고일과는 무관한 점 참고 부탁드립니다.",
+          ],
         },
         {
           type: "image",
@@ -342,24 +346,28 @@ export const PRODUCTS = [
           alt: "fit detail",
         },
         {
-          type: "image",
-          src: "/products/summer-pintuck-pants/description.png",
-          alt: "description",
+          type: "text",
+          lines: [
+            "허리 라인에 빼꼼 보이는 체크 배색 밴딩과 얇은 스트링 디테일로",
+            "마치 트렁크 팬츠를 레이어드한 듯, 룩에 확실한 포인트를 주는 와이드 팬츠예요 ･+♡",
+            "프론트 중앙을 따라 핀턱처럼 길게 잡힌 절개 라인이 다리를 한층 더 길고 슬림해 보이게 해주고,",
+            "입은 듯 안 입은 듯 쾌적하고 가벼운 바스락 소재라 한여름까지 쭉 시원하게!",
+            "짱짱한 허리 고무줄 밴딩으로 하루 종일 입고 있어도 편안함은 물론이고요,",
+            "기본 무지 티셔츠나 크롭 나시에 가볍게 툭 입어만 주셔도 힙하고 트렌디한 무드가 완성돼요",
+            "편안한데 예쁘기까지 해서 자꾸만 손이 갈 올여름 데일리 포인트 팬츠로 사심 듬뿍 담아 적극 추천드려요",
+          ],
         },
-        {
-          type: "image",
-          src: "/products/summer-pintuck-pants/size.png",
-          alt: "size",
-        },
-        {
-          type: "image",
-          src: "/products/summer-pintuck-pants/model-info.png",
-          alt: "model info",
-        },
+        { type: "sizeInfo" },
+        { type: "modelInfo", text: "169cm 49kg" },
         { type: "label", text: "베이지" },
         {
           type: "image",
           src: "https://d3ha2047wt6x28.cloudfront.net/6Cvyqk8ZXdI/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NTYwMjEzMTNtLnBuZw",
+          alt: "베이지",
+        },
+        {
+          type: "image",
+          src: "/products/summer-pintuck-pants/fit-gif.png",
           alt: "베이지",
         },
         { type: "label", text: "먹색" },
@@ -374,6 +382,11 @@ export const PRODUCTS = [
           alt: "먹색",
         },
         { type: "dividerTitle", text: "DETAIL" },
+        {
+          type: "image",
+          src: "/products/summer-pintuck-pants/pattern-detail.png",
+          alt: "detail pattern",
+        },
         {
           type: "image",
           src: "https://d3ha2047wt6x28.cloudfront.net/6Cvyqk8ZXdI/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NTYwMjEzMTNtLnBuZw",

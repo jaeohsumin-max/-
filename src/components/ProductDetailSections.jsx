@@ -150,6 +150,69 @@ export function ProductCustomDetail({ sections }) {
           );
         }
 
+        if (section.type === "notice") {
+          return (
+            <div
+              key={key}
+              className="mb-8 text-center text-[11px] md:text-[12px] text-[#555] leading-relaxed"
+            >
+              {section.heading && (
+                <p className="mb-6 text-[18px] md:text-[20px] text-[#999]">
+                  {section.heading}
+                </p>
+              )}
+              {section.title && <p className="mb-5 text-[#111]">{section.title}</p>}
+              {section.lines?.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
+          );
+        }
+
+        if (section.type === "text") {
+          return (
+            <div
+              key={key}
+              className="my-14 md:my-16 text-center text-[11px] md:text-[12px] text-[#555] leading-[2.2]"
+            >
+              {section.lines?.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
+          );
+        }
+
+        if (section.type === "sizeInfo") {
+          return (
+            <div
+              key={key}
+              className="my-16 md:my-20 text-center text-[11px] md:text-[12px] text-[#555] leading-[2.4]"
+            >
+              <p className="mb-4">SIZE: FREE</p>
+              <p>허리 / 밑위길이 / 허벅지 단면 / 총장 / 엉덩이 / 밑단 (cm)</p>
+              <p className="my-5">30 / 30 / 33 / 97 / 60 / 25</p>
+              <div className="mt-8 space-y-4">
+                <p>*위의 실측사이즈는 '단면의 길이'입니다.</p>
+                <p>*측정 방법에 따라 1~3cm 정도의 차이가 있을 수 있습니다.</p>
+                <p>*사용자의 모니터의 화면 해상도, 화면 설정에 따라 색상의 차이가 있을 수 있습니다.</p>
+                <p>제품컷의 색상이 실제 제품 색상과 비슷합니다.</p>
+              </div>
+            </div>
+          );
+        }
+
+        if (section.type === "modelInfo") {
+          return (
+            <div
+              key={key}
+              className="my-14 md:my-16 text-center text-[11px] md:text-[12px] text-[#555] leading-loose"
+            >
+              <p className="mb-3">MODEL INFO</p>
+              <p>{section.text}</p>
+            </div>
+          );
+        }
+
         if (section.type === "dividerTitle") {
           return (
             <div key={key} className="mt-16 mb-8">
