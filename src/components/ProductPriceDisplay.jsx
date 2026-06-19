@@ -51,6 +51,10 @@ function getColorSwatchValues(color) {
     White: ["#f5f5f5"],
     Navy: ["#243b5c"],
     Purple: ["#7a5c8f"],
+    베이지: ["#d8cdb8"],
+    그레이: ["#9f9f9f"],
+    먹색: ["#555555"],
+    블랙: ["#222222"],
   };
 
   return map[color] ?? ["#cccccc"];

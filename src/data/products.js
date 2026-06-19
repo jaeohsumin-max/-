@@ -298,6 +298,42 @@ export const PRODUCTS = [
       modelSize: "Mint FREE 사이즈 착용",
     },
   },
+  {
+    id: "p19",
+    name: "[체크배색/레이어드] 썸머 바스락 핀턱 와이드 팬츠",
+    category: "bottom",
+    price: 19900,
+    originalPrice: 24900,
+    rating: 4.9,
+    reviews: 0,
+    badges: ["NEW"],
+    tagline: "가볍고 시원한 바스락 소재에 체크 배색 허리 디테일이 포인트인 와이드 팬츠",
+    description:
+      "여름철 편하게 입기 좋은 바스락 와이드 팬츠입니다. 허리 체크 배색과 스트링 디테일이 레이어드한 듯 포인트가 되어주며, 핀턱 라인과 넉넉한 와이드 핏으로 데일리하게 활용하기 좋습니다.",
+    images: [
+      "https://d3ha2047wt6x28.cloudfront.net/6Cvyqk8ZXdI/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NTYwMjEzMTNtLnBuZw",
+      "https://d3ha2047wt6x28.cloudfront.net/sutj9EX20_I/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NjI0ODk4MjltLmpwZWc",
+      "https://d3ha2047wt6x28.cloudfront.net/atfZpErQnXw/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NjE5Mjc1MjNtLnBuZw",
+    ],
+    listImages: [
+      "https://d3ha2047wt6x28.cloudfront.net/6Cvyqk8ZXdI/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NTYwMjEzMTNtLnBuZw",
+      "https://d3ha2047wt6x28.cloudfront.net/sutj9EX20_I/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NjI0ODk4MjltLmpwZWc",
+    ],
+    sizes: ["FREE"],
+    colors: ["베이지", "그레이", "먹색", "블랙"],
+    stock: 61,
+    detail: {
+      commentImage:
+        "https://d3ha2047wt6x28.cloudfront.net/6Cvyqk8ZXdI/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NTYwMjEzMTNtLnBuZw",
+      comment: [
+        "여름철 가볍고 시원하게 입기 좋은 바스락 팬츠를 찾으셨던 분",
+        "허리 체크 배색과 스트링 디테일로 밋밋함 없이 포인트를 원하시는 분",
+        "핀턱 라인으로 자연스럽게 떨어지는 와이드 핏을 선호하시는 분",
+        "데일리룩부터 여행룩까지 편하게 활용할 팬츠를 찾으셨던 분",
+      ],
+      size: "FREE",
+    },
+  },
 ];
 
 export function getProductById(id) {
