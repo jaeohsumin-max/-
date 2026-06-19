@@ -623,7 +623,7 @@ export const PRODUCTS = [
     listImages: [
       "/products/summer-pintuck-pants/thumb-01-final.png",
     ],
-    thumbnailAspectRatio: "810 / 866",
+    thumbnailFit: "contain",
     sizes: ["FREE"],
     colors: ["베이지", "그레이", "먹색", "블랙"],
     stock: 61,
