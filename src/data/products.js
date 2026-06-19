@@ -252,6 +252,9 @@ export const PRODUCTS = [
     description:
       "여유 있게 파인 보트넥 디자인으로, 한쪽 어깨를 살짝 내려 은근한 오프숄더로 연출해 주시면 목선과 쇄골 라인이 한층 더 여리여리하게 돋보입니다. 어깨 라인이 부각되지 않는 나그랑(래글런) 소매 배색이 상체를 더욱 슬림해 보이게 만들어줍니다.",
     images: [
+      "/products/raglan-tee/thumb-01.png",
+      "/products/raglan-tee/thumb-02.png",
+      "/products/raglan-tee/thumb-03.png",
       "/products/raglan-tee/07.png",
       "/products/raglan-tee/01.png",
       "/products/raglan-tee/02.png",
@@ -260,16 +263,125 @@ export const PRODUCTS = [
       "/products/raglan-tee/05.png",
       "/products/raglan-tee/06.png",
       "/products/raglan-tee/08.png",
+      "/products/raglan-tee/navy-01.png",
+      "/products/raglan-tee/navy-02.png",
+      "/products/raglan-tee/navy-03.png",
+      "/products/raglan-tee/navy-04.png",
+      "/products/raglan-tee/navy-05.png",
+      "/products/raglan-tee/purple-01.png",
+      "/products/raglan-tee/purple-02.png",
+      "/products/raglan-tee/purple-03.png",
     ],
     listImages: [
-      "/products/raglan-tee/07.png",
-      "/products/raglan-tee/04.png",
+      "/products/raglan-tee/thumb-01.png",
+      "/products/raglan-tee/thumb-02.png",
+      "/products/raglan-tee/thumb-03.png",
     ],
     sizes: ["FREE"],
     colors: ["Navy", "Purple"],
     stock: 56,
     detail: {
       commentImage: "/products/raglan-tee/07.png",
+      customSections: [
+        {
+          type: "notice",
+          heading: "☝︎ 상품정보를 확대해서 볼 수 있어요!",
+          title: "[notice]",
+          lines: [
+            "배송 예정일은 데이터를 분석하여 자동으로 예측한 일정으로,",
+            "실제 출고일과는 무관한 점 참고 부탁드립니다.",
+          ],
+        },
+        {
+          type: "image",
+          src: "/products/raglan-tee/thumb-01.png",
+          alt: "나그랑 티 인트로 1",
+        },
+        {
+          type: "image",
+          src: "/products/raglan-tee/thumb-02.png",
+          alt: "나그랑 티 인트로 2",
+        },
+        {
+          type: "image",
+          src: "/products/raglan-tee/thumb-03.png",
+          alt: "나그랑 티 인트로 3",
+        },
+        {
+          type: "text",
+          lines: [
+            "깨끗한 배색 나그랑에 자연스럽게 떨어지는 워싱된 핏으로",
+            "은근하게 쇄골을 드러내어 여리여리한 무드 가득 ･ ♡",
+            "한여름에도 시원하게 입기 좋은 가볍고 얇은 소재감이라",
+            "뜨거운 자외선을 막아줄 쾌적한 살안타템으로 제격이에요 !",
+            "트렌디한 카프리 팬츠나 데님에 툭 매치해 주시면",
+            "뻔하지 않은 캐주얼 데미니룩 완성,",
+            "올여름 데일리 포인트 티셔츠로 적극 추천드려요 -",
+          ],
+        },
+        {
+          type: "specInfo",
+          composition: "폴리에스테르 65 레이온 35",
+          size: {
+            name: "FREE",
+            labels: "가슴단면 / 어깨단면 / 총길이 / 팔길이 / 암홀(cm)",
+            values: "40 / 44 / 64 / 75 / 22",
+          },
+        },
+        { type: "label", text: "Navy" },
+        {
+          type: "image",
+          src: "/products/raglan-tee/navy-01.png",
+          alt: "Navy",
+        },
+        {
+          type: "image",
+          src: "/products/raglan-tee/navy-02.png",
+          alt: "Navy",
+        },
+        {
+          type: "image",
+          src: "/products/raglan-tee/navy-03.png",
+          alt: "Navy",
+        },
+        {
+          type: "image",
+          src: "/products/raglan-tee/navy-04.png",
+          alt: "Navy",
+        },
+        {
+          type: "image",
+          src: "/products/raglan-tee/navy-05.png",
+          alt: "Navy",
+        },
+        { type: "label", text: "Purple" },
+        {
+          type: "image",
+          src: "/products/raglan-tee/purple-01.png",
+          alt: "Purple",
+        },
+        {
+          type: "image",
+          src: "/products/raglan-tee/purple-02.png",
+          alt: "Purple",
+        },
+        {
+          type: "image",
+          src: "/products/raglan-tee/purple-03.png",
+          alt: "Purple",
+        },
+        { type: "dividerTitle", text: "DETAIL" },
+        {
+          type: "image",
+          src: "/products/raglan-tee/detail-01.png",
+          alt: "Navy detail",
+        },
+        {
+          type: "image",
+          src: "/products/raglan-tee/detail-02.png",
+          alt: "Purple detail",
+        },
+      ],
       comment: [
         "꾸안꾸 데일리룩을 좋아하시는 분",
         "목선과 쇄골이 여리여리해 보이는 넥라인을 원하시는 분",
