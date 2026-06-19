@@ -573,8 +573,8 @@ export const PRODUCTS = [
       "/products/lace-cami/10.png",
     ],
     listImages: [
-      "/products/lace-cami/01.png",
-      "/products/lace-cami/02.png",
+      "/products/lace-cami/thumb-01.png",
+      "/products/lace-cami/thumb-02.png",
     ],
     sizes: ["FREE"],
     colors: ["White", "Mint"],
@@ -625,7 +625,6 @@ export const PRODUCTS = [
       "/products/summer-pintuck-pants/thumb-02.png",
       "/products/summer-pintuck-pants/thumb-03.png",
     ],
-    thumbnailFit: "contain",
     sizes: ["FREE"],
     colors: ["베이지", "그레이", "먹색", "블랙"],
     stock: 61,
