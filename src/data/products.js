@@ -295,6 +295,9 @@ export const PRODUCTS = [
     description:
       "심플하면서도 상체가 정말 말라 보이는 실루엣을 완성해 주는 하트 스퀘어넥 골지 니트입니다. 은근하게 파인 하트넥 디자인이 목선과 쇄골 라인을 가장 예쁘게 강조해 주어 완벽한 여리핏을 연출해 줍니다.",
     images: [
+      "/products/mood-knit-top/white-extra-01.png",
+      "/products/mood-knit-top/white-extra-02.png",
+      "/products/mood-knit-top/white-extra-03.png",
       "/products/mood-knit-top/07.png",
       "/products/mood-knit-top/03.png",
       "/products/mood-knit-top/04.png",
@@ -302,23 +305,183 @@ export const PRODUCTS = [
       "/products/mood-knit-top/01.png",
       "/products/mood-knit-top/02.png",
       "/products/mood-knit-top/06.png",
+      "/products/mood-knit-top/brown-extra-01.png",
+      "/products/mood-knit-top/brown-extra-02.png",
+      "/products/mood-knit-top/brown-extra-03.png",
     ],
     listImages: [
+      "/products/mood-knit-top/white-extra-01.png",
       "/products/mood-knit-top/07.png",
       "/products/mood-knit-top/01.png",
-      "/products/mood-knit-top/06.png",
     ],
     detailImages: [
-      { src: "/products/mood-knit-top/white.png", label: "White" },
-      { src: "/products/mood-knit-top/brown.png", label: "Brown" },
-      { src: "/products/mood-knit-top/pink.png", label: "Pink" },
-      { src: "/products/mood-knit-top/black.png", label: "Black" },
+      { src: "/products/mood-knit-top/detail-01.png", label: "White" },
+      { src: "/products/mood-knit-top/detail-02.png", label: "Brown" },
+      { src: "/products/mood-knit-top/detail-03.png", label: "Pink" },
+      { src: "/products/mood-knit-top/detail-04.png", label: "Black" },
+      { src: "/products/mood-knit-top/detail-05.png" },
     ],
     sizes: ["FREE"],
     colors: ["Pink", "Black", "Brown", "White"],
     stock: 60,
     detail: {
       commentImage: "/products/mood-knit-top/07.png",
+      customSections: [
+        {
+          type: "notice",
+          heading: "☝︎ 상품정보를 확대해서 볼 수 있어요!",
+          title: "[notice]",
+          lines: [
+            "배송 예정일은 데이터를 분석하여 자동으로 예측한 일정으로,",
+            "실제 출고일과는 무관한 점 참고 부탁드립니다.",
+          ],
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/intro-01.png",
+          alt: "골지니트 인트로 1",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/intro-02.png",
+          alt: "골지니트 인트로 2",
+        },
+        {
+          type: "text",
+          lines: [
+            "예쁜 쇄골 라인은 돋보이게 할 하트 스퀘어넥과",
+            "상체가 한층 슬림해 보이는 여리핏 실루엣 ♡",
+            "바디를 부드럽게 감싸는 쫀쫀한 골지 소재로",
+            "미운 군살은 쏙 잡아주어 핏감이 정말 예뻐요 !",
+            "스커트부터 편안한 팬츠까지 어디에나 찰떡 -",
+            "매일매일 손이 갈 데일리 니트로 추천드려요",
+          ],
+        },
+        {
+          type: "specInfo",
+          composition: "면 57 모달 38 스판 5",
+          size: {
+            name: "FREE",
+            labels: "가슴단면 / 어깨단면 / 총길이 / 팔길이 / 암홀(cm)",
+            values: "30 / 29 / 50 / 9 / 17",
+          },
+        },
+        { type: "label", text: "White" },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/white-extra-01.png",
+          alt: "White",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/white-extra-02.png",
+          alt: "White",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/white-extra-03.png",
+          alt: "White",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/white-extra-04.png",
+          alt: "White",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/white-extra-05.png",
+          alt: "White",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/white-extra-06.png",
+          alt: "White",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/white-extra-07.png",
+          alt: "White",
+        },
+        { type: "label", text: "Pink" },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/07.png",
+          alt: "Pink",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/03.png",
+          alt: "Pink",
+        },
+        { type: "label", text: "Brown" },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/01.png",
+          alt: "Brown",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/02.png",
+          alt: "Brown",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/brown-extra-01.png",
+          alt: "Brown",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/brown-extra-02.png",
+          alt: "Brown",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/brown-extra-03.png",
+          alt: "Brown",
+        },
+        { type: "label", text: "Black" },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/04.png",
+          alt: "Black",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/05.png",
+          alt: "Black",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/06.png",
+          alt: "Black",
+        },
+        { type: "dividerTitle", text: "DETAIL" },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/detail-01.png",
+          alt: "White detail",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/detail-02.png",
+          alt: "Brown detail",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/detail-03.png",
+          alt: "Pink detail",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/detail-04.png",
+          alt: "Black detail",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/detail-05.png",
+          alt: "Color detail",
+        },
+      ],
       comment: [
         "상체가 슬림해 보이는 여리핏 니트를 원하시는 분",
         "하트 스퀘어넥으로 쇄골 라인을 강조하고 싶으신 분",
