@@ -73,6 +73,7 @@ export default function ProductDetailPage() {
     CATEGORIES.find((c) => c.id === product.category)?.label ?? "";
   const lineTotal = product.price * quantity;
   const isRich = Boolean(product.detail);
+  const hasCustomDetail = Boolean(product.detail?.customSections?.length);
   const colorImageGroups = getColorImageGroups(product);
   const displayImages = product.images;
   const needsColor = product.colors.length > 0;
@@ -318,7 +319,7 @@ export default function ProductDetailPage() {
                   {product.description}
                 </p>
               )}
-              {colorImageGroups.some((g) => g.images.length > 0) && (
+              {!hasCustomDetail && colorImageGroups.some((g) => g.images.length > 0) && (
                 <div className="mt-10 space-y-10">
                   {colorImageGroups.map((group) => (
                     <div key={group.color ?? "all"}>
@@ -340,7 +341,7 @@ export default function ProductDetailPage() {
                   ))}
                 </div>
               )}
-              {product.detailImages?.length > 0 && (
+              {!hasCustomDetail && product.detailImages?.length > 0 && (
                 <div className="mt-32 md:mt-48 pt-20 md:pt-28 space-y-12 md:space-y-16">
                   {product.detailImages.map((item, i) => {
                     const src = typeof item === "string" ? item : item.src;

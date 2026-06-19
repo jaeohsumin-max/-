@@ -119,8 +119,64 @@ export function ProductSpecSection({ composition, size, modelSize }) {
   );
 }
 
+export function ProductCustomDetail({ sections }) {
+  if (!sections?.length) return null;
+
+  return (
+    <div className="max-w-[680px] mx-auto text-center">
+      {sections.map((section, index) => {
+        const key = `${section.type}-${index}`;
+
+        if (section.type === "image") {
+          return (
+            <img
+              key={key}
+              src={section.src}
+              alt={section.alt ?? ""}
+              className={`w-full mx-auto ${section.className ?? ""}`}
+              loading="lazy"
+            />
+          );
+        }
+
+        if (section.type === "label") {
+          return (
+            <p
+              key={key}
+              className="mt-14 mb-5 text-center text-[11px] text-[#555] tracking-[0.12em]"
+            >
+              {section.text}
+            </p>
+          );
+        }
+
+        if (section.type === "dividerTitle") {
+          return (
+            <div key={key} className="mt-16 mb-8">
+              <div className="border-t border-[#111] mb-8" />
+              <p className="text-[11px] text-[#555] tracking-[0.18em]">
+                {section.text}
+              </p>
+            </div>
+          );
+        }
+
+        if (section.type === "spacer") {
+          return <div key={key} className={section.className ?? "h-12"} />;
+        }
+
+        return null;
+      })}
+    </div>
+  );
+}
+
 export function RichProductDetail({ detail, productName = "" }) {
   if (!detail) return null;
+
+  if (detail.customSections?.length) {
+    return <ProductCustomDetail sections={detail.customSections} />;
+  }
 
   if (detail.comment?.length) {
     return (

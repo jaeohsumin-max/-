@@ -325,6 +325,71 @@ export const PRODUCTS = [
     detail: {
       commentImage:
         "https://d3ha2047wt6x28.cloudfront.net/6Cvyqk8ZXdI/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NTYwMjEzMTNtLnBuZw",
+      customSections: [
+        {
+          type: "image",
+          src: "/products/summer-pintuck-pants/notice.png",
+          alt: "notice",
+        },
+        {
+          type: "image",
+          src: "/products/summer-pintuck-pants/pattern-detail.png",
+          alt: "pattern detail",
+        },
+        {
+          type: "image",
+          src: "/products/summer-pintuck-pants/fit-gif.png",
+          alt: "fit detail",
+        },
+        {
+          type: "image",
+          src: "/products/summer-pintuck-pants/description.png",
+          alt: "description",
+        },
+        {
+          type: "image",
+          src: "/products/summer-pintuck-pants/size.png",
+          alt: "size",
+        },
+        {
+          type: "image",
+          src: "/products/summer-pintuck-pants/model-info.png",
+          alt: "model info",
+        },
+        { type: "label", text: "베이지" },
+        {
+          type: "image",
+          src: "https://d3ha2047wt6x28.cloudfront.net/6Cvyqk8ZXdI/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NTYwMjEzMTNtLnBuZw",
+          alt: "베이지",
+        },
+        { type: "label", text: "먹색" },
+        {
+          type: "image",
+          src: "https://d3ha2047wt6x28.cloudfront.net/sutj9EX20_I/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NjI0ODk4MjltLmpwZWc",
+          alt: "먹색",
+        },
+        {
+          type: "image",
+          src: "https://d3ha2047wt6x28.cloudfront.net/atfZpErQnXw/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NjE5Mjc1MjNtLnBuZw",
+          alt: "먹색",
+        },
+        { type: "dividerTitle", text: "DETAIL" },
+        {
+          type: "image",
+          src: "https://d3ha2047wt6x28.cloudfront.net/6Cvyqk8ZXdI/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NTYwMjEzMTNtLnBuZw",
+          alt: "detail 1",
+        },
+        {
+          type: "image",
+          src: "https://d3ha2047wt6x28.cloudfront.net/sutj9EX20_I/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NjI0ODk4MjltLmpwZWc",
+          alt: "detail 2",
+        },
+        {
+          type: "image",
+          src: "https://d3ha2047wt6x28.cloudfront.net/atfZpErQnXw/pr:GOODS_DETAIL/czM6Ly9hYmx5LWltYWdlLWxlZ2FjeS9kYXRhL2dvb2RzLzIwMjYwNjE3XzE3ODE2NzY3NjE5Mjc1MjNtLnBuZw",
+          alt: "detail 3",
+        },
+      ],
       comment: [
         "여름철 가볍고 시원하게 입기 좋은 바스락 팬츠를 찾으셨던 분",
         "허리 체크 배색과 스트링 디테일로 밋밋함 없이 포인트를 원하시는 분",
