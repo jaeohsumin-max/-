@@ -621,10 +621,9 @@ export const PRODUCTS = [
       "/products/summer-pintuck-pants/muk-05.png",
     ],
     listImages: [
-      "/products/summer-pintuck-pants/thumb-01-stretched.png",
-      "/products/summer-pintuck-pants/thumb-02.png",
-      "/products/summer-pintuck-pants/thumb-03.png",
+      "/products/summer-pintuck-pants/thumb-01-final.png",
     ],
+    thumbnailAspectRatio: "810 / 866",
     sizes: ["FREE"],
     colors: ["베이지", "그레이", "먹색", "블랙"],
     stock: 61,

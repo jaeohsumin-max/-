@@ -6,12 +6,16 @@ export default function ProductCardMedia({ product, className = "", children }) 
   const [imageIndex, setImageIndex] = useState(0);
   const images = getProductListImages(product);
   const imageFit = product.thumbnailFit ?? "cover";
+  const thumbnailStyle = product.thumbnailAspectRatio
+    ? { aspectRatio: product.thumbnailAspectRatio }
+    : undefined;
 
   return (
     <div
       className={`relative overflow-hidden ${
         imageFit === "contain" ? "bg-white" : "bg-[#f5f5f5]"
       } ${className}`}
+      style={thumbnailStyle}
     >
       {images.length > 1 ? (
         <ProductImageSlideshow
