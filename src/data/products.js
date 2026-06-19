@@ -300,10 +300,12 @@ export const PRODUCTS = [
       "/products/mood-knit-top/white-extra-03.png",
       "/products/mood-knit-top/01.png",
       "/products/mood-knit-top/02.png",
-      "/products/mood-knit-top/06.png",
-      "/products/mood-knit-top/brown-extra-01.png",
-      "/products/mood-knit-top/brown-extra-02.png",
-      "/products/mood-knit-top/brown-extra-03.png",
+      "/products/mood-knit-top/brown-order-01.png",
+      "/products/mood-knit-top/brown-order-02.png",
+      "/products/mood-knit-top/brown-order-03.png",
+      "/products/mood-knit-top/brown-order-04.png",
+      "/products/mood-knit-top/brown-order-05.png",
+      "/products/mood-knit-top/brown-order-06.png",
       "/products/mood-knit-top/03.png",
       "/products/mood-knit-top/04.png",
       "/products/mood-knit-top/05.png",
@@ -312,7 +314,7 @@ export const PRODUCTS = [
     listImages: [
       "/products/mood-knit-top/white-extra-01.png",
       "/products/mood-knit-top/01.png",
-      "/products/mood-knit-top/06.png",
+      "/products/mood-knit-top/brown-order-01.png",
     ],
     detailImages: [
       { src: "/products/mood-knit-top/detail-01.png", label: "White" },
@@ -337,12 +339,12 @@ export const PRODUCTS = [
         },
         {
           type: "image",
-          src: "/products/mood-knit-top/intro-01.png",
+          src: "/products/mood-knit-top/intro-02.png",
           alt: "골지니트 인트로 1",
         },
         {
           type: "image",
-          src: "/products/mood-knit-top/intro-02.png",
+          src: "/products/mood-knit-top/intro-01.png",
           alt: "골지니트 인트로 2",
         },
         {
@@ -415,22 +417,32 @@ export const PRODUCTS = [
         { type: "label", text: "Brown" },
         {
           type: "image",
-          src: "/products/mood-knit-top/06.png",
+          src: "/products/mood-knit-top/brown-order-01.png",
           alt: "Brown",
         },
         {
           type: "image",
-          src: "/products/mood-knit-top/brown-extra-01.png",
+          src: "/products/mood-knit-top/brown-order-02.png",
           alt: "Brown",
         },
         {
           type: "image",
-          src: "/products/mood-knit-top/brown-extra-02.png",
+          src: "/products/mood-knit-top/brown-order-03.png",
           alt: "Brown",
         },
         {
           type: "image",
-          src: "/products/mood-knit-top/brown-extra-03.png",
+          src: "/products/mood-knit-top/brown-order-04.png",
+          alt: "Brown",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/brown-order-05.png",
+          alt: "Brown",
+        },
+        {
+          type: "image",
+          src: "/products/mood-knit-top/brown-order-06.png",
           alt: "Brown",
         },
         { type: "label", text: "Black" },
