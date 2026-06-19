@@ -424,9 +424,11 @@ export const PRODUCTS = [
       "/products/mood-knit-top/07.png",
     ],
     listImages: [
-      "/products/mood-knit-top/white-extra-01.png",
-      "/products/mood-knit-top/01.png",
-      "/products/mood-knit-top/brown-order-01.png",
+      "/products/mood-knit-top/thumb-new-01.png",
+      "/products/mood-knit-top/thumb-new-02.png",
+      "/products/mood-knit-top/thumb-new-03.png",
+      "/products/mood-knit-top/thumb-new-04.png",
+      "/products/mood-knit-top/thumb-new-05.png",
     ],
     detailImages: [
       { src: "/products/mood-knit-top/detail-01.png", label: "White" },
