@@ -30,12 +30,12 @@ export default function Footer() {
           <div>
             <h3 className="text-[13px] font-bold text-[#111] mb-3">FOLLOW US</h3>
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/codemuse_offical/"
               target="_blank"
               rel="noreferrer"
               className="text-[12px] text-[#666] hover:text-black"
             >
-              @INSTAGRAM
+              @codemuse_offical
             </a>
           </div>
 
