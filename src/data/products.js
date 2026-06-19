@@ -621,7 +621,9 @@ export const PRODUCTS = [
       "/products/summer-pintuck-pants/muk-05.png",
     ],
     listImages: [
-      "/products/summer-pintuck-pants/thumb-01-final.png",
+      "/products/summer-pintuck-pants/thumb-new-01.png",
+      "/products/summer-pintuck-pants/thumb-new-02.png",
+      "/products/summer-pintuck-pants/thumb-new-03.png",
     ],
     thumbnailFit: "contain",
     sizes: ["FREE"],
