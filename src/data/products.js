@@ -38,8 +38,10 @@ export const PRODUCTS = [
       "/products/popcorn-cardigan/melange-extra-03.png",
     ],
     listImages: [
-      "/products/popcorn-cardigan/ivory-1.png",
-      "/products/popcorn-cardigan/gray-1.png",
+      "/products/popcorn-cardigan/thumb-new-01.png",
+      "/products/popcorn-cardigan/thumb-new-02.png",
+      "/products/popcorn-cardigan/thumb-new-03.png",
+      "/products/popcorn-cardigan/thumb-new-04.png",
     ],
     colorImages: {
       Ivory: [
