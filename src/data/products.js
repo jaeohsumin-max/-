@@ -653,6 +653,93 @@ export const PRODUCTS = [
     ],
     detail: {
       commentImage: "/products/puzzle-tee/01.png",
+      customSections: [
+        {
+          type: "notice",
+          heading: "☝︎ 상품정보를 확대해서 볼 수 있어요!",
+          title: "[notice]",
+          lines: [
+            "배송 예정일은 데이터를 분석하여 자동으로 예측한 일정으로,",
+            "실제 출고일과는 무관한 점 참고 부탁드립니다.",
+          ],
+        },
+        {
+          type: "image",
+          src: "/products/puzzle-tee/intro-new-01.png",
+          alt: "퍼즐티 인트로",
+        },
+        {
+          type: "text",
+          lines: [
+            "아무 스커트에나 가볍게 툭 매치해도",
+            "입자마자 핀터레스트 무드가 완성되는 반팔 티셔츠 ♡",
+            "빈티지한 패턴이 담긴 유니크한 퍼즐 패치워크와",
+            "부드러운 버터 색감이 어우러져 사랑스러움 가득해요 !",
+            "단독으로 입어도 밋밋함 없이 확실한 포인트가 되어주어,",
+            "깜장 스커트나 데님과 함께 러블리한 데일리룩으로 강력 추천드려요",
+          ],
+        },
+        {
+          type: "specInfo",
+          composition: "면 100",
+          size: {
+            name: "FREE",
+            labels: "가슴단면 / 어깨단면 / 총길이 / 팔길이 / 암홀(cm)",
+            values: "47 / 38 / 54 / 14 / 20",
+          },
+        },
+        {
+          type: "image",
+          src: "/products/puzzle-tee/01.png",
+          alt: "퍼즐티 착용 1",
+        },
+        {
+          type: "image",
+          src: "/products/puzzle-tee/02.png",
+          alt: "퍼즐티 착용 2",
+        },
+        {
+          type: "image",
+          src: "/products/puzzle-tee/03.png",
+          alt: "퍼즐티 착용 3",
+        },
+        {
+          type: "image",
+          src: "/products/puzzle-tee/04.png",
+          alt: "퍼즐티 착용 4",
+        },
+        {
+          type: "image",
+          src: "/products/puzzle-tee/05.png",
+          alt: "퍼즐티 착용 5",
+        },
+        { type: "dividerTitle", text: "DETAIL" },
+        {
+          type: "image",
+          src: "/products/puzzle-tee/cream-front.png",
+          alt: "Light Yellow front",
+        },
+        {
+          type: "image",
+          src: "/products/puzzle-tee/cream-detail.png",
+          alt: "Light Yellow detail",
+        },
+        {
+          type: "image",
+          src: "/products/puzzle-tee/cream-back.png",
+          alt: "Light Yellow back",
+        },
+        {
+          type: "image",
+          src: "/products/puzzle-tee/white.png",
+          alt: "White",
+        },
+        {
+          type: "image",
+          src: "/products/puzzle-tee/mint.png",
+          alt: "Light Mint",
+        },
+      ],
       comment: [
         "핀터레스트 감성의 빈티지하고 키치한 무드를 선호하시는 분",
         "밋밋함 없이 티셔츠 하나만으로도 확실한 포인트가 되는 상의를 찾으셨던 분",
