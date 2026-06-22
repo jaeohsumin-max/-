@@ -729,16 +729,19 @@ export const PRODUCTS = [
           src: "/products/puzzle-tee/cream-back.png",
           alt: "Light Yellow back",
         },
+        { type: "label", text: "Light Yellow" },
         {
           type: "image",
           src: "/products/puzzle-tee/white.png",
           alt: "White",
         },
+        { type: "label", text: "White" },
         {
           type: "image",
           src: "/products/puzzle-tee/mint.png",
           alt: "Light Mint",
         },
+        { type: "label", text: "Light Mint" },
       ],
       comment: [
         "핀터레스트 감성의 빈티지하고 키치한 무드를 선호하시는 분",
