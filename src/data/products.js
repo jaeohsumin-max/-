@@ -233,6 +233,92 @@ export const PRODUCTS = [
     stock: 52,
     detail: {
       commentImage: "/products/rosy-blouse/08.png",
+      customSections: [
+        {
+          type: "notice",
+          heading: "☝︎ 상품정보를 확대해서 볼 수 있어요!",
+          title: "[notice]",
+          lines: [
+            "배송 예정일은 데이터를 분석하여 자동으로 예측한 일정으로,",
+            "실제 출고일과는 무관한 점 참고 부탁드립니다.",
+          ],
+        },
+        {
+          type: "image",
+          src: "/products/rosy-blouse/intro-new-01.png",
+          alt: "로지 블라우스 인트로",
+        },
+        {
+          type: "text",
+          lines: [
+            "넥라인을 따라 은은하게 더해진 레이스 디테일과",
+            "앙증맞은 리본 타이로 러블리한 무드 가득 ･ ♡",
+            "볼륨감 있는 퍼프 소매가 미운 팔뚝살은 쏙 가려주고,",
+            "자연스럽게 퍼지는 베이비돌 핏으로 허리 라인은 더 슬림해 보여요 !",
+            "화사한 딸기우유 핑크 컬러로 얼굴빛을 형광등처럼 밝혀주어",
+            "데님 팬츠 하나만 툭 입어줘도 코디가 완성되는 포인트 블라우스입니다",
+          ],
+        },
+        {
+          type: "specInfo",
+          size: {
+            name: "FREE",
+            labels: "가슴단면 / 어깨단면 / 총길이 / 팔길이 / 암홀(cm)",
+            values: "36 / 27 / 49 / 9 / 15",
+          },
+        },
+        {
+          type: "image",
+          src: "/products/rosy-blouse/08.png",
+          alt: "로지 블라우스 착용 1",
+        },
+        {
+          type: "image",
+          src: "/products/rosy-blouse/04.png",
+          alt: "로지 블라우스 착용 2",
+        },
+        {
+          type: "image",
+          src: "/products/rosy-blouse/01.png",
+          alt: "로지 블라우스 착용 3",
+        },
+        {
+          type: "image",
+          src: "/products/rosy-blouse/02.png",
+          alt: "로지 블라우스 착용 4",
+        },
+        {
+          type: "image",
+          src: "/products/rosy-blouse/03.png",
+          alt: "로지 블라우스 착용 5",
+        },
+        {
+          type: "image",
+          src: "/products/rosy-blouse/05.png",
+          alt: "로지 블라우스 착용 6",
+        },
+        {
+          type: "image",
+          src: "/products/rosy-blouse/07.png",
+          alt: "로지 블라우스 착용 7",
+        },
+        {
+          type: "image",
+          src: "/products/rosy-blouse/09.png",
+          alt: "로지 블라우스 착용 8",
+        },
+        { type: "dividerTitle", text: "DETAIL" },
+        {
+          type: "image",
+          src: "/products/rosy-blouse/detail-new-01.png",
+          alt: "Pink front detail",
+        },
+        {
+          type: "image",
+          src: "/products/rosy-blouse/detail-new-02.png",
+          alt: "Pink back detail",
+        },
+      ],
       comment: [
         "화사한 핑크 컬러로 로맨틱한 무드를 원하시는 분",
         "스퀘어넥·오프숄더 투웨이 스타일링을 즐기시는 분",
