@@ -218,6 +218,13 @@ export function ProductCustomDetail({ sections }) {
                   <p className="mb-4">SIZE: {section.size.name ?? "FREE"}</p>
                   {section.size.labels && <p>{section.size.labels}</p>}
                   {section.size.values && <p className="my-5">{section.size.values}</p>}
+                  {section.size.notes?.length > 0 && (
+                    <div className="mt-8 space-y-4">
+                      {section.size.notes.map((line) => (
+                        <p key={line}>{line}</p>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
