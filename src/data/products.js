@@ -621,7 +621,7 @@ export const PRODUCTS = [
     id: "p17",
     name: "[핀터무드] 몽글몽글 솜사탕 퍼즐 배색 티셔츠(3color)",
     category: "top",
-    price: 14900,
+    price: 19900,
     originalPrice: 21900,
     rating: 4.9,
     reviews: 0,
